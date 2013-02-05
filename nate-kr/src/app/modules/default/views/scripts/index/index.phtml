@@ -1,0 +1,194 @@
+<link href="{%$staticUrl%}/apps/island/main_2011012801.css?v=1.01" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+a img,:link img,:visited img {
+	border: 0 none;
+}
+
+object#swfcontent {
+	display: inline;
+}
+
+.box {
+	border: 1px solid #CCCCCC;
+}
+-->
+</style>
+<div style="padding-bottom:3px;width:750px;"><a target="_blank" href="http://appstore.cyworld.com/main/view?apps_no=1413"><img width="750" src="{%$staticUrl%}/apps/island/images/banner/banner03.jpg" /></a></div>
+<div class="main" style="height:680px;">
+{%include file="menu.phtml"%}
+	<div id="main_content">
+		<div id="loadingdiv" style="position: absolute; left: 350px; top: 250px;"><img src="{%$staticUrl%}/apps/island/images/common/loading0.gif" /><br/>Loading......</div>
+		<div id="flashdiv"></div>
+		<script type="text/javascript">
+		</script>
+	</div>
+</div>
+
+<div id="overlay" style="width:100%;height:1000px;background-color:#fff;position:absolute;left:0;top:0;opacity:0.32;filter:alpha(opacity=75);z-index:1000;display:none;"></div>
+<div id="divFloat" style="clear:both;display:none;position:absolute;z-index:10000;left:100px;top:100px;width:648px; height:530px; padding:80px 0 0 100px;">
+    <div style="width:403px; height:240px; background-image:url({%$staticUrl%}/apps/island/images/common/tsk.gif)">
+      <table width="250" height="270px" border="0">
+        <tr>
+          <td valign="bottom"><table width="250" border="0">
+            <tr>
+              <td align="right"><a href="#" onclick="hideFloat();"><img src="{%$staticUrl%}/apps/island/images/common/tsk2.gif" width="120" height="45" border="0" /></a></td>
+            </tr>
+          </table></td>
+        </tr>
+      </table>
+    </div>
+</div>
+
+<!-- footer -->
+<iframe width="760" height="160" frameborder="0" scrolling="no" src="{%$staticUrl%}/html/banner/index.html?v=2011021801"></iframe>
+<div style="width:750px;align:center;text-align:center;font-weight:bold;">
+  <div>해피 아일랜드는 (주)디그라운드에서 서비스 합니다. 공식클럽 http://club.cyworld.com/dgroundgames로 놀러오세요~~ </div>
+  <div style="color:#3b5998;padding-top:2px;padding-bottom:12px;">아일랜드 주소:{%$uid%}<span id="userinfo" style="color:red;"></span></div>
+
+  <script type="text/javascript">
+  	var VIEWER_ID = {%$uid%};
+	var OWNER_ID = VIEWER_ID;
+	var FIRST_LOGIN = {%$newuser%};
+	var ALLOW_PLAY = '{%$allowPlay%}';
+
+	function startGame() {
+		var hf_skey = _Config.hf_skey;
+		if (hf_skey) {
+	    	var flashVars={"ver":"2","pNum":"46","uid":"{%$uid%}","loadingUi":"{%$staticUrl%}/swf/loadingUi2.swf?v=2011020901", "charge":"1" ,"interfaceUrl":"{%$hostUrl%}/api/initswf/v/2011020901/hf_skey/{%$hf_skey%}","snsType":"nate","hf_skey":"{%$hf_skey%}"};
+	    	var params = { base: "{%$staticUrl%}/", allowScriptAccess: "always", menu:"false", wmode: "opaque", allowFullScreen: "true", bgcolor: "#ffffff", align: "middle", quality: "high"};
+	    	var attrs = { id: "islandLoader", name: "islandLoader" };
+	    	swfobject.embedSWF("{%$staticUrl%}/swf/islandLoader.swf?v=2011020901", "flashdiv",  "748", "600", "10.0", "{%$staticUrl%}/expressInstall.swf", flashVars, params, attrs);
+	    	if ('1' != ALLOW_PLAY) {
+	    		showFloat();
+	    	}
+	    } else {
+	    	var html = '<div style="padding-top:50px;color:red;font-size:14px;text-align:center;"><a href="#" onclick="HFApp.home();">Please reload.</a></div>';
+	    	$('#flashdiv').html(html);
+	    }
+	}
+
+	function hideLoading() {
+		$('#loadingdiv').hide();
+	}
+
+	function showFloat()
+	{
+		$('#overlay').show();
+		$('#divFloat').toggle('fast');
+		return;
+	}
+
+	function hideFloat()
+	{
+		$('#divFloat').toggle('slow');
+		$('#overlay').hide();
+		allowPlay(VIEWER_ID);
+		return;
+	}
+
+	function allowPlay(id) {
+		$.ajax({
+		   type: "POST",
+		   url: _Config.hostUrl + '/index/playgame',
+		   data: 'id=' + id + '&hf_skey=' + _Config.hf_skey,
+		   dataType: 'jsonp',
+		   crossDomain: true,
+		   success: function(response) {
+		   }
+		});
+	}
+
+	function goInvite() {
+		HFApp.invite();
+		return;
+	}
+
+	function goPay() {
+		HFApp.pay();
+		return;
+	}
+
+	function sendFeed(feed) {
+		var opt = $.parseJSON(feed);
+		gofeed(opt.imgUrl,opt.text);
+	}
+
+	function sendUserLevelUpFeed(flag) {
+		if (flag == 1) {
+			var opt = {
+					"imgUrl": '{%$staticUrl%}/apps/island/images/feed/island_level_up.gif',
+					"text": '{actor}의 아일랜드가 더 크게 변했데요! 부럽삼? ~ 같이 해 보자구요^^'
+					//"text": '{%$uname%}의 아일랜드가 더 크게 변했데요! 부럽삼? ~ 같이 해 보자구요^^'
+				};
+		} else {
+			var opt = {
+					"imgUrl": '{%$staticUrl%}/apps/island/images/feed/user_level_up.gif',
+					"text": '{actor}의 아일랜드가 레벨이 올랐어요! 무료 선물도 준다니 어서 가보시죠?'
+					//"text": '{%$uname%}의 아일랜드가 레벨이 올랐어요! 무료 선물도 준다니 어서 가보시죠?'
+				};
+		}
+		gofeed(opt.imgUrl,opt.text);
+	}
+
+	function sendDailyTaskFeed() {
+		var opt = {
+			"imgUrl": '{%$staticUrl%}/apps/island/images/feed/daily_mission_complete.gif',
+			"text": '{actor}가 노력끝에 매일 미션을 완성했데요~~ 자 박수~~'
+			//"text": '{%$uname%}가 노력끝에 매일 미션을 완성했데요~~ 자 박수~~'
+		};
+
+		gofeed(opt.imgUrl,opt.text);
+	}
+
+	function sendNormalFeed() {
+		var opt = {
+			"imgUrl": '{%$staticUrl%}/apps/island/images/feed/join.gif',
+			"text": '작렬하는 태양! 모래사장! 미남미녀! 해피 아일랜드로 오세요~~'
+		};
+		gofeed(opt.imgUrl,opt.text);
+	}
+
+	function gofeed(picUrl, linktext) {
+		HFApp.activityApi2(linktext,picUrl);
+	}
+
+	function nateToast(type, target, text) {
+		var content = '';
+		if (text == null || text == undefined) {
+			text = '';
+		}
+		if (1 == type) {
+			content = '이런!! 아일랜드에서{%$uname%}님이 기다리던 손님을 데려가 버렸어요!';
+		}
+		else if (2 == type) {
+			content = '절친{%$uname%}님이 내 건축물의 돈을 가져가버렸어요! 두고보자!';
+		}
+		else if (3 == type) {
+			content = '{%$uname%}님이 건축물을 고쳐줬어요. 음 그럴 친구는 아닌데 그죠? ^^';
+		}
+		else if (4 == type) {
+			content = text;
+			//alert(content);
+		}
+		else {
+			return;
+		}
+		if (target == null || target == ''){
+			return;
+		}
+		HFApp.sendNateOnToast(content, target);
+	}
+
+	function getCookie(name) {
+		var arr = document.cookie.match(new RegExp('(^| )'+name+'=([^;]*)(;|$)'));
+		if(arr != null) return unescape(arr[2]); return null;
+	}
+
+    if (FIRST_LOGIN) {
+    	sendNormalFeed();
+    }
+
+    startGame();
+  </script>
+</div>

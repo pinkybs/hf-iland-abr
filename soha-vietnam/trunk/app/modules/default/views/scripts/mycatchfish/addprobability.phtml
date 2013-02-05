@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>捕鱼后台-添加商品概率</title>
+</head>
+<body>
+	<br />
+	<div>
+		<form action="{%$hostUrl%}/mycatchfish/probability" method="post">
+		<table align=center>
+			<tr>
+				<td>请输入商品ID:</td>
+				<td><input type="text" name="pid" value="{%$pid%}"></td>
+				<td><input type="submit" name="search" value="查询"></td>
+				<td align=left width=400>
+				<a href="{%$hostUrl%}/mycatchfish/probability"><font color=red>去修改概率</font></a>
+				&nbsp;&nbsp;
+				<a href="{%$hostUrl%}/mycatchfish/product">去修改商品信息</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="{%$hostUrl%}/mycatchfish/stat">去查看统计</a>
+				</td>
+			</tr>
+		</table>
+		<input type="hidden" name="act" value="search">
+		</form>
+		<table align=center>
+			<tr>
+				<td height=50>&nbsp;</td>
+			</tr>
+		</table>
+		<form action="{%$hostUrl%}/mycatchfish/addprobability" method="post">		
+		  <table border=0 width=75% align=center>
+		  <tr><td align=center colspan=2><font color=red>{%$msg%}</font></td></tr>
+		  	<tr><td width=10% align=center><b>商品ID</b></td><td><input type="text" name="pid" value="" style="width:100px;"></td></tr>
+		  	<tr><td width=10% align=center><b>折扣数</b></td><td><input type="text" name="discount" value="" style="width:100px;">[请填写0-8的数字]</td></tr>
+			<tr><td width=10% align=center><b>领域位置ID</b></td><td><input type="text" name="level" value="" style="width:100px;">[请填写1-5的数字]</td></tr>
+			<tr><td width=10% align=center><b>概率</b></td><td><input type="text" name="probability" value="" style="width:100px;">[请填写整数]</td></tr>
+			<tr><td width=10% align=center><b>数量</b></td><td><input type="text" name="num" value="" style="width:100px;">[请填写整数]</td></tr>
+			<tr><td width=10% align=center><b>URL_A</b></td><td><input type="text" name="urla" value="" style="width:600px;"></td></tr>
+			<tr><td width=10% align=center><b>URL_B</b></td><td><input type="text" name="urlb" value="" style="width:600px;"></td></tr>
+			<tr><td align=center colspan=2><input type="submit" name="update" value="添加并更新缓存"></td></tr>
+		  </table>
+		  <input type="hidden" name="act" value="add">
+		  </form>
+	</div>
+</body>
+</html>

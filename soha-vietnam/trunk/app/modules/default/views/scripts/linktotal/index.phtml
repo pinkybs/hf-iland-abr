@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>链接统计查询</title>
+	</head>
+	<body>
+		<br />
+		<form action="{%$hostUrl%}/linktotal/index" method="post" >
+			起始日期：<input type="text" name="starttime" />&nbsp;&nbsp;&nbsp;(格式:20110830)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			结束日期：<input type="text" name="endtime" />&nbsp;&nbsp;&nbsp;(格式:20110830)</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			链接ID：<input type="text" name="linkid" />&nbsp;&nbsp;&nbsp;
+			<input type="submit" value="查询" />
+		</form>
+		<br /><br /><br />
+		<hr />
+		<h3>查询结果：</h3>
+		<div>
+			&nbsp;&nbsp;&nbsp;<div>日期：{%$starttime%} - {%$endtime%}</div>
+			&nbsp;&nbsp;&nbsp;<div>链接ID：{%$linkID%}</div>
+			&nbsp;&nbsp;&nbsp;<div>去除重复IP：{%$uniquenum%}</div>
+			&nbsp;&nbsp;&nbsp;<div>不去除重复IP：{%$allnum%}</div>
+		</div>
+	</body>
+</html>

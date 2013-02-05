@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+    <ModulePrefs title="Island" description="Island" height="1300" author="HappyFish">
+        <Require feature="opensocial-0.9" />
+        <Require feature="opennate" />
+    </ModulePrefs>
+
+    <Content type="html" view="canvas">
+    <![CDATA[
+    <div id="hf_wrapper" style="margin-left: auto; margin-right: auto;"></div>
+    <script type="text/javascript" src="http://devhp.dground.net/static/js/jquery-1.5.min.js"></script>
+    <script type="text/javascript" src="http://devhp.dground.net/static/js/swfobject.js"></script>
+    <script type="text/javascript" src="http://devhp.dground.net/static/js/ops_canvas.js?v=1.0.0"></script>
+    <script type="text/javascript">
+	    var HF_STATIC_URL = "http://devhp.dground.net/static";
+		var HF_BASE_URL = "http://devhp.dground.net";
+		var _app_id = 1845;
+		function init() {
+			//document.write("<script src='"+HF_STATIC_URL+"/js/ops_canvas.js?v="+Math.random()+"'><\/script>");
+			var canvas = natecy.application.newCanvas(HF_BASE_URL, _app_id, 'island', HF_STATIC_URL);
+			canvas.enableDebug(true);
+			//default height
+			canvas.setHeight(1200);
+			//let's go
+			canvas.start();
+		}
+		gadgets.util.registerOnLoadHandler(init);
+	</script>
+	<div id="hf_script"></div>
+    ]]>
+    </Content>
+</Module>

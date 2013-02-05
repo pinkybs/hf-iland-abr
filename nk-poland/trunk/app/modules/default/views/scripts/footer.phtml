@@ -1,0 +1,188 @@
+<div style="width:750px;">
+<iframe width="750px" height="160px" frameborder="0" scrolling="no" src="{%$staticUrl%}/html/b/index.html?v=2011062201"></iframe>
+<div id="footer" style="text-align:center;font-size:12px;">小島門牌號: {%$platformUid%} ({%$uid%}){% if $hfDev == 1 %}<span id="userinfo" style="color:red;"></span>{% /if %}</div>
+</div>
+
+<script type="text/javascript">
+	var fconfig = {
+        appUrl:"http://apps.facebook.com/{%$smarty.const.APP_NAME%}/",
+        appId:"{%$appId%}",
+        appKey:"{%$appKey%}",
+        userId:"{%$uid%}",
+        userName:"{%$uname%}",
+		platformUid:"{%$platformUid%}",
+		staticUrl:"{%$staticUrl%}",
+        gameMode:"opaque"
+    };
+
+	function sendFeed(feed)
+	{
+		if(feed == 'false') {
+			return ;
+		}
+
+		var opt = $.parseJSON(feed);
+		gofeed(opt.linktext,opt.imgUrl,opt.text);
+	}
+
+	function returnGift()
+	{
+		location.href = "{% $hostUrl %}/gift/top";
+	}
+
+	function inviteFriend()
+	{
+		location.href = "{% $hostUrl %}/invite/top";
+	}
+
+	function sendUserLevelUpFeed(flag)
+	{
+		if (flag == 1) {
+			var opt = {
+					"linktext": "去看看",
+					"imgUrl": '{%$staticUrl%}/apps/island/images/feed/island_level_up.gif',
+					"text": '{%$uname%}的小島在他的努力下又變大了！你們羡慕嗎~那一起來玩吧！'
+				};
+		} else {
+			var opt = {
+					"linktext": "去看看",
+					"imgUrl": '{%$staticUrl%}/apps/island/images/feed/user_level_up.gif',
+					"text": '{%$uname%}的小島升級了！去瀏覽還能拿到免費禮物哦！快去看看吧！'
+				};
+		}
+		gofeed(opt.linktext,opt.imgUrl,opt.text);
+	}
+
+	function sendDailyTaskFeed()
+	{
+		var opt = {
+			"linktext": "去看看",
+			"imgUrl": '{%$staticUrl%}/apps/island/images/feed/daily_mission_complete.gif',
+			"text": '{%$uname%}通過一天的努力，所有日常任務都完成了哦！鼓掌~'
+		};
+
+		gofeed(opt.linktext,opt.imgUrl,opt.text);
+	}
+
+	function sendNormalFeed()
+	{
+		var opt = {
+			"linktext": "去看看",
+			"imgUrl": '{%$staticUrl%}/apps/island/images/feed/join.gif',
+			"text": '陽光？沙灘？美女？帥哥！盡在快樂島主！趕快加入吧~'
+		};
+		gofeed(opt.linktext,opt.imgUrl,opt.text);
+	}
+
+	function sendTeamBuyFeed()
+    {
+		var ajaxurl = "{%$hostUrl%}/event/sendteambuyfeed";
+		$.ajax({
+			   type: "post",
+			   url: ajaxurl,
+			   dataType: "text",
+			   success: function(msg){
+				   sendFeed(msg);
+			   }
+			});
+    }
+
+	function sendTaojishiFeed()
+    {
+		var ajaxurl = "{%$hostUrl%}/event/sendtaojishifeed";
+		$.ajax({
+			   type: "post",
+			   url: ajaxurl,
+			   dataType: "text",
+			   success: function(msg){
+				   sendFeed(msg);
+			   }
+			});
+    }
+
+	function sendStromFeed()
+	{
+		var ajaxurl = '{%$hostUrl%}/event/sendstromfeed';
+		$.ajax({
+				type: "post",
+				url: ajaxurl,
+				dataType: "text",
+				success: function(msg){
+					sendFeed(msg);
+				}
+			});
+    }
+</script>
+
+<div id="fb-root"></div>
+<!-- <script src="http://connect.facebook.net/en_US/all.js"></script>  -->
+<script src="http://connect.facebook.net/zh_TW/all.js"></script>
+<script>
+  FB.init({
+    appId  : '{%$smarty.const.APP_ID%}',
+    status : true, // check login status
+    cookie : true, // enable cookies to allow the server to access the session
+    xfbml  : true  // parse XFBML
+  });
+  FB.Canvas.setSize();
+
+  function gofeed(linktext,picUrl,text,type) {
+	  if (type === undefined || type == "") {
+		  type = 'feed';
+      }
+	  if (text === undefined || text == "") {
+		  text = ' ';
+      }
+
+	  FB.ui(
+			   {
+			     method: type,
+			     name: linktext,
+			     link: 'http://apps.facebook.com/{%$smarty.const.APP_NAME%}/',
+			     picture: picUrl,
+			     caption: text,
+			     description: ' ',
+			     message: ''
+			   },
+			   function(response) {
+			     if (response && response.post_id) {
+			       //alert('Post was published.');
+			     } else {
+			       //alert('Post was not published.');
+			     }
+			   }
+			 );
+
+  }
+
+  var FIRST_LOGIN = '{%$newuser%}';
+  if (FIRST_LOGIN == '1') {
+  	sendNormalFeed();
+  }
+
+</script>
+
+
+<script type="text/javascript">
+	function trackPage(page)
+	{
+		/*
+		if (pageTracker) {
+			pageTracker._trackPageview(page);
+		}*/
+	}
+</script>
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-16475344-1']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? ' https://ssl' : ' http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</body>
+</html>

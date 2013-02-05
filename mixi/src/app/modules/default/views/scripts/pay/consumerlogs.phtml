@@ -1,0 +1,48 @@
+{%include file="header.phtml"%}
+<div class="main">
+    {%include file="menu.phtml"%}
+
+    <div class="chongzhicontent">
+		<img src="{%$user.face%}" width="59" height="60" />
+		<div class="xinxi">
+			<div class="cname" style="width:200px">{%$user.name|escape%}</div>
+			<div class="shuzi" style="padding-left:20px">ダイヤ： <span style="color:#3c7e9a;font-weight:bold;">{%$user.gold%}</span></div>
+		  <div class="fhyx"><a href="{%$baseUrl%}/index/flash"><img src="{%$staticUrl%}/apps/island/images/back.jpg" width="80" height="35" /></a></div>
+		</div>
+	</div>
+
+	<div class="table">
+		<ul>
+		<li style="width:50px"></li>
+		<li><a href="{%$baseUrl%}/pay/top"><div class="nav_02"><img src="{%$staticUrl%}/apps/island/images/paypal.gif" alt="チャージ" /></div></a></li>
+		<li><a href="{%$baseUrl%}/pay/webmoney"><div class="nav_02"><img src="{%$staticUrl%}/apps/island/images/webmoney.gif" alt="webmoney" /></div></a></li>
+		<li><a href="{%$baseUrl%}/pay/rewardplus"><div class="nav_02">パートナーサイト</div></a></li>
+		<li><a href="{%$baseUrl%}/pay/orderlogs"><div class="nav_02">取得記録</div></a></li>
+		<li><a href="{%$baseUrl%}/pay/consumerlogs"><div class="nav_01">消費記録</div></a></li>
+		</ul>
+	</div>
+	
+    <div class="content" style="padding-top:10px;padding-left:100px;width:650px;">
+		<div class="chongzhi02"><span style="color:#0C67B6">消費記録</span> &nbsp;&nbsp;合計{%$count%}個 </div>
+		<table width="640" border="0" align="center" cellpadding="0" cellspacing="0" class="congzhitable">
+		<tr>
+			<td width="180"><strong>日付</strong></td>
+			<td width="100"><strong>ダイヤ消費量</strong></td>
+			<td><strong>購入リスト</strong></td>
+			<td width="110"><strong>購入量</strong></td>
+		</tr>
+		{% if $count %}
+        {% foreach from=$logs item=log %}
+		<tr class="table-line">
+    		<td>{%$log.create_time|date_format:"%Y-%m-%d %H:%M:%S"%}</td>
+    		<td><span class="pay-count">{%$log.gold%}</span></td>
+    		<td>{%$log.name%}</td>
+    		<td>{%$log.count%}</td>
+  		</tr>
+        {%/foreach%}
+        {% /if %}
+		</table>
+	</div>
+
+</body>
+</html>

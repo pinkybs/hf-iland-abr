@@ -1,0 +1,115 @@
+<link href="{%$staticUrl%}/apps/island/css_2011012801.css?v=1.01" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+a img,:link img,:visited img {
+	border: 0 none;
+}
+-->
+</style>
+<div class="main">
+{%include file="menu.phtml"%}
+<div id="main_content" class="content" style="height:820px;padding-top:2px;">
+<div id="invite_award">
+<table width="748" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td height="39" colspan="5" background="{%$staticUrl%}/apps/island/images/invite/bg_01.gif">
+		<table width="100" border="0" align="right" cellpadding="0" cellspacing="0">
+			<tr>
+				<td><a href="javascript:void(0);" onclick="HFApp.home();" target="_top">돌아가기&gt;&gt;</a></td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td height="355" width="43" background="{%$staticUrl%}/apps/island/images/invite/bg_02.gif"></td>
+		<td height="355" width="191" background="{%$staticUrl%}/apps/island/images/invite/{%$epath%}bg_03.gif"></td>
+		<td height="355" width="315" background="{%$staticUrl%}/apps/island/images/invite/{%$epath%}bg_04.gif"></td>
+		<td height="355" width="157" background="{%$staticUrl%}/apps/island/images/invite/{%$epath%}bg_05.gif"></td>
+		<td height="355" width="42" background="{%$staticUrl%}/apps/island/images/invite/bg_06.gif"></td>
+	</tr>
+	<tr>
+		<td height="34" width="43" background="{%$staticUrl%}/apps/island/images/invite/bg_07.gif"></td>
+		<td colspan="3" bgcolor="#E5F6FD" align="center">
+			<a href="javascript:void(0);" onclick="confirmInvite();"><img src="{%$staticUrl%}/apps/island/images/invite/btnInvite.gif" alt="" width="129" height="33" border="0" /></a>
+		</td>
+		<td height="34" width="42" background="{%$staticUrl%}/apps/island/images/invite/bg_12.gif"></td>
+	</tr>
+	<tr>
+		<td height="37" colspan="5" background="{%$staticUrl%}/apps/island/images/invite/bg_13.gif"></td>
+	</tr>
+</table>
+</div>
+</div>
+
+<script type="text/javascript">
+var _VIEWERFRIENDS = [];
+var _isClicked = false;
+function confirmInvite() {
+	if (_isClicked) {
+		//alert('please waiting.');
+		return false;
+	}
+	_isClicked = true;
+	getNateFriends(1);
+}
+
+function getNateFriends(num) {
+    var limitPerRequest = 20;
+    var req = opensocial.newDataRequest();
+    var viewer_friends_params = {};
+    viewer_friends_params[opensocial.IdSpec.Field.USER_ID] = opensocial.IdSpec.PersonId.VIEWER;
+    viewer_friends_params[opensocial.IdSpec.Field.GROUP_ID] = opensocial.IdSpec.GroupId.FRIENDS;
+    //viewer_friends_params[opensocial.DataRequest.PeopleRequestFields.MAX] = 500;
+    //viewer_friends_params[opensocial.DataRequest.PeopleRequestFields.FILTER] = opensocial.DataRequest.FilterType.HAS_APP;
+    var opt = {};
+    opt[opensocial.DataRequest.PeopleRequestFields.FIRST] = num*limitPerRequest+1;
+    opt[opensocial.DataRequest.PeopleRequestFields.MAX] = limitPerRequest;
+    //opt[opensocial.DataRequest.PeopleRequestFields.FILTER] = opensocial.DataRequest.FilterType.HAS_APP;
+    var viewer_friends_idspec = opensocial.newIdSpec(viewer_friends_params);
+    req.add(req.newFetchPeopleRequest(viewer_friends_idspec,opt), 'viewer_friends_data');
+    req.send(function(dataResponse) {
+        if (dataResponse.hadError()) {
+            //get friend data error
+        	//console.debug("getFriendData: [" + dataResponse.getErrorCode() + '] ' + dataResponse.getErrorMessage());
+            return;
+        }
+        var viewerFriends = dataResponse.get('viewer_friends_data').getData();
+        var friends = [];
+        friends = getFriendInfo(viewerFriends);
+        _VIEWERFRIENDS = _VIEWERFRIENDS.concat(friends);
+        if(viewerFriends.getTotalSize()>((num+1)*limitPerRequest)){
+        	getNateFriends(num+1);
+        }
+        else {
+        	if (_VIEWERFRIENDS) {
+        		HFApp.invitefriend(gadgets.json.stringify(_VIEWERFRIENDS));
+            }
+        	else {
+        		//alert("getNateFriends: failed");
+        		return;
+        	}
+        }
+    });
+}
+
+function getFriendInfo(friends) {
+    var data = [];
+    friends.each(function(friend) {
+    	var fid = friend.getId();
+
+    	if (fid == null || fid == undefined || fid == 'undefined') {
+    		//console.debug('fid null');
+			return true;
+        }
+
+    	if (fid != _Config.platformUid) {
+            var name = friend.getDisplayName().replace(/&/g, '&amp;');
+            var img = friend.getField(opensocial.Person.Field.THUMBNAIL_URL);
+    		var info = fid + ',' + img + ',' + name ;
+            data.push(info);
+    	}
+    });
+
+    return data;
+}
+</script>

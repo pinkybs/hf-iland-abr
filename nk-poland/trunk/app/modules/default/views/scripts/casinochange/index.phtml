@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>積分兌換</title>
+<!-- <link href="{%$staticUrl%}/apps/island/images/ganen1/duihuan.css" rel="stylesheet" type="text/css" />-->
+<style type="text/css">
+<!--
+body,td,th {font-size: 12px;color: #333333; line-height:20px; }
+th{ color:#2584c2; width:130px;}
+td{	text-align: center;}
+img { border:0px;}
+body {	background-color: #FFFFFF; margin:0px; background-color:#96d7f8;}
+.bg{ width:1000px; height:777px; margin:auto; position:relative;}
+.layer{	width:452px; height:258px; background-image:url({%$staticUrl%}/apps/island/images/score/qrk.gif); position:absolute; top: 561px; left: 278px; } 
+.layer2{width:370px;height:213px;	background-image:url({%$staticUrl%}/apps/island/images/score/qrk2.gif);	position:absolute; top: 568px; left: 324px;} 
+.title{ width:1000px; height:209px; background-image:url({%$staticUrl%}/apps/island/images/score/jfhl_01.gif); background-repeat:no-repeat;}
+.content-01{ width:1000px; height:226px;}
+.content-01-1{ width:577px; height:226px; background-image:url({%$staticUrl%}/apps/island/images/score/jfhl_02.gif); background-repeat:no-repeat; float:left; }
+.content-01-2{ width:284px; height:226px; background-image:url({%$staticUrl%}/apps/island/images/score/jfhl_03.gif); background-repeat:no-repeat; float:left; }
+.content-01-3{ width:139px; height:226px; background-image:url({%$staticUrl%}/apps/island/images/score/jfhl_04.gif); background-repeat:no-repeat; float:left; }
+.content-02{ width:1000px; height:252px;}
+.content-02-1{ width:69px; height:252px; background-image:url({%$staticUrl%}/apps/island/images/score/jfhl_05.gif); background-repeat:no-repeat; float:left; display:block; cursor: help;}
+.content-02-2{ width:143px; height:252px; float:left; display:block; cursor:hand;}
+.content-02-3{ width:143px; height:252px; float:left; display:block; cursor:hand;}
+.content-02-4{ width:143px; height:252px; float:left; display:block; cursor:hand;}
+.content-02-5{ width:143px; height:252px; float:left; display:block; cursor:hand;}
+.content-02-6{ width:143px; height:252px; float:left; display:block; cursor:hand;}
+.content-02-7{ width:143px; height:252px;float:left; display:block; cursor:hand;}
+.content-02-8{ width:73px; height:252px; background-image:url({%$staticUrl%}/apps/island/images/score/jfhl_12.gif); background-repeat:no-repeat; float:left; display:block; cursor:hand;}
+.content-03{ width:1000px; height:34px; background-image:url({%$staticUrl%}/apps/island/images/score/jfhl_13.gif); background-repeat:no-repeat;}
+.content-04{ width:1000px; height:252px;}
+.content-04-1{ width:69px; height:252px; background-image:url({%$staticUrl%}/apps/island/images/score/jfhl_14.gif); background-repeat:no-repeat; float:left;}
+.content-04-2{ width:143px; height:252px; float:left; display:block; cursor:hand;}
+.content-04-3{ width:143px; height:252px; float:left; display:block; cursor:hand;}
+.content-04-4{ width:143px; height:252px; float:left; display:block; cursor:hand;}
+.content-04-5{ width:143px; height:252px; float:left; display:block; cursor:hand;}
+.content-04-6{ width:143px; height:252px; float:left; display:block; cursor:hand;}
+.content-04-7{ width:143px; height:252px; float:left; display:block; cursor:hand;}
+.content-04-8{ width:73px; height:252px; background-image:url({%$staticUrl%}/apps/island/images/score/jfhl_21.gif); background-repeat:no-repeat; float:left; }
+.bottom{ width:1000px; height:117px; background-image:url({%$staticUrl%}/apps/island/images/score/jfhl_22.gif); background-repeat:no-repeat;}
+-->
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+function MM_showHideLayers(va,vb,vc,giftId) { //v9.0
+  var i,p,v,obj,args=MM_showHideLayers.arguments;
+  for (i=0; i<(args.length-2); i+=3) 
+  with (document) if (getElementById && ((obj=getElementById(args[i]))!=null)) { v=args[i+2];
+    if (obj.style) { obj=obj.style; v=(v=='show')?'visible':(v=='hide')?'hidden':v; }
+    obj.visibility=v; }
+
+	  if (giftId == '0') {
+	  		$('#txtChange').text('是否要以2500積分兌換夢想風車');
+	  }
+	  else if (giftId == '1') {
+			$('#txtChange').text('是否要以1500積分兌換巧克力工廠');
+	  }
+	  else if (giftId == '2') {
+		    $('#txtChange').text('是否要以1500積分兌換恐龍館');
+	  }
+	  else if (giftId == '3') {
+		    $('#txtChange').text('是否要以1000積分兌換積木房子');
+	  }
+	  else if (giftId == '4') {
+		    $('#txtChange').text('是否要以800積分兌換西班牙足球館');
+	  }
+	  else if (giftId == '5') {
+		    $('#txtChange').text('是否要以800積分兌換意大利足球館');
+	  }
+	  else if (giftId == '6') {
+		    $('#txtChange').text('是否要以3000積分兌換聚寶坊');
+	  }
+	  else if (giftId == '7') {
+		    $('#txtChange').text('是否要以3000積分兌換彩色聚仙閣');
+	}
+	  else if (giftId == '8') {
+		    $('#txtChange').text('是否要以150積分兌換雙倍經驗卡*3,超級防禦卡*10');
+	}
+	  else if (giftId == '9') {
+		    $('#txtChange').text('是否要以80積分兌換雙倍經驗卡*1,超級防禦卡*5');
+	}
+	  else if (giftId == '10') {
+		    $('#txtChange').text('是否要以50積分兌換船隻加速卡Ⅲ*3,保安卡*1');
+	}
+	  else if (giftId == '11') {
+		    $('#txtChange').text('是否要以20積分兌換船隻加速卡Ⅲ*1,送神卡*1');
+	}
+	$("#changePoint").val(giftId); 
+	  
+}
+
+function casinochange() {
+
+	var UrlConfig =  {
+        BaseUrl : '{%$baseUrl%}',
+        StaticUrl : '{%$staticUrl%}'
+    };
+
+    var point = $("#changePoint").val();
+    
+	var url = UrlConfig.BaseUrl + '/casinochange/change';
+    $.ajax({
+      url: url,
+      dataType : "json",  
+      type: "POST",
+      data: ({point:point}),
+      success: function(data) {
+        if(data.status == 1){
+        	$('#txtChangeResult').text("恭喜您，兌換成功，快進入遊戲倉庫去看看啦~");
+    		$('#txtPoint').text('當前積分：'+data.userPoint+'積分');
+    		setTimeout("window.location.href='"+UrlConfig.BaseUrl+ "/casinochange/index"+"';",3000); 
+        } else {
+        	$('#txtChangeResult').text(data.content);
+        }
+      }
+    });
+
+	MM_showHideLayers('a01','','hide','a02','','show');
+}
+//-->
+</script>
+</head>
+
+<body>
+<div class="bg">
+	<div class="layer" id="a01" style="visibility:hidden;" onfocus="MM_showHideLayers('a01','','hide')">
+	  <table width="452" height="240" border="0">
+        <tr>
+          <td colspan="2" align="center" valign="bottom"><table width="400" height="150" border="0" align="center">
+            <tr>
+              <td height="100" colspan="2" id="txtChange"></td>
+            </tr>
+            <tr>
+              <td height="50"><a href="javascript:void(0);"><img src="{%$staticUrl%}/apps/island/images/score/ch.gif" alt="兌換" onclick="casinochange()" width="86" height="29" /></a></td>
+              <td><a href="javascript:void(0);"><img src="{%$staticUrl%}/apps/island/images/score/qx.gif" alt="取消" width="86" height="29" onclick="MM_showHideLayers('a01','','hide')" /></a></td>
+            </tr>
+            <input type="hidden" id="changePoint" value="0"/>
+          </table></td>
+        </tr>
+      </table>
+  </div>
+  <div class="layer2" id="a02" style="visibility:hidden;" onfocus="MM_showHideLayers('a01','','hide')">
+	  <table width="370" height="200" border="0">
+        <tr>
+          <td colspan="2" align="center" valign="bottom"><table width="350" height="70" border="0" align="center">
+            <tr>
+              <td height="100" id="txtChangeResult"></td>
+            </tr>
+            <tr>
+              <td height="50"><a href="javascript:void(0);"><img src="{%$staticUrl%}/apps/island/images/score/qd.gif" alt="确定" width="86" height="29" onclick="MM_showHideLayers('a02','','hide')" /></a></td>
+            </tr>
+          </table></td>
+        </tr>
+      </table>
+  </div>
+    <div class="title">
+	</div>
+    <div class="content-01">
+    <div class="content-01-1">
+    	<table width="577" height="226" border="0" cellspacing="0"> <tr>
+   		<td align="right" valign="bottom">
+        	<table width="470"  height="70" border="0" align="right">
+         	<tr>
+            <td width="100"><img src="{%$userInfo.face%}" width="59" height="60" /></td>
+            <td width="360"><div style="height:50px;" align="left">{%$userInfo.name%}<br /><p id="txtPoint">當前積分：{%$userInfo.point%}積分</p></div></td>
+         	</tr>
+            </table>
+        </td>
+  	    </tr>
+		</table>
+    </div>
+    <div class="content-01-2">
+        <table width="284" border="0" cellspacing="0">
+    	  <tr>
+	    	<th>時間</th>
+	 		<th>名稱 </th>
+	 		<th>兌換的物品</th>
+    	  </tr>
+			{% foreach from=$pointChangeList item=data %}
+			<tr>
+	        	<td>{%$data.1|date_format:"%y-%m-%d"%}</td>
+	        	<td>{%$data.0%}</td>
+	        	<td>{%$data.2%}</td>
+	        </tr>
+	        {% /foreach %}
+        </table>
+    </div>
+    <div class="content-01-3"></div>
+    </div>
+    <div class="content-02">
+    <div class="content-02-1"></div>
+    <div class="content-02-2"><a href="javascript:void(0);"><img src="{%$staticUrl%}/apps/island/images/score/2011-06-14/1_casino.gif" onclick="MM_showHideLayers('a01','','show',0)"/></a></div>
+    <div class="content-02-3"><a href="javascript:void(0);"><img src="{%$staticUrl%}/apps/island/images/score/2011-06-14/2_casino.gif" onclick="MM_showHideLayers('a01','','show',1)"/></a></div>
+    <div class="content-02-4"><a href="javascript:void(0);"><img src="{%$staticUrl%}/apps/island/images/score/2011-06-14/3_casino.gif" onclick="MM_showHideLayers('a01','','show',2)"/></a></div>
+    <div class="content-02-5"><a href="javascript:void(0);"><img src="{%$staticUrl%}/apps/island/images/score/2011-06-14/4_casino.gif" onclick="MM_showHideLayers('a01','','show',3)"/></a></div>
+    <div class="content-02-6"><a href="javascript:void(0);"><img src="{%$staticUrl%}/apps/island/images/score/2011-06-14/5_casino.gif" onclick="MM_showHideLayers('a01','','show',4)"/></a></div>
+    <div class="content-02-7"><a href="javascript:void(0);"><img src="{%$staticUrl%}/apps/island/images/score/2011-06-14/6_casino.gif" onclick="MM_showHideLayers('a01','','show',5)"/></a></div>
+    <div class="content-02-8"></div>
+    </div>	
+    <div class="content-03"></div>
+	<div class="content-04">
+    <div class="content-04-1"></div>
+    <div class="content-04-2"><a href="javascript:void(0);"><img src="{%$staticUrl%}/apps/island/images/score/2011-06-14/7_casino.gif" onclick="MM_showHideLayers('a01','','show',6)" /></a></div>
+    <div class="content-04-3"><a href="javascript:void(0);"><img src="{%$staticUrl%}/apps/island/images/score/2011-06-14/8_casino.gif" onclick="MM_showHideLayers('a01','','show',7)"/></a></div>
+    <div class="content-04-4"><a href="javascript:void(0);"><img src="{%$staticUrl%}/apps/island/images/score/2011-06-14/9_casino.gif" onclick="MM_showHideLayers('a01','','show',8)"/></a></div>
+    <div class="content-04-5"><a href="javascript:void(0);"><img src="{%$staticUrl%}/apps/island/images/score/2011-06-14/10_casino.gif" onclick="MM_showHideLayers('a01','','show',9)"/></a></div>
+    <div class="content-04-6"><a href="javascript:void(0);"><img src="{%$staticUrl%}/apps/island/images/score/2011-06-14/11_casino.gif" onclick="MM_showHideLayers('a01','','show',10)"/></a></div>
+    <div class="content-04-7"><a href="javascript:void(0);"><img src="{%$staticUrl%}/apps/island/images/score/2011-06-14/12_casino.gif" onclick="MM_showHideLayers('a01','','show',11)"/></a></div>
+    <div class="content-04-8"></div>
+    </div>
+    <div class="bottom"></div>
+</div>
+</body>
+</html>

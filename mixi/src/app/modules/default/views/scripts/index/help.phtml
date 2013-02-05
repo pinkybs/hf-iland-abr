@@ -1,0 +1,388 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ヘルプ - ドリームワールド</title>
+<link href="{%$staticUrl%}/apps/island/css.css?v=1" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.STYLE1 {
+	color: #1363b7;
+	font-size: 14px;
+	align:left;
+}
+.STYLE2 {font-size: 11px; align:left;}
+a img,:link img,:visited img {
+	border: 0 none;
+}
+-->
+.table-txt{ align:center; line-height:15px;}
+</style>
+    <script type="text/javascript" language="javascript" src="{%$staticUrl%}/js/jquery.min.js?{%$version.js%}"></script>
+    <script type="text/javascript" language="javascript" src="http://mixi.jp/static/js/platform/json.js?1228977457"></script>
+    <script type="text/javascript" language="javascript" src="http://mixi.jp/static/js/platform/rpc.js?1228977457"></script>
+    <script type="text/javascript" language="javascript">
+        var CurrentHeight = 0;
+        
+        gadgets.rpc.setRelayUrl('..', "{%$mixi_platform_api_url%}", false);
+
+        function adjustHeight(height) {
+        	 if (!height) {
+                var height =  document.documentElement.scrollHeight;
+                if (jQuery.browser.mozilla) {
+                    var offsetHeight = document.documentElement.offsetHeight;
+                    if (offsetHeight < height) {
+                        height = offsetHeight;
+                    }
+                }
+            }
+            
+            CurrentHeight = height;
+            
+            if (jQuery.browser.safari) {
+                window.setTimeout(function() {
+                    gadgets.rpc.call(null, 'remote_adjustHeight', null, CurrentHeight);
+                }, 100);
+            }
+            else {
+                gadgets.rpc.call(null, 'remote_adjustHeight', null, height);
+            }
+        }
+        
+        jQuery(function($) {
+            if (jQuery.browser.msie) {
+                adjustHeight();
+            }
+            else {
+                adjustHeight(3000);
+            }
+        });
+    </script>
+</head>
+
+<body>
+<a href="{%$baseUrl%}/pay/rewardplus"><img src="{%$staticUrl%}/apps/island/images/topbanner-1.jpg" /></a>&nbsp;<a href="{%$baseUrl%}/invite/top"><img src="{%$staticUrl%}/apps/island/images/topbanner-2.jpg" /></a>
+<div class="main">
+{%include file="menu.phtml"%}
+
+<div class="content">
+<div class="yaoqing01">
+  <table width="748" border="0" cellspacing="0" cellpadding="0"  class="table-txt">
+    <tr>
+      <td><img src="{%$staticUrl%}/apps/island/images/faq-title.gif" alt="ヘルプ" width="747" height="130" /></td>
+    </tr>
+    <tr>
+      <td bgcolor="#f0fcfe" align="center">
+<table width="748" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+        <td><div align="left"><img src="{%$staticUrl%}/apps/island/images/faq-01.gif" alt="基本操作" width="140" height="40" /></div></td>
+        </tr>
+      </table>
+      <table width="700" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><p align="left" class="STYLE1">Q　ゲームの遊び方、どのようにしてコインを獲得するか？ </p></td>
+          </tr>
+        <tr>
+          <td><span class="STYLE2">A：まず最初に、施設を購入して自分の島に設置します。そして、到着した船をクリックし、お客さんを島に案内させて、お客さんに島の施設で遊んでもらいます。施設には一定の出金時間があり、出金時間が過ぎるとコインを回収できます。</span></td>
+          </tr>
+      </table><table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><hr /></td>
+  </tr>
+</table>
+      <table width="700" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><p align="left" class="STYLE1">Q：施設の購入方法は？</p>          </td>
+          </tr>
+        <tr>
+          <td><p align="left" class="STYLE2">A：左下のブラシのアイコン（島の装飾）をクリックすると、島の装飾画面が出てきます。ここで、アトラクション、施設、飾りなどを購入し、島に設置することができます。ほしいものをクリックし、自分の島にドラッグ、再びクリックすると設置できます。最後に右側の緑のチェックマークを押せば、購入が完了します。 </p></td>
+          </tr>
+      </table><table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><hr /></td>
+  </tr>
+</table>
+	  <table width="700" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><p align="left" class="STYLE1">Q：装飾画面でのキャンセル</p>          </td>
+          </tr>
+        <tr>
+          <td><p align="left" class="STYLE2">A：島の装飾画面で、右側の青いボタンをクリックすると、施設の購入や島への設置をキャンセルすることができます。</p>          
+          </td>
+          </tr>
+      </table><table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><hr /></td>
+  </tr>
+</table>
+	  <table width="700" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><p align="left" class="STYLE1">Q：経験値とレベルアップ</p>          </td>
+          </tr>
+        <tr>
+          <td><p align="left" class="STYLE2">A：以下のアクションで経験値が上がります。<br />
+船をクリックして案内する、コインを集金する、お客さんが施設に入る、港をレベルアップする、港を拡張する、ミッションを達成する。 </p>          
+          </td>
+          </tr>
+      </table><table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><hr /></td>
+  </tr>
+</table>
+      <table width="700" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><p align="left" class="STYLE1">Q：レベルアップのボーナス</p>          </td>
+          </tr>
+        <tr>
+          <td><p align="left" class="STYLE2">A：レベルアップすると、ダイヤやアイテムカードがもらえます。また、ロックされている施設や船などのロック解除、島の拡大、来客数の増加がされます。 </p>          
+          </td>
+          </tr>
+      </table><table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><hr /></td>
+  </tr>
+</table>
+      <table width="700" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><p align="left" class="STYLE1">Q：船の使い道</p>          </td>
+          </tr>
+        <tr>
+          <td><p align="left" class="STYLE2">A：船はお客さんを連れてくる重要な交通手段です。船が航行中のときは、到着まで待つか、もしくはアイテムカードを使って航行時間を短縮させこともできます。船が到着後、船をクリックして、お客さんを案内し、島に来場してもらいます。到着した船をクリックしないと、マイミクにお客さんを勧誘される可能性があります。 </p>          
+          </td>
+          </tr>
+      </table><table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><hr /></td>
+  </tr>
+</table>
+      
+      <table width="700" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><p align="left" class="STYLE1">Q：施設の上でライトの意味</p>          </td>
+          </tr>
+        <tr>
+          <td><p align="left" class="STYLE2">A：ライトがついている施設にはお客さんが入っておりサービス中を意味します。施設の出金時間が来るとコインが出金され、集金することができます。 </p>          
+          </td>
+          </tr>
+      </table><table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><hr /></td>
+  </tr>
+</table>
+      <table width="700" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><p align="left" class="STYLE1">Q：デコ度ってなに？</p>          </td>
+          </tr>
+        <tr>
+          <td><p align="left" class="STYLE2">A：デコ度は島の装飾レベルを表します。★１の施設を島に設置すると、デコ度が＋１されます。★2の施設の場合はデコ度が＋2され、施設や飾りなどが増えるにつれ、デコ度も増えていきます。 <br />
+          デコ度の影響：<br />
+１　船の乗客数が増加<br />
+２　施設の★レベルアップの条件 </p>          
+          </td>
+          </tr>
+      </table><table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><hr /></td>
+  </tr>
+</table>
+      <table width="700" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><p align="left" class="STYLE1">Q：施設の修理</p>          </td>
+          </tr>
+        <tr>
+          <td><p align="left">A：施設から煙が出ているときは、この施設は故障しています。煙をクリックして、修理してください。経験値を獲得することができます。 </p>          
+          </td>
+          </tr>
+      </table><table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><hr /></td>
+  </tr>
+</table>
+    <table width="700" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><p align="left" class="STYLE1">Q：施設の★レベルアップ</p>          </td>
+          </tr>
+        <tr>
+          <td><p align="left">A：施設をクリックすると、★レベルアップの画面が表示されます。レベルアップ条件を満たしているとき、施設の★レベルアップをすることができます。</p>          
+          </td>
+          </tr>
+      </table><table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><hr /></td>
+  </tr>
+</table>
+      <table width="700" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><p align="left" class="STYLE1">Q：船のレベルアップ</p>          </td>
+          </tr>
+        <tr>
+          <td><p align="left" class="STYLE2">A：航行中の船をクリックすると、船のレベルアップの画面が表示されます。レベルアップ条件に満たしているとき、船をレベルアップすることができます。 </p>          
+          </td>
+          </tr>
+      </table><table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><hr /></td>
+  </tr>
+</table>
+	  <table width="700" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><p align="left" class="STYLE1">Q：港の拡大</p>          </td>
+          </tr>
+        <tr>
+          <td><p align="left" class="STYLE2">A：拡大マークをクリックして、港の拡大の画面が表示されます。拡張条件に満たしているとき、港を拡大することができます。 </p>          
+          </td>
+          </tr>
+      </table><table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><hr /></td>
+  </tr>
+</table>
+      <table width="700" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><p align="left" class="STYLE1">Q：アイテムカードの使い方</p>          </td>
+          </tr>
+        <tr>
+          <td><p align="left" class="STYLE2">A：アイテムカードボタンをクリックすると、アイテムカードの画面が表示されます。アイテム倉庫にアイテムカードがない場合は、アイテムショップで購入してください。アイテム倉庫でアイテムカードをクリックし、使いたい船・施設にドラッグしてください。 </p>          
+          </td>
+          </tr>
+      </table><table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><hr /></td>
+  </tr>
+</table>
+      <table width="700" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><p align="left" class="STYLE1">Q：島の拡大</p>          </td>
+          </tr>
+        <tr>
+          <td><p align="left" class="STYLE2">A：ユーザのレベルがアップすると、島は自動的に拡大されます。画面左上の経験値バナーをクリックすると次のレベルの情報が表示さます。 </p>          
+          </td>
+          </tr>
+      </table><table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><hr /></td>
+  </tr>
+</table>
+      <table width="700" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><p align="left" class="STYLE1">Q：島のお客さんの来客数制限について</p>          </td>
+          </tr>
+        <tr>
+          <td><p align="left" class="STYLE2">A：島がレベルアップすると、島の来客制限数が増えます。 </p>          
+          </td>
+          </tr>
+      </table><table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><hr /></td>
+  </tr>
+</table>
+      <table width="700" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><p align="left" class="STYLE1">Q：ニュースって何？</p>          </td>
+          </tr>
+        <tr>
+          <td><p align="left" class="STYLE2">A：マイミクのアクション、自分のレベルアップ、ミッションの情報などが記録されています。 </p>          
+          </td>
+          </tr>
+      </table><table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><hr /></td>
+  </tr>
+</table>
+      <table width="700" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><p align="left" class="STYLE1">Q：ミッションの達成</p>          </td>
+          </tr>
+        <tr>
+          <td><p align="left" class="STYLE2">A：画面の下のミッションのボタンをクリックすると、ミッション画面が表示されます。基本ミッションには毎日のミッション情報が入っています。デコミッションはユーザが施設の建設等によって達成するミッションです。成績はユーザのアクションによって取られる称号となります。              <strong> </strong></p>          
+          </td>
+          </tr>
+      </table><table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><hr /></td>
+  </tr>
+</table>
+      <table width="700" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><p align="left" class="STYLE1">Q：称号ってなに？どう役立つ？</p>          </td>
+          </tr>
+        <tr>
+          <td><p align="left" class="STYLE2">A：称号は成績ミッションを達成するともらえます。左上の自分の写真をクリックすると、称号を選択することができます。称号を選択することによって、ログインボーナスとして経験値やコインをもらえます。称号選択した次の日にそのログインボーナスをもらえます。 </p>          
+          </td>
+          </tr>
+      </table>
+      <table width="748" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+        <td><div align="left"><img src="{%$staticUrl%}/apps/island/images/faq-02.gif" alt="基本操作" width="250" height="40" /></div></td>
+        </tr>
+      </table>
+      <table width="700" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><p align="left" class="STYLE1">Q：マイミクの島にいくには？</p>          </td>
+          </tr>
+        <tr>
+          <td><p align="left" class="STYLE2">A：メイン画面の下のマイミクの写真をクリックすると、マイミクの島に行くことができます。 </p>          </td>
+          </tr>
+      </table><table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><hr /></td>
+  </tr>
+</table>
+      <table width="700" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><p align="left" class="STYLE1">Q：マイミクの島から自分の島に戻るには？</p>          </td>
+          </tr>
+        <tr>
+          <td><p align="left" class="STYLE2">A：Gohomeのマークをクリックすると、自分の島に戻れます。</p>          
+          </td>
+          </tr>
+      </table><table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><hr /></td>
+  </tr>
+</table>
+	  <table width="700" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><p align="left" class="STYLE1">Q：マイミクの島で何ができる？</p>          </td>
+          </tr>
+        <tr>
+          <td><p align="left" class="STYLE2">A：１　マイミクの集金待ちの施設のコインを拾う。 <br />
+&nbsp;&nbsp;&nbsp;２　マイミクの港に到着している船のお客さんを自分の島に勧誘する。 <br />
+&nbsp;&nbsp;&nbsp;３　マイミクの故障施設を修理する。 </p>          
+          </td>
+          </tr>
+      </table><table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><hr /></td>
+  </tr>
+</table>
+      <table width="700" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><p align="left" class="STYLE1">Q：もらったギフトの置き場所は？</p>          </td>
+          </tr>
+        <tr>
+          <td><p align="left" class="STYLE2">A：マイミクからもらったギフトは島の装飾の倉庫に入っています。 </p>          
+          </td>
+          </tr>
+      </table><table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><hr /></td>
+  </tr>
+</table>
+      <table width="700" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><p align="left" class="STYLE1">Q：ギフトを送るには？</p>          </td>
+          </tr>
+        <tr>
+          <td><p align="left" class="STYLE2">A：アプリの上のメニューバーのギフトボタンをクリックすると、ギフト画面が表示さます。送りたいギフトを選択したのち、マイミクを指定するとギフトが送られます。ギフトはコインやダイヤなどを消費しません。 </p>          
+          </td>
+          </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p></td>
+    </tr>
+  </table>
+</div>
+</div>
+</body>
+</html>

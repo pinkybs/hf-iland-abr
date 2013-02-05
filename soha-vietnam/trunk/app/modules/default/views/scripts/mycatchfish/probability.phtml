@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>捕鱼后台</title>
+</head>
+<body>
+	<br />
+	<div>
+		<form action="{%$hostUrl%}/mycatchfish/probability" method="post">
+		<table align=center>
+			<tr>
+				<td>请输入商品ID:</td>
+				<td><input type="text" name="pid" value="{%$pid%}"></td>
+				<td><input type="submit" name="search" value="查询"></td>
+				<td align=left width=400>
+				<a href="{%$hostUrl%}/mycatchfish/addprobability"><font color=red>添加商品概率</font></a>
+				&nbsp;&nbsp;
+				<a href="{%$hostUrl%}/mycatchfish/product">去修改商品信息</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="{%$hostUrl%}/mycatchfish/stat">去查看统计</a>
+				</td>
+			</tr>
+		</table>
+		<input type="hidden" name="act" value="search">
+		</form>
+		<table align=center>
+			<tr>
+				<td height=50>&nbsp;<font color=red><b>{%$message%}</b></font></td>
+			</tr>
+		</table>	
+		<form action="{%$hostUrl%}/mycatchfish/probability" method="post">		
+		  <table border=1 width=100% align=center>
+		  <tr>
+		  	<td width=20% align=center><b>商品ID</b></td>
+			<td width=5% align=center><b>领域位置ID</b></td>
+			<td width=5% align=center><b>折扣数</b></td>
+			<td width=5% align=center><b>概率</b></td>
+			<td width=5% align=center><b>数量</b></td>
+			<td width=25% align=center><b>URL_A</b></td>
+			<td width=25% align=center><b>URL_B</b></td>
+		  </tr>
+		  {% if $list %}
+		  {% foreach from=$list item=data %}
+		  <tr>
+		  	<td>{%$data.pname%}[<font color=red>{%$data.pid%}</font>]<input type="hidden" name="pids[]" value="{%$data.pid%}"><input type="hidden" name="id[]" value="{%$data.id%}"></td>
+			<td>{%$data.level%}</td>
+			<td>{%$data.discount%}</td>
+			<td><input type="text" name="probability[]" value="{%$data.probability%}" style="width:100%"></td>
+			<td><input type="text" name="num[]" value="{%$data.num%}" style="width:100%"></td>
+			<td><input type="text" name="urla[]" value="{%$data.urla%}" style="width:100%"></td>
+			<td><input type="text" name="urlb[]" value="{%$data.urlb%}" style="width:100%"></td>
+		  </tr>
+		  {% /foreach %}
+		  <tr><td colspan=7 align=center height=80><input type="submit" name="update" value="修改并更新缓存"></td></tr>
+		  {% /if %}
+		  </table>
+		  <input type="hidden" name="act" value="update">
+		  </form>
+	</div>
+</body>
+</html>

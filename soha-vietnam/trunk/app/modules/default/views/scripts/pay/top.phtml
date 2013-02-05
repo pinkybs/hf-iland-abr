@@ -1,0 +1,98 @@
+
+<script src="{%$staticUrl%}/js/jquery-1.4.3.min.js" type="text/javascript"></script>
+<script src="{%$staticUrl%}/js/jquery.flashSlider-1.0.min.js" type="text/javascript"></script>
+<link href="{%$staticUrl%}/apps/island/main_2011041101.css?v=1.01" rel="stylesheet" type="text/css" />
+<link href="{%$staticUrl%}/apps/island/pay_2011031501.css?v=1.00" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    html, body { height:100%; }
+    body { margin:0; }
+</style>
+<script src="{%$staticUrl%}/js/jquery-1.4.3.min.js" type="text/javascript"></script>
+
+<div class="main">
+
+	<div class="chongzhicontent" padding-left="20px;">
+		<img src="{%$user.face%}" width="59" height="60" />
+		<div class="xinxi">
+			<div class="cname">{%$user.name|escape%}</div>
+			<div class="shuzi">kim cương： <span style="color:#3c7e9a;font-weight:bold;">{%$user.gold%}</span></div>
+		</div>
+	</div>
+
+	<div class="table">
+		<ul>
+    		<li style="width:50px"></li>
+    		<li><a href="javascript:void(0);"><div class="nav_01">Nạp</div></a></li>
+    		<li><a href="javascript:void(0);" onclick="payLog();"><div class="nav_02">Nhật kí nạp</div></a></li>
+    		<li><a href="javascript:void(0);" onclick="paySystem();"><div class="nav_02">Quà</div></a></li>
+    		<li><a href="javascript:void(0);" onclick="consGold();"><div class="nav_02">Dùng Kim Cương</div></a></li>
+			<li><a href="javascript:void(0);" onclick="consCoin();"><div class="nav_02">Dùng Vàng</div></a></li>
+		</ul>
+	</div>
+	<br /><br />
+		<div class="content" style="padding-top:10px;padding-left:5px;width:740px;">
+			<div style="color:red;padding:0 0 10px 10px;">
+			<!-- 
+				<font color="red" size="3px;"><b>恭贺捕鱼活动上线，储值免费送捕鱼卡！</b></font><br /><br />
+				<font color="blue" size="2px;">
+					單次儲值滿13寶石可獲得獎勵「加送4寶石、捕魚卡*3、5星建築驯鹿小店」<br />
+					單次儲值滿27寶石可獲得獎勵「加送10寶石、捕魚卡*8、5星建築阿拉蕾爱心帽子店」<br />
+					單次儲值滿54寶石可獲得獎勵「加送25寶石、捕魚卡*20、5星建築驯鹿小店、5星建築阿拉蕾爱心帽子店」<br />
+					單次儲值滿183寶石可獲得獎勵「加送90寶石、捕魚卡*60、5星建築驯鹿小店、5星建築阿拉蕾爱心帽子店」<br />
+				</font><br /><br />
+				<font color="red" size="2px;">單次儲值10FB參加“天天特價”專題活動！限時，限量！</font>
+				<br />
+			 -->	
+			</div>
+	
+			<input type="hidden" name="entrance" id="entrance" value="{% if $connectSnsplus %}connect{% /if %}" />
+			<div class="chongzhi" style="margin:0 0 0 60px;">
+				<div align="center">
+					<p><img src="{%$staticUrl%}/apps/island/images/pay/chongzhi_01.gif"  id="dm11" class="diamond" title="" /><br />
+						<input type="submit" name="btnOrder11" id="btnOrder11" value="Nạp" class="orderbtn" class="diamond" onclick="goToPaySNS('{% if $connectSnsplus %}{%$connectSnsplus%}{% /if %}');" />
+					</p>
+					<label></label>
+				</div>
+			</div>
+			<div class="chongzhi" style="margin:0 0 0 60px;">
+				<div align="center">
+					<p><img src="{%$staticUrl%}/apps/island/images/pay/chongzhi_02.gif"  id="dm1" class="diamond" title="" /><br />
+						<input type="submit" name="btnOrder1" id="btnOrder1" value="Nạp" class="orderbtn" class="diamond" onclick="goToPaySNS('{% if $connectSnsplus %}{%$connectSnsplus%}{% /if %}');" />
+					</p>
+					<label></label>
+				</div>
+			</div>
+			<div class="chongzhi" style="margin:0 0 0 60px;">
+				<div align="center">
+					<p><img src="{%$staticUrl%}/apps/island/images/pay/chongzhi_03.gif" id="dm2" class="diamond" title="" /><br />
+						<input type="submit" name="btnOrder2" id="btnOrder2" value="Nạp" class="orderbtn" class="diamond" onclick="goToPaySNS('{% if $connectSnsplus %}{%$connectSnsplus%}{% /if %}');" />
+					</p>
+					<label></label>
+				</div>
+			</div>
+			<div class="chongzhi" style="margin:0 0 0 60px;">
+				<div align="center">
+					<p><img src="{%$staticUrl%}/apps/island/images/pay/v20120223/chongzhi_04.gif" id="dm3" class="diamond" title=""/><br />
+						<input type="submit" name="btnOrder3" id="btnOrder3" value="Nạp" class="orderbtn" class="diamond" onclick="goToPaySNS('{% if $connectSnsplus %}{%$connectSnsplus%}{% /if %}');" />
+					</p>
+					<label></label>
+				</div>
+			</div>
+			<div class="chongzhi" style="margin:0 0 0 60px;">
+				<div align="center">
+					<p><img src="{%$staticUrl%}/apps/island/images/pay/v20120223/chongzhi_05.gif" id="dm4" class="diamond" title=""/><br />
+						<input type="submit" name="btnOrder4" id="btnOrder4" value="Nạp" class="orderbtn" class="diamond" onclick="goToPaySNS('{% if $connectSnsplus %}{%$connectSnsplus%}{% /if %}');" />
+					</p>
+					<label></label>
+				</div>
+			</div>
+			<div class="chongzhi" style="margin:0 0 0 60px;">
+				<div align="center">
+					<p><img src="{%$staticUrl%}/apps/island/images/pay/v20120223/chongzhi_06.gif" id="dm4" class="diamond" title=""/><br />
+						<input type="submit" name="btnOrder4" id="btnOrder4" value="Nạp" class="orderbtn" class="diamond" onclick="goToPaySNS('{% if $connectSnsplus %}{%$connectSnsplus%}{% /if %}');" />
+					</p>
+					<label></label>
+				</div>
+			</div>			
+		</div>
+</div>

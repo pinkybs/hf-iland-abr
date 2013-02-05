@@ -1,0 +1,71 @@
+{%include file="header.phtml"%}
+<div class="main">
+	{%include file="menu.phtml"%}
+
+	<div class="chongzhicontent">
+		<img src="{%$user.face%}" width="59" height="60" />
+		<div class="xinxi">
+			<div class="cname" style="width:200px">{%$user.name|escape%}</div>
+			<div class="shuzi" style="padding-left:20px">ダイヤ： <span style="color:#3c7e9a;font-weight:bold;">{%$user.gold%}</span></div>
+		  <div class="fhyx"><a href="{%$baseUrl%}/index/flash"><img src="{%$staticUrl%}/apps/island/images/back.jpg" width="80" height="35" /></a></div>
+		</div>
+	</div>
+
+	<div class="table">
+		<ul>
+		<li style="width:50px"></li>
+		<li><a href="{%$baseUrl%}/pay/top"><div class="nav_02"><img src="{%$staticUrl%}/apps/island/images/paypal.gif" alt="チャージ" /></div></a></li>
+		<li><a href="{%$baseUrl%}/pay/webmoney"><div class="nav_02"><img src="{%$staticUrl%}/apps/island/images/webmoney.gif" alt="webmoney" /></div></a></li>
+		<li><a href="{%$baseUrl%}/pay/rewardplus"><div class="nav_02">パートナーサイト</div></a></li>
+		<li><a href="{%$baseUrl%}/pay/orderlogs"><div class="nav_01">取得記録</div></a></li>
+		<li><a href="{%$baseUrl%}/pay/consumerlogs"><div class="nav_02">消費記録</div></a></li>
+		</ul>
+	</div>
+
+	<div class="content" style="padding-top:10px;padding-left:100px;width:650px;">
+		<div class="chongzhi02"><span style="color:#0C67B6">取得記録</span> &nbsp;&nbsp;合計{%$count%}個</div>
+	  <table width="580" border="0" align="center" cellpadding="0" cellspacing="0" class="congzhitable">
+		<tr>
+		    <td width="186"><strong>日付</strong></td>
+		    <td width="150"><strong>ダイヤ取得量</strong></td>
+		    <td width="97"><strong>取得金額</strong></td>
+		    <td width="110"><strong>取得方式</strong></td>
+		</tr>
+        {%if $count>0 %}
+        {% foreach from=$logs item=log %}
+		<tr class="table-line">
+    		<td>{%$log.create_time|date_format:"%Y-%m-%d %H:%M:%S"%}</td>
+    		<td><span class="pay-count">{%$log.gold%}</span></td>
+    		<td>{%$log.amount%}円</td>
+    		<td>{%if $log.order_id|count_characters==25%}
+    		     	WebMoney購入	  		
+    			{%elseif $log.order_id=="0"%}
+    		        {% if $log.gold==1%}
+    		        ログインボーナス
+    		        {%else%}
+    		        レベルアップ
+    		        {%/if%}
+    		    {%elseif $log.order_id=="-1"%}
+    		      初回参加特典
+    		    {%elseif $log.order_id=="-2" || $log.order_id=="-99"%}
+    		      補填
+    		    {%elseif $log.order_id=="-100"%}
+    		      賞品
+				{%elseif $log.order_id=="-101"%}
+				リワードプラス
+				{%elseif $log.order_id=="-102"%}
+				デイリーログイン
+				{%elseif $log.order_id=="-103"%}
+				ルーレット
+    		    {%else%}    		    
+    		     Paypal購入
+    		    {%/if%}</td>
+  		</tr>  		
+        {%/foreach%}
+        {% /if %}
+		</table>
+	</div>
+</div>
+
+</body>
+</html>

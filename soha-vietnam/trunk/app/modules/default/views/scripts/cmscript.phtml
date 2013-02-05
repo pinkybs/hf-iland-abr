@@ -1,0 +1,280 @@
+
+<script type="text/javascript">
+var HFApp = {
+        appId: "{%$appId%}",
+        appHost: "{%$hostUrl%}",
+
+        loadHtml: function(url, method, pardata, dataType, id) {//require jquery api support
+            if (!method) { //("POST"  or  "GET")
+                method = 'GET';
+            }
+            if (!dataType) {//xml
+                dataType = "text";
+            }
+            $.ajax({
+                type: method,
+                url: url,
+                data: pardata,
+                dataType: dataType,
+                success: function(resp){
+                    $("#" + id).html(resp);
+                }
+            });
+        }
+    }
+
+	function showFanbox()
+	{
+	    $("#fanbox").toggle('fast');
+	}
+	function topPay(connectSnsplus)
+	{
+		var url = HFApp.appHost + "/pay/top";
+		if (connectSnsplus == '') {
+			var pardata = {};
+		} else {
+			var pardata = {'entrance' : 'connect'};
+		}
+		
+		HFApp.loadHtml(url, 'POST', pardata, 'text', 'divPayFrame');
+	} 
+	
+	function showPay()
+	{
+	    if ($("#divPayFrame").html() == '') {
+	        //topPay(connectSnsplus);
+	    }
+	    $("#payBox").toggle('fast');
+	}
+    function payLog()
+    {
+        var url = HFApp.appHost + "/pay/log";
+        var pardata = {};
+        HFApp.loadHtml(url, 'POST', pardata, 'text', 'divPayFrame');
+    }
+
+    function paySystem()
+    {
+        var url = HFApp.appHost + "/pay/system";
+        var pardata = {};
+        HFApp.loadHtml(url, 'POST', pardata, 'text', 'divPayFrame');
+    }
+
+    function consGold()
+    {
+        var url = HFApp.appHost + "/consumelogs/gold";
+        var pardata = {};
+        HFApp.loadHtml(url, 'POST', pardata, 'text', 'divPayFrame');
+    }
+
+    function consCoin()
+    {
+        var url = HFApp.appHost + "/consumelogs/coin";
+        var pardata = {};
+        HFApp.loadHtml(url, 'POST', pardata, 'text', 'divPayFrame');
+    }
+
+    function goToPaySNS(connectSnsplus)
+    {
+        var url = HFApp.appHost + "/pay/pay";
+
+        if (connectSnsplus == '') {
+            var pardata = {};
+        } else {
+            var pardata = {'entrance' : 'connect'};
+        }
+            
+        HFApp.loadHtml(url, 'POST', pardata, 'text', 'divPayFrame');
+    }
+    
+    function goToPay()
+    {
+        var url = HFApp.appHost + "/pay/pay";
+        var pardata = {};
+
+        HFApp.loadHtml(url, 'POST', pardata, 'text', 'divPayFrame');
+    }
+    function initGameOther()
+    {
+        //console.debug('init game other');
+        //initInvite();
+        //$("#mnuInvite,#mnuInviteCls,#mnuFan,#mnuFanCls,#mnuGift,#mnuGiftCls,#mnuPay,#mnuPayCls").unbind('click');
+        $("#mnuPay,#mnuPayCls").unbind('click');
+        //$("#mnuInvite").click(showInvite);
+        //$("#mnuInviteCls").click(showInvite);
+        //$("#mnuFan").click(showFanbox);
+        //$("#mnuFanCls").click(showFanbox);
+        //$("#mnuGift").click(showGift);
+        //$("#mnuGiftCls").click(showGift);
+        $("#mnuPay").click(showPay);
+        $("#mnuPayCls").click(showPay);
+        //$("#slider").html('<ul><li style="display:inline"><a href="#"><img src="{%$staticUrl%}/apps/island/images/slider/newitem-20110718-1.jpg" style="display:none;"/></a></li><li style="display:inline"><a href="#"><img src="{%$staticUrl%}/apps/island/images/slider/newitem-20110718-1.jpg" style="display:none;"/></a></li></ul>');
+        $("#slider").flashSlider({controlsShow: false,vertical: true, speed: 1500, pause: 6000});
+        //$("#extfrmRank").html('<iframe src="http://game.weibo.com/home/widget/box?box=friend&appId=401380203&width=760&title=%E6%8E%92%E8%A1%8C%E6%A6%9C&select=2" width="760" height="186" frameborder="no"></iframe>');
+    }
+
+    $(document).ready(function() {
+        if (typeof(IS_INDEX_PAGE) == "undefined") {
+            initGameOther();
+        }
+    });
+
+        	
+    function showFeed() {
+    	$('#feedbox').html('<iframe style="border:none" width="700px" height="300px" src="http://id.ming.vn/dialog/feed?oauth_consumer_key={%$smarty.const.APP_KEY%}&oauth_callback={%$smarty.const.HOST%}/callback/feed"></iframe>');
+    	$('#feedbox').toggle();
+    }
+    function finshNewFeed() {
+    	$('#feedbox').html('<iframe style="border:none" width="700px" height="300px" src="http://id.ming.vn/dialog/feed?oauth_consumer_key={%$smarty.const.APP_KEY%}&oauth_callback={%$smarty.const.HOST%}/callback/finshnew/uid/{%$uid%}"></iframe>');
+    	$('#feedbox').toggle();
+    }
+    function showInvite() {
+    	var message = encodeURIComponent('Chơi cùng tôi nhé...');
+    	var html = '<iframe scrolling=no style="border:none" width="700px" height="600px" src="http://id.ming.vn/dialog/request?oauth_consumer_key={%$smarty.const.APP_KEY%}&message='+message+'&oauth_callback={%$smarty.const.HOST%}/callback/invite"></iframe>';
+    	$('#invitebox').html(html);
+    	$('#invitebox').toggle();
+    }
+
+    function sendFeed(feed) {
+
+    	var feedSettings = feed;//
+    	feedSettings = $.parseJSON(feed);
+    	//alert(feedSettings);
+    	var caption = 'Dream island';
+    	var description = feedSettings.text;
+    	//var message = feedSettings.templateContent;//'分享这一刻，来说点什么吧';
+    	var message = feedSettings.text;
+    	var image = feedSettings.img;
+    	var link = feedSettings.link;
+
+    	var param = ['&caption=',caption,'&description=',description,'&message=',message,'&image=',image,'&link=',link].join('');
+    	//alert(param);
+    	var html = '<iframe style="border:none" width="700px" height="300px" src="http://id.ming.vn/dialog/feed?oauth_consumer_key={%$smarty.const.APP_KEY%}&oauth_callback={%$smarty.const.HOST%}/callback/feed' + param + '"></iframe>';
+    	$('#feedbox').html(html);
+    	$('#feedbox').toggle();
+    }
+	function testfeed() {
+    	var feed = {caption:'itiscaption', text: 'itisdescription', templateContent: 'itismessage', img: 'http://reklama.nk.pl/_/getImageII/?vid=2049&typ=nkbox&element=image&nc=596592596425410112011', link: 'http://aa.bb'};
+    	sendFeed(feed);
+    } 
+</script>
+
+    <script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+    <script type="text/javascript">
+        var VIEWER_ID = {%$uid%};
+    	var OWNER_ID = VIEWER_ID;
+        function showuser(uid, name, face)
+    	{
+
+    		OWNER_ID = uid;
+    		var userinfo = document.getElementById('userinfo');
+    		if (userinfo) {
+    			if (OWNER_ID != VIEWER_ID) {
+    				userinfo.innerHTML = ' [Số hiệu hiện tại của bạn bè：' + OWNER_ID + ']';
+    			} else {
+    				userinfo.innerHTML = '';
+    			}
+    		}
+    	}
+
+    	function returnGift()
+    	{
+    		var goURL = "http://happyislandvcc.snsplus.com/gift/top";
+    		window.location = goURL;
+    	}
+
+    	function sendTeamBuyFeed()
+        {
+    		var ajaxurl = "{%$hostUrl%}/event/sendteambuyfeed";
+    		$.ajax({
+    			   type: "post",
+    			   url: ajaxurl,
+    			   dataType: "text",
+    			   success: function(msg){
+    				   //alert(msg);
+    			   }
+    			});
+        }
+
+    	function sendTaojishiFeed()
+        {
+    		var ajaxurl = "{%$hostUrl%}/event/sendtaojishifeed";
+    		$.ajax({
+    			   type: "post",
+    			   url: ajaxurl,
+    			   dataType: "text",
+    			   success: function(msg){
+    				   //alert(msg);
+    			   }
+    			});
+        }
+
+    	function sendLuckyDrawFeed()
+    	{
+    		var ajaxurl = '{%$hostUrl%}/event/sendluckyfeed';
+    		$.ajax({
+    				type: "post",
+    				url: ajaxurl,
+    				dataType: "text",
+    				success: function(msg){
+    					//alert(msg);
+    				}
+    			});
+    	}
+
+    	function gotoLuckyDraw()
+    	{
+    		var gotoLuckyDrawUrl = "http://bangpai.taobao.com/group/thread/570689-256741403.htm";
+    		window.open(gotoLuckyDrawUrl);
+    	}
+
+    	function pay()
+    	{
+    		window.location = "http://island.hapyfish.com/pay/top";
+    	}
+
+    	function sendStromFeed()
+    	{
+    		var ajaxurl = '{%$hostUrl%}/event/sendstromfeed';
+    		$.ajax({
+    				type: "post",
+    				url: ajaxurl,
+    				dataType: "text",
+    				success: function(msg){
+    					//alert(msg);
+    				}
+    			});
+        }
+
+		function inviteFriend()
+		{
+			location.href = "{% $hostUrl %}/invite/top";
+		}
+
+		function sendTaojishiFeed()
+	    {
+			var ajaxurl = "{%$hostUrl%}/event/sendtaojishifeed";
+			$.ajax({
+				   type: "post",
+				   url: ajaxurl,
+				   dataType: "text",
+				   success: function(msg){
+					   //alert(msg);
+				   }
+				});
+	    }
+
+		function sendOneGoldShopFeed()
+	    {
+		    console.log('OK');
+//			var ajaxurl = "{%$hostUrl%}/event/sendonegoldshopfeed";
+//			$.ajax({
+//				   type: "post",
+//				   url: ajaxurl,
+//				   dataType: "text",
+//				   success: function(msg){
+//					   //alert(msg);
+//				   }
+//				});
+	    }
+    </script>

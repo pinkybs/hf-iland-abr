@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>一元店后台</title>
+</head>
+<body>
+	<br />
+	<div>
+		{% foreach from=$datavo item=data %}
+			<form action="{%$hostUrl%}/onegold/boxupdate" method="post">
+				期数:<input type="text" name="data[box_id]" size="4" value="{%$data.box_id%}" />&nbsp;&nbsp;
+				需要参加次数:<input type="text" name="data[idx]" size="10" value="{%$data.idx%}" />&nbsp;&nbsp;
+				物品:<input type="text" name="data[data]" size="20" value="{%$data.data%}" />&nbsp;&nbsp;
+				宝石:<input type="text" name="data[gold]" size="4" value="{%$data.gold%}" />&nbsp;&nbsp;
+				金币:<input type="text" name="data[coin]" size="8" value="{%$data.coin%}" />&nbsp;&nbsp;
+				海星:<input type="text" name="data[starfish]" size="4" value="{%$data.starfish%}" />&nbsp;&nbsp;
+				<input type="submit" value="更新" />
+			</form>
+			<br />
+		{% /foreach %}
+		<form action="{%$hostUrl%}/onegold/incnewbox" method="post">
+			<input type="submit" name="addnewbox" value="新加一条" />
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<app>	
+	<database>
+		<db_basic>
+			<adapter>PDO_MYSQL</adapter>
+			<config>
+				<host>10.218.71.227</host>
+				<username>worker</username>
+				<password>c$b47ke#xz</password>
+				<dbname>mixi_island</dbname>
+			</config>
+		</db_basic>
+	</database>
+</app>

@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+{%include file="whoisgod/head.phtml"%}
+</head>
+<body>
+<div class="top-nav">
+{%include file="whoisgod/topnav.phtml"%}
+</div>
+
+
+<div id="wrapper">
+	
+	<div id="header"></div>
+	<div id="content">
+		
+		<h1>所有"寻宝"</h1>
+		
+    	<div class="grid-16-8 clearfix">
+        	<div class="article">
+        	
+        	<!--  
+        	<h2>我回应内容的最新回复&nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·</h2>
+        	-->
+        	
+        	<table class="reply_notify">
+		    <tbody id="all_bottle">
+<!--			    <tr><th>图纸名称</th></tr>-->
+			    
+			    {% foreach from=$list key=kid item=val %}
+		    	<tr >
+		          <td style="padding-right: 5px;">
+		          {% if $val.online == '1' %}
+		          [on]
+		          {% else %}
+		          [off]
+		          {% /if %}
+		          <a href="{% $hostUrl %}/whoisgod/editbottle?id={% $kid %}">{% $val.name %}</a>
+		          </td>
+		        </tr>
+		    	{% foreachelse %}
+		    	<tr >
+		          <td style="padding-right: 5px;">对不起, 数据库中没有图纸数据</td>
+		        </tr>
+		    	{% /foreach %}
+			</tbody>
+			</table>
+			
+			<script type="text/javascript">
+				var bottle = {};
+				bottle.addBottleOne = function() {
+
+					
+					$.ajax({
+						url: "{% $hostUrl %}/whoisgod/addbottleone",
+						type: "POST",
+						success: function(rsp){
+
+							var html = "<tr >";
+					        html = html + '<td style="padding-right: 5px;">';
+						    html = html + '[off]<a href="{% $hostUrl %}/whoisgod/editbottle?id=' + rsp + '">寻宝第' + rsp + '季</a>'; 
+							html = html + '</td></tr>';
+							
+							//$("#results").append(html);
+							if (rsp == 0) {
+								$("#all_bottle").html(html);
+							} else {
+								$("#all_bottle").append(html);
+							}
+						},
+						error : function(rsp,textStatus, errorThrown) {
+							alert('error');
+						}
+					});
+					
+					return false;
+				}
+			</script>
+        	<div class="paginator">
+        		<span>
+        		<a href="#" onclick="return bottle.addBottleOne()">添加一季</a>
+        		</span>
+	        </div>
+        	
+        	</div>
+        	<div class="aside">
+        		{%include file="whoisgod/right.phtml"%}
+        	</div>
+        	<div class="extra"></div>
+        </div>
+	</div>
+	
+	<div id="footer">
+	{%include file="whoisgod/footer.phtml"%}
+	</div>
+
+</div>
+
+
+</body>
+</html>

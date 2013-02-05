@@ -1,0 +1,372 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Wyspa Marzeń</title>
+<link href="{%$staticUrl%}/apps/island/main_2011041101.css?v=1.01" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://imgs3.plinga.de/general/easyXDM.min.js?v=1"></script>
+<script type="text/javascript">
+	easyXDM.DomHelper.requiresJSON("http://imgs3.plinga.de.s3.amazonaws.com/general/json2.min.js?v=1");
+</script>
+<!-- <script src="http://imgs3.plinga.de/plingaRpc/nk/plingaRpc.js?v=1" type="text/javascript"></script>
+<script type="text/javascript" src="http://imgs3.plinga.de.s3.amazonaws.com/dreamisland/nk/plingaRpc.js?v=1"></script> -->
+<script type="text/javascript" src="http://imgs3.plinga.de.s3.amazonaws.com/plingaRpc/nk/plingaRpc.js?v=1"></script>
+<script src="{%$staticUrl%}/js/jquery-1.4.3.min.js" type="text/javascript"></script>
+<script src="{%$staticUrl%}/js/swfobject.js" type="text/javascript"></script>
+<style type="text/css">
+<!--
+body{
+	overflow-x:hidden;
+}
+a img,:link img,:visited img {
+	border: 0 none;
+}
+object#swfcontent {
+	display: inline;
+}
+.box {
+	border: 1px solid #CCCCCC;
+}
+-->
+</style>
+</head>
+<body>
+	{% if $userid==26 %}
+	<div>
+		<a href="#" onclick="testinit();">start init</a>|
+		<a href="#" onclick="getOwner();">get owner</a>|
+		<a href="#" onclick="getFriend();">get friend</a>|
+		<a href="#" onclick="goInvite();">invite</a>|
+		<a href="#" onclick="reloadGame();">reload</a>|
+		<a href="#" onclick="autoHeight();">autoHeight</a>|
+		<a href="#" onclick="testajax();">test ajax</a>|
+		<a href="#" onclick="testfeed();">test feed</a>|
+		<a href="#" onclick="goPay();">test pay</a>|
+		<div id="content"></div>
+	</div>
+	{% /if %}
+	<div id="mainBox">Proszę poczekać. Gra ładuje...<br/><img src="{%$staticUrl%}/apps/island/images/common/loading0.gif" /></div>
+
+	<div id="giftBox" style="width:750px; height:700px;position:absolute;top:65px;display:none;background-color:#7accef;">
+        <div style="color:blue;position: absolute; left:720px;top:-15px;"><a id="mnuGiftCls" href="#" onclick="goGift();"><img src="{%$staticUrl%}/apps/island/images/common/btnClose.png" /></a></div>
+        <div id="divGiftFrame" style=""></div>
+	</div>
+	
+	<script type="text/javascript">
+
+	function autoHeight() {
+    	HFApp.resize();
+    }
+	function testfeed() {
+    	var feedSettings = {
+            	text: '阳光？沙滩？美女？帅哥！尽在快乐岛主！赶快加入吧~',
+            	img:  '{%$staticUrl%}/apps/island/images/feed/join.gif'
+            };
+    	HFApp.feed(feedSettings);
+    	/*plingaRpc.post({title:'title',body:'its body<br/>body',
+        	            pic:'http://sinalp.cache.fminutes.com/flash/outresource/files_wyx/aftermats/task_unlock_custom__d63b5469.png',
+        	            link:'http://nk.pl/#applications_test/a670869d1f23e011?aa=bb',linktext:'Go play'});*/
+    }
+
+    function testajax() {
+    	$.ajax({
+            type: 'POST',
+            url: 'http://devpolandnk.happyfish001.com/callback/index',
+            data: {},
+            dataType: 'html',
+            success: function(resp){
+            	alert(resp);
+            }
+ 		});
+    }
+
+    	function goInvite()
+    	{
+    		HFApp.invite();
+    	}
+
+    	function goGift()
+    	{
+    		HFApp.showGift();
+    	}
+
+    	function goPay()
+    	{
+    		HFApp.pay();
+    	}
+
+    	function reloadGame()
+    	{
+    		HFApp.reload();
+    	}
+
+    	function startGame() {
+            //alert('Connection established. You can use the JS-API now');
+            var config = {appId:'{%$appId%}', appHostUrl:'{%$hostUrl%}', appStaticUrl:'{%$staticUrl%}',
+                          sns:'NK', userid:'{%$userid%}', sessionkey:'{%$sessionkey%}', sessionid:'{%$sessionid%}'};
+    		HFApp.init(config);
+    		var user = getOwner();
+    		if (null == user) {
+    			$('#mainBox').html('Load data failed,please refresh page.');
+				return;
+        	}
+    		var friends = getFriend();
+    		var pardata = {'userid':HFApp.userid, 'sessionkey':HFApp.sessionkey, 'sessionid':HFApp.sessionid, 'invitor':'{%$invitor%}','user':user, 'friends':friends};
+    		HFApp.loadHtml('/index/flash', 'POST', pardata, 'text', 'mainBox');
+        }
+
+        function goStartGame(){
+            $('#divCheckUser').html('');
+            //alert('Connection established. You can use the JS-API now');
+            var config = {appId:'{%$appId%}', appHostUrl:'{%$hostUrl%}', appStaticUrl:'{%$staticUrl%}',
+                          sns:'NK', userid:'{%$userid%}', sessionkey:'{%$sessionkey%}', sessionid:'{%$sessionid%}'};
+            HFApp.init(config);
+            var user = getOwner();
+            if (null == user) {
+                $('#mainBox').html('Load data failed,please refresh page.');
+                return;
+            }
+            var friends = getFriend();
+            var pardata = {'userid':HFApp.userid, 'sessionkey':HFApp.sessionkey, 'sessionid':HFApp.sessionid, 'invitor':'{%$invitor%}','user':user, 'friends':friends};
+            
+        	HFApp.loadHtml('/index/flash', 'POST', pardata, 'text', 'mainBox');
+        }
+
+        function getOwner() {
+        	var ownerData = plingaRpc.getOwner();
+        	if (ownerData == null) {
+				return null;
+        	}
+        	//alert(ownerData.uid);
+    		//var user = {'uid':'person.3b19b11a66ed8d19', 'name':'test', 'gender':'male', 'figureurl':'http://0.s-nk.pl/img/avatar/awatarsq_male_small'};
+        	var user = {'uid':ownerData.uid, 'name':ownerData.firstname, 'gender':ownerData.gender, 'figureurl':ownerData.thumbnail};
+        	return user;
+        }
+
+        function getFriend() {
+        	var friendData = plingaRpc.getFriends();
+        	var friends = [];
+        	if (friendData == null || friendData.length == 0) {
+				return friends;
+        	}
+
+        	$.each(friendData, function(i) {
+        		friends.push(friendData[i].uid);
+        	});
+
+        	return friends;
+        	/*var userid = friendData[0].uid;
+        	var username = friendData[0].firstname;
+        	var gender = friendData[0].gender;
+        	var pic = friendData[0].thumbnail;*/
+        	//var html = [userid,'<br/>',username,'<br/>',gender,'<br/>',pic];
+        }
+
+
+    	function sendFeed(feed)
+    	{
+    		if(feed == 'false') {
+    			return ;
+    		}
+
+    		var opt = $.parseJSON(feed);
+    		HFApp.feed(opt);
+    	}
+
+    	function sendUserLevelUpFeed(lev,flag)
+    	{
+    		if (flag == 1) {
+    			var opt = {
+    					"linktext": "Uwielbiam to!",
+    					"imgUrl": '{%$staticUrl%}/apps/island/images/feed/island_level_up.gif',
+    					"text": 'Moja wyspa została powiększona! Ty też możesz mieć własną w Wyspie Marzeń. Zagraj!'
+    				};
+    		} else {
+    			var opt = {
+    					"linktext": "Uwielbiam to!",
+    					"imgUrl": '{%$staticUrl%}/apps/island/images/feed/user_level_up.gif',
+    					"text": 'Moja wyspa została całkowicie zmieniona! Odwiedź mnie, a na pewno znajdzie się dla Ciebie mały prezent ;) '
+    				};
+    		}
+    		//gofeed(opt.linktext,opt.imgUrl,opt.text);
+    		HFApp.feed(opt);
+    	}
+
+    	function sendDailyTaskFeed()
+    	{
+    		var opt = {
+    			"linktext": "去看看",
+    			"imgUrl": '{%$staticUrl%}/apps/island/images/feed/daily_mission_complete.gif',
+    			"text": '{%$uname%}通過一天的努力，所有日常任務都完成了哦！鼓掌~'
+    		};
+
+    		//gofeed(opt.linktext,opt.imgUrl,opt.text);
+    		HFApp.feed(opt);
+    	}
+
+    	function sendNormalFeed()
+    	{
+    		var opt = {
+    			"linktext": "去看看",
+    			"imgUrl": '{%$staticUrl%}/apps/island/images/feed/join.gif',
+    			"text": '陽光？沙灘？美女？帥哥！盡在快樂島主！趕快加入吧~'
+    		};
+    		//gofeed(opt.linktext,opt.imgUrl,opt.text);
+    		HFApp.feed(opt);
+    	}
+
+    	function sendTeamBuyFeed()
+        {
+    		var ajaxurl = "{%$hostUrl%}/event/sendteambuyfeed";
+    		$.ajax({
+    			   type: "post",
+    			   url: ajaxurl,
+    			   dataType: "text",
+    			   success: function(msg){
+    				   sendFeed(msg);
+    			   }
+    			});
+        }
+
+    	function sendTaojishiFeed()
+        {
+    		var ajaxurl = "{%$hostUrl%}/event/sendtaojishifeed";
+    		$.ajax({
+    			   type: "post",
+    			   url: ajaxurl,
+    			   dataType: "text",
+    			   success: function(msg){
+    				   sendFeed(msg);
+    			   }
+    			});
+        }
+
+    	function sendStromFeed()
+    	{
+    		var ajaxurl = '{%$hostUrl%}/event/sendstromfeed';
+    		$.ajax({
+    				type: "post",
+    				url: ajaxurl,
+    				dataType: "text",
+    				success: function(msg){
+    					sendFeed(msg);
+    				}
+    			});
+        }
+
+		$(document).ready(function() {
+			//alert('in page,begin to call plingaRpc.init');
+			plingaRpc.init(startGame);
+		});
+
+        var HFApp = {
+        		appId: "",
+        		appHostUrl: "",
+        		appStaticUrl: "",
+        		sns: "",
+        		gameUrl: "",
+        		userid: "",
+        		sessionkey: "",
+        		sessionid: "",
+
+        		init: function(config) {
+        			this.gameUrl = "http://nk.pl/#applications_test/" + HFApp.appId,
+					this.appId = config.appId;
+					this.appHostUrl = config.appHostUrl;
+					this.appStaticUrl = config.appStaticUrl;
+					this.sns = config.sns;
+					this.userid = config.userid;
+					this.sessionkey = config.sessionkey;
+					this.sessionid = config.sessionid;
+        		},
+
+        	    feed: function(feedSettings) {
+        			try {
+        				if (feedSettings) {
+        					var title = feedSettings.text;//'Wyspa Marzeń';//'快乐岛主Dream Island';
+        					var content = feedSettings.text;
+        					var img = feedSettings.img;
+        					var link = HFApp.gameUrl;
+        					var actionUrl = HFApp.gameUrl;
+        					var actionText = 'Play it now';
+        					if (feedSettings.linktext) {
+        						actionText = feedSettings.linktext;
+        					}
+        					if (feedSettings.para) {
+        						actionUrl += 'index?' + feedSettings.para;
+        						link += 'index?' + feedSettings.para;
+        					}
+        			    	var opts = {
+        			    		'title': 	title,
+    					      	'body':  	content,
+    					      	'pic':   	img,
+    					      	'link':  	link,
+    					      	'linktext':	actionText
+        			    	};
+
+        			    	plingaRpc.post(opts);
+        				}
+        			}catch(e){}
+        	    },
+
+        	    reload: function() {
+        	    	plingaRpc.reload();
+        	    },
+
+        	    resize: function() {
+        	    	plingaRpc.adjustHeight();
+        		},
+
+        	    invite: function() {
+        	    	plingaRpc.invite('Właśnie gram w super grę Wyspa Marzeń! Zagraj ze mną, a zapewniam, że czeka Cię mnóstwo świetnej zabawy!', {'invitor':this.userid});
+        	    	//plingaRpc.invite();
+        	    },
+        	    pay: function() {
+        	    	plingaRpc.initCoins();
+        	    },
+
+        	    home: function() {
+        	    	this.reload();
+        	    },
+
+        	    showGift: function() {
+        	    	if ($("#divGiftFrame").html() == '') {
+        	    		this.giftTop({});
+        	    	}
+        	    	$("#giftBox").toggle('fast');
+        	    },
+        	    giftTop: function(pardata) {
+        	    	this.loadHtml('/gift/top', 'POST', pardata, 'text', 'divGiftFrame');
+        	    },
+        	    giftGet: function(pardata) {
+        	    	this.loadHtml('/gift/get', 'POST', pardata, 'text', 'divGiftFrame');
+        	    },
+        	    giftPost: function(pardata) {
+        	    	this.loadHtml('/gift/post', 'POST', pardata, 'text', 'divGiftFrame');
+        	    },
+        	    giftFriend: function(pardata) {
+        	    	this.loadHtml('/gift/friends', 'POST', pardata, 'text', 'divGiftFrame');
+        	    },
+
+        		loadHtml: function(url, method, pardata, dataType, id) {//require jquery api support
+        			if (!method) { //("POST"  or  "GET")
+        				method = 'GET';
+        			}
+        			if (!dataType) {//xml html script json jsonp text
+        				dataType = "text";
+        			}
+        			$.ajax({
+                        type: method,
+                        url: url,
+                        data: pardata,
+                        dataType: dataType,
+                        success: function(resp){
+                        	$("#" + id).html(resp);
+                        	HFApp.resize();
+                        }
+        	 		});
+        		}
+        	}
+	</script>
+</body>
+</html>

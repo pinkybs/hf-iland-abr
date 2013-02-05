@@ -1,0 +1,129 @@
+
+<div id="checkuser" class="rr_ui_dialog" style="position: absolute; top: 50px; z-index: 10001; height: 340px; width: 570px; padding: 10px; background-color: rgba(82, 82, 82, 0.7); border-radius: 8px 8px 8px 8px; left: 105px;">
+<div class="rr_dialog_content" style="background-color: rgb(255, 255, 255); height: 178px; width: 570px;">
+
+<script type="text/javascript">
+document.domain = 'renren.com';
+try {
+top.location.href.indexOf( 'x' );
+} catch(e){
+var hasToken = '';
+if("true" != hasToken) {
+try
+{
+top.location = self.location;
+} catch ( e ){}
+}
+}
+</script>
+<link rel="stylesheet" type="text/css" href="http://s.xnimg.cn/a13648/csspro/apps/connect/rr-connect.css"></link>
+<script type="text/javascript">
+function toggleAllow(type, ele) {
+var img = ele.parentNode.getElementsByTagName('img')[0];
+if (img.src.indexOf('_1.png')>0)
+img.src = img.src.replace('_1.png','_2.png');
+else if(img.src.indexOf('_2.png')>0)
+img.src = img.src.replace('_2.png','_1.png');
+ele.innerHTML = ele.innerHTML=='Cancel'?'Allow':'Cancel';
+document.getElementById(type).value = (document.getElementById(type).value=='false');
+}
+</script>
+<style type="text/css">
+body {
+background: #eff6fc;
+}
+.container {
+width: auto;
+}
+.container .wrapper {
+border: none;
+}
+.content .outer-wrapper, .content .inner-wrapper {
+background: none;
+}
+.content .inner-wrapper .website {
+position: static;
+margin: 0;
+}
+.footer {
+border-bottom: 1px solid #555;
+_border-bottom: none;
+border-top: 1px solid #cee1ee;
+width: 100%;
+padding: 0;
+left: 0;bottom: 0
+}
+.footer .wrapper {
+padding: 12px 30px;
+overflow: hidden;
+}
+</style>
+<div class="container">
+<div class="header clearfix">
+<h2>Join Wyspa Marzeń</h2>
+</div>
+<div class="wrapper">
+<div class="top clearfix">
+<img class="avatar" height="30" width="30" title="lele" alt="" src="{%$staticUrl%}/apps/island/images/lele2.jpg">
+<p>
+Click on 
+<a onclick="goStartGame();"return false;" href="javascript:;">into the application</a>
+ will allow 
+<a onclick="goStartGame();"return false;" href="javascript:;">Wyspa Marzeń</a>
+ to do the following operation
+</p>
+</div>
+<form action="" method="post">
+<div class="content" style="height: 178px; width: 570px;">
+<div class="outer-wrapper">
+<div class="inner-wrapper">
+<table width="100%">
+<tbody>
+<tr>
+<td>
+<ul class="functions">
+<li>
+<img alt="" src="http://a.xnimg.cn/imgpro/connect/icons/icon_1_1.png">
+<span>Access your personal information and friends relationship.</span>
+</li>
+<li class="last">
+<img alt="" src="http://a.xnimg.cn/imgpro/connect/icons/icon_7_1.png">
+<span>Let your friends know you have installed.</span>
+<a onclick="toggleAllow('authFeed', this);return false;" href="javascript:;">Cancel</a>
+<input id="authFeed" type="hidden" value="true" name="authFeed">
+</li>
+</ul>
+</td>
+<td width="50" style="background:url(http://a.xnimg.cn/imgpro/connect/arrow.png) no-repeat 0 center;"></td>
+<td width="100">
+<div class="website">
+<a class="icon"  onclick="goStartGame();"return false;" href="javascript:;">
+<img height="75" width="75" src="http://app.xnimg.cn/application/logo/20101103/14/05/L4CdP101a018153.gif">
+</a>
+<a onclick="goStartGame();"return false;" href="javascript:;" >Wyspa Marzeń</a>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<input type="hidden" value="80104" name="origin">
+<input type="hidden" value="http://kfrr.u78.com/interface/renren/author.htm?xn_sig_in_iframe=1&xn_sig_method=get&xn_sig_time=1321954858792&xn_sig_added=0&xn_sig_api_key=aed9a589b9ba4c11a33c7a09bd029a62&xn_sig_app_id=160079&xn_sig_domain=renren.com&xn_sig=278e1a8944e5896dd03b06e16219442e#rr_xd_fragment&relation=parent&transport=fragment&origin=http%3A%2F%2Fkfrr.u78.com%2Ff20vsc407d7&rqid=6fh4z6hrb3p" name="redirect_uri">
+<input type="hidden" value="aed9a589b9ba4c11a33c7a09bd029a62" name="client_id">
+<input type="hidden" value="token" name="response_type">
+<input type="hidden" value="" name="scope">
+<input type="hidden" value="" name="state">
+<input type="hidden" value="iframe" name="display">
+<input type="hidden" value="0e42617f78120747ba411c107aa3118e-30-1321954867841" name="post_form_id">
+</form>
+<div class="footer">
+<div class="wrapper">
+<a class="connect" onclick="goStartGame();"return false;" href="javascript:;">Join Wyspa Marzeń</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

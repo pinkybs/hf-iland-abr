@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>停机维护 - 欢乐海岛</title>
+<style type="text/css">
+<!--
+body {
+	margin-top: 30px;
+}
+body,td,th {
+	font-size: 12px;
+	color: #666666;
+	font-family: 宋体, Arial;
+	line-height:24px;
+}
+-->
+</style></head>
+
+<body>
+<table width="537" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="274" background="images/bg.gif">
+    <table width="270" border="0" align="right" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="188" height="24"></td>
+        <td width="82" rowspan="2"></td>
+      </tr>
+      <tr>
+        <td  height="83" style="width:200px">
+        <table width="93%" border="0" align="center" cellpadding="0" cellspacing="0">
+  		<tr>
+    		<td>&nbsp;&nbsp;停机维护中，<a href="http://qbar.qq.com/opensns/r/?19510">点击详情</a></td>
+  		</tr>
+		<tr><td align="right">&nbsp;&nbsp;欢乐海岛 2011.1.6</td></tr>
+		</table>
+		</td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>

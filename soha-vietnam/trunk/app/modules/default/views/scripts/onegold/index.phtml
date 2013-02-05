@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>一元店后台</title>
+</head>
+<body>
+	<br />
+	<div>
+		{% foreach from=$datavo item=data %}
+			<form action="{%$hostUrl%}/onegold/update" method="post">
+				ID:<input type="text" name="data[id]" size="4" value="{%$data.id%}" />&nbsp;&nbsp;
+				物品:<input type="text" name="data[cid]" size="10" value="{%$data.cid%}" />&nbsp;&nbsp;
+				数量:<input type="text" name="data[num]" size="4" value="{%$data.num%}" />&nbsp;&nbsp;
+				宝石:<input type="text" name="data[gold]" size="4" value="{%$data.gold%}" />&nbsp;&nbsp;
+				金币:<input type="text" name="data[coin]" size="8" value="{%$data.coin%}" />&nbsp;&nbsp;
+				海星:<input type="text" name="data[starfish]" size="4" value="{%$data.starfish%}" />&nbsp;&nbsp;
+				开始时间:<input type="text" name="data[start_time]" size="20" value="{%$data.start_time|date_format:'%Y-%m-%d %H:%M:%S'%}" />&nbsp;&nbsp;
+				结束时间:<input type="text" name="data[end_time]" size="20" value="{%$data.end_time|date_format:'%Y-%m-%d %H:%M:%S'%}" />
+				<input type="submit" value="更新" />
+			</form>
+			<br />
+		{% /foreach %}
+	</div>
+	<form action="{%$hostUrl%}/onegold/addnew" method="post">
+		<input type="submit" name="add" value="新加一条" />
+	</form>
+	<br/>
+	<form action="{%$hostUrl%}/onegold/clearall" method="post">
+		<input type="submit" name="all" value="缓存清理" />
+	</form>
+</body>
+</html>

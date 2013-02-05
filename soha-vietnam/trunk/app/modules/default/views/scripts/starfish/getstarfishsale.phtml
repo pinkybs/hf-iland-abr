@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Event name</title>
+<style type="text/css">
+.basic-input {
+	border: 1px solid #C9C9C9;
+	border-bottom-left-radius: 3px 3px;
+	border-bottom-right-radius: 3px 3px;
+	border-top-left-radius: 3px 3px;
+	border-top-right-radius: 3px 3px;
+	font-size: 14px;
+	height: 15px;
+	padding: 5px;
+	width: 200px;
+}
+.detail {
+	width:50%;
+}
+</style>
+</head>
+
+<div class="top-nav">
+<div class="bd">
+	<div class="top-nav-info"></div>
+    <div class="top-nav-items">
+        <ul>
+        </ul>
+    </div>
+</div>
+</div>
+
+<div id="wrapper">
+
+	<div id="content">
+		<div class="grid-8-2 clearfix">
+	    	<div class="article">
+				
+				<form name="frm" method="post" action="{% $hostUrl %}/starfish/updatesale" >
+			        <table class="detail" >
+			        <tbody>
+			        <tr>
+			        <th width="25%" align="center">Type</th>
+			        <th width="25%" align="center">CID</th>
+			        <th width="25%" align="center">Number</th>
+			        <th width="25%" align="center">Price</th>
+			        <th width="25%" align="center">Sort</th>
+			        </tr>
+			        <tr>
+			        <td><select name="types[]">
+                    <option value="">Choose Type</option>
+                    <option value="propCard"{% if $saleList.0.type == "propCard" %} selected="selected"{% /if %}>propCard</option>
+                    <option value="adorn"{% if $saleList.0.type == "adorn" %} selected="selected"{% /if %}>adorn</option>
+                    <option value="architecture"{% if $saleList.0.type == "architecture" %} selected="selected"{% /if %}>architecture</option>
+                    </select>
+                    </td>
+			        	<td><input type="text" name="cids[]" value="{% $saleList.0.cid %}" /></td>
+			        	<td><input type="text" name="numbers[]" value="{% $saleList.0.number %}" /></td>
+			        	<td><input type="text" name="prices[]" value="{% $saleList.0.price %}" /></td>
+			        	<td><input type="text" name="sort[]" value="{% $saleList.0.sort %}" /></td>
+			        </tr>
+			         <tr>
+			        <td><select name="types[]">
+                    <option value="">Choose Type</option>
+                    <option value="propCard"{% if $saleList.1.type == "propCard" %} selected="selected"{% /if %}>propCard</option>
+                    <option value="adorn"{% if $saleList.1.type == "adorn" %} selected="selected"{% /if %}>adorn</option>
+                    <option value="architecture"{% if $saleList.1.type == "architecture" %} selected="selected"{% /if %}>architecture</option>
+                    </select>
+                    </td>
+			        	<td><input type="text" name="cids[]" value="{% $saleList.1.cid %}" /></td>
+			        	<td><input type="text" name="numbers[]" value="{% $saleList.1.number %}" /></td>
+			        	<td><input type="text" name="prices[]" value="{% $saleList.1.price %}" /></td>
+			        	<td><input type="text" name="sort[]" value="{% $saleList.1.sort %}" /></td>
+			        </tr>
+			         <tr>
+			        <td><select name="types[]">
+                    <option value="">Choose Type</option>
+                    <option value="propCard"{% if $saleList.2.type == "propCard" %} selected="selected"{% /if %}>propCard</option>
+                    <option value="adorn"{% if $saleList.2.type == "adorn" %} selected="selected"{% /if %}>adorn</option>
+                    <option value="architecture"{% if $saleList.2.type == "architecture" %} selected="selected"{% /if %}>architecture</option>
+                    </select>
+                    </td>
+			        	<td><input type="text" name="cids[]" value="{% $saleList.2.cid %}" /></td>
+			        	<td><input type="text" name="numbers[]" value="{% $saleList.2.number %}" /></td>
+			        	<td><input type="text" name="prices[]" value="{% $saleList.2.price %}" /></td>
+			        	<td><input type="text" name="sort[]" value="{% $saleList.2.sort %}" /></td>
+			        </tr>
+			        <tr>
+			        <td><select name="types[]">
+                    <option value="">Choose Type</option>
+                    <option value="propCard"{% if $saleList.3.type == "propCard" %} selected="selected"{% /if %}>propCard</option>
+                    <option value="adorn"{% if $saleList.3.type == "adorn" %} selected="selected"{% /if %}>adorn</option>
+                    <option value="architecture"{% if $saleList.3.type == "architecture" %} selected="selected"{% /if %}>architecture</option>
+                    </select>
+                    </td>
+			        	<td><input type="text" name="cids[]" value="{% $saleList.3.cid %}" /></td>
+			        	<td><input type="text" name="numbers[]" value="{% $saleList.3.number %}" /></td>
+			        	<td><input type="text" name="prices[]" value="{% $saleList.3.price %}" /></td>
+			        	<td><input type="text" name="sort[]" value="{% $saleList.3.sort %}" /></td>
+			        </tr>
+			        <tr>
+			        <td><select name="types[]">
+                    <option value="">Choose Type</option>
+                    <option value="propCard"{% if $saleList.4.type == "propCard" %} selected="selected"{% /if %}>propCard</option>
+                    <option value="adorn"{% if $saleList.4.type == "adorn" %} selected="selected"{% /if %}>adorn</option>
+                    <option value="architecture"{% if $saleList.4.type == "architecture" %} selected="selected"{% /if %}>architecture</option>
+                    </select>
+                    </td>
+			        	<td><input type="text" name="cids[]" value="{% $saleList.4.cid %}" /></td>
+			        	<td><input type="text" name="numbers[]" value="{% $saleList.4.number %}" /></td>
+			        	<td><input type="text" name="prices[]" value="{% $saleList.4.price %}" /></td>
+			        	<td><input type="text" name="sort[]" value="{% $saleList.4.sort %}" /></td>
+			        </tr>
+			        <tr>
+			        <td><select name="types[]">
+                    <option value="">Choose Type</option>
+                    <option value="propCard"{% if $saleList.5.type == "propCard" %} selected="selected"{% /if %}>propCard</option>
+                    <option value="adorn"{% if $saleList.5.type == "adorn" %} selected="selected"{% /if %}>adorn</option>
+                    <option value="architecture"{% if $saleList.5.type == "architecture" %} selected="selected"{% /if %}>architecture</option>
+                    </select>
+                    </td>
+			        	<td><input type="text" name="cids[]" value="{% $saleList.5.cid %}" /></td>
+			        	<td><input type="text" name="numbers[]" value="{% $saleList.5.number %}" /></td>
+			        	<td><input type="text" name="prices[]" value="{% $saleList.5.price %}" /></td>
+			        	<td><input type="text" name="sort[]" value="{% $saleList.5.sort %}" /></td>
+			        </tr>
+			         <tr>
+			        <td><select name="types[]">
+                    <option value="">Choose Type</option>
+                    <option value="propCard"{% if $saleList.6.type == "propCard" %} selected="selected"{% /if %}>propCard</option>
+                    <option value="adorn"{% if $saleList.6.type == "adorn" %} selected="selected"{% /if %}>adorn</option>
+                    <option value="architecture"{% if $saleList.6.type == "architecture" %} selected="selected"{% /if %}>architecture</option>
+                    </select>
+                    </td>
+			        	<td><input type="text" name="cids[]" value="{% $saleList.6.cid %}" /></td>
+			        	<td><input type="text" name="numbers[]" value="{% $saleList.6.number %}" /></td>
+			        	<td><input type="text" name="prices[]" value="{% $saleList.6.price %}" /></td>
+			        	<td><input type="text" name="sort[]" value="{% $saleList.6.sort %}" /></td>
+			        </tr>
+			       <tr>
+			        <td><select name="types[]">
+                    <option value="">Choose Type</option>
+                    <option value="propCard"{% if $saleList.7.type == "propCard" %} selected="selected"{% /if %}>propCard</option>
+                    <option value="adorn"{% if $saleList.7.type == "adorn" %} selected="selected"{% /if %}>adorn</option>
+                    <option value="architecture"{% if $saleList.7.type == "architecture" %} selected="selected"{% /if %}>architecture</option>
+                    </select>
+                    </td>
+			        	<td><input type="text" name="cids[]" value="{% $saleList.7.cid %}" /></td>
+			        	<td><input type="text" name="numbers[]" value="{% $saleList.7.number %}" /></td>
+			        	<td><input type="text" name="prices[]" value="{% $saleList.7.price %}" /></td>
+			        	<td><input type="text" name="sort[]" value="{% $saleList.7.sort %}" /></td>
+			        </tr>
+			       <tr>
+			        <td><select name="types[]">
+                    <option value="">Choose Type</option>
+                    <option value="propCard"{% if $saleList.8.type == "propCard" %} selected="selected"{% /if %}>propCard</option>
+                    <option value="adorn"{% if $saleList.8.type == "adorn" %} selected="selected"{% /if %}>adorn</option>
+                    <option value="architecture"{% if $saleList.8.type == "architecture" %} selected="selected"{% /if %}>architecture</option>
+                    </select>
+                    </td>
+			        	<td><input type="text" name="cids[]" value="{% $saleList.8.cid %}" /></td>
+			        	<td><input type="text" name="numbers[]" value="{% $saleList.8.number %}" /></td>
+			        	<td><input type="text" name="prices[]" value="{% $saleList.8.price %}" /></td>
+			        	<td><input type="text" name="sort[]" value="{% $saleList.8.sort %}" /></td>
+			        </tr>
+			       <tr>
+			        <td><select name="types[]">
+                    <option value="">Choose Type</option>
+                    <option value="propCard"{% if $saleList.9.type == "propCard" %} selected="selected"{% /if %}>propCard</option>
+                    <option value="adorn"{% if $saleList.9.type == "adorn" %} selected="selected"{% /if %}>adorn</option>
+                    <option value="architecture"{% if $saleList.9.type == "architecture" %} selected="selected"{% /if %}>architecture</option>
+                    </select>
+                    </td>
+			        	<td><input type="text" name="cids[]" value="{% $saleList.9.cid %}" /></td>
+			        	<td><input type="text" name="numbers[]" value="{% $saleList.9.number %}" /></td>
+			        	<td><input type="text" name="prices[]" value="{% $saleList.9.price %}" /></td>
+			        	<td><input type="text" name="sort[]" value="{% $saleList.9.sort %}" /></td>
+			        </tr>
+			       <tr>
+			        <td><select name="types[]">
+                    <option value="">Choose Type</option>
+                    <option value="propCard"{% if $saleList.10.type == "propCard" %} selected="selected"{% /if %}>propCard</option>
+                    <option value="adorn"{% if $saleList.10.type == "adorn" %} selected="selected"{% /if %}>adorn</option>
+                    <option value="architecture"{% if $saleList.10.type == "architecture" %} selected="selected"{% /if %}>architecture</option>
+                    </select>
+                    </td>
+			        	<td><input type="text" name="cids[]" value="{% $saleList.10.cid %}" /></td>
+			        	<td><input type="text" name="numbers[]" value="{% $saleList.10.number %}" /></td>
+			        	<td><input type="text" name="prices[]" value="{% $saleList.10.price %}" /></td>
+			        	<td><input type="text" name="sort[]" value="{% $saleList.10.sort %}" /></td>
+			        </tr>
+			        <tr>
+			        <td><select name="types[]">
+                    <option value="">Choose Type</option>
+                    <option value="propCard"{% if $saleList.11.type == "propCard" %} selected="selected"{% /if %}>propCard</option>
+                    <option value="adorn"{% if $saleList.11.type == "adorn" %} selected="selected"{% /if %}>adorn</option>
+                    <option value="architecture"{% if $saleList.11.type == "architecture" %} selected="selected"{% /if %}>architecture</option>
+                    </select>
+                    </td>
+			        	<td><input type="text" name="cids[]" value="{% $saleList.11.cid %}" /></td>
+			        	<td><input type="text" name="numbers[]" value="{% $saleList.11.number %}" /></td>
+			        	<td><input type="text" name="prices[]" value="{% $saleList.11.price %}" /></td>
+			        	<td><input type="text" name="sort[]" value="{% $saleList.11.sort %}" /></td>
+			        </tr>
+			         <tr>
+			        <td><select name="types[]">
+                    <option value="">Choose Type</option>
+                    <option value="propCard"{% if $saleList.12.type == "propCard" %} selected="selected"{% /if %}>propCard</option>
+                    <option value="adorn"{% if $saleList.12.type == "adorn" %} selected="selected"{% /if %}>adorn</option>
+                    <option value="architecture"{% if $saleList.12.type == "architecture" %} selected="selected"{% /if %}>architecture</option>
+                    </select>
+                    </td>
+			        	<td><input type="text" name="cids[]" value="{% $saleList.12.cid %}" /></td>
+			        	<td><input type="text" name="numbers[]" value="{% $saleList.12.number %}" /></td>
+			        	<td><input type="text" name="prices[]" value="{% $saleList.12.price %}" /></td>
+			        	<td><input type="text" name="sort[]" value="{% $saleList.12.sort %}" /></td>
+			        </tr>
+			        <tr>
+			        <td><select name="types[]">
+                    <option value="">Choose Type</option>
+                    <option value="propCard"{% if $saleList.13.type == "propCard" %} selected="selected"{% /if %}>propCard</option>
+                    <option value="adorn"{% if $saleList.13.type == "adorn" %} selected="selected"{% /if %}>adorn</option>
+                    <option value="architecture"{% if $saleList.13.type == "architecture" %} selected="selected"{% /if %}>architecture</option>
+                    </select>
+                    </td>
+			        	<td><input type="text" name="cids[]" value="{% $saleList.13.cid %}" /></td>
+			        	<td><input type="text" name="numbers[]" value="{% $saleList.13.number %}" /></td>
+			        	<td><input type="text" name="prices[]" value="{% $saleList.13.price %}" /></td>
+			        	<td><input type="text" name="sort[]" value="{% $saleList.13.sort %}" /></td>
+			        </tr>
+			         <tr>
+			        <td><select name="types[]">
+                    <option value="">Choose Type</option>
+                    <option value="propCard"{% if $saleList.14.type == "propCard" %} selected="selected"{% /if %}>propCard</option>
+                    <option value="adorn"{% if $saleList.14.type == "adorn" %} selected="selected"{% /if %}>adorn</option>
+                    <option value="architecture"{% if $saleList.14.type == "architecture" %} selected="selected"{% /if %}>architecture</option>
+                    </select>
+                    </td>
+			        	<td><input type="text" name="cids[]" value="{% $saleList.14.cid %}" /></td>
+			        	<td><input type="text" name="numbers[]" value="{% $saleList.14.number %}" /></td>
+			        	<td><input type="text" name="prices[]" value="{% $saleList.14.price %}" /></td>
+			        	<td><input type="text" name="sort[]" value="{% $saleList.14.sort %}" /></td>
+			        </tr>
+			         <tr>
+			        <td><select name="types[]">
+                    <option value="">Choose Type</option>
+                    <option value="propCard"{% if $saleList.15.type == "propCard" %} selected="selected"{% /if %}>propCard</option>
+                    <option value="adorn"{% if $saleList.15.type == "adorn" %} selected="selected"{% /if %}>adorn</option>
+                    <option value="architecture"{% if $saleList.15.type == "architecture" %} selected="selected"{% /if %}>architecture</option>
+                    </select>
+                    </td>
+			        	<td><input type="text" name="cids[]" value="{% $saleList.15.cid %}" /></td>
+			        	<td><input type="text" name="numbers[]" value="{% $saleList.15.number %}" /></td>
+			        	<td><input type="text" name="prices[]" value="{% $saleList.15.price %}" /></td>
+			        	<td><input type="text" name="sort[]" value="{% $saleList.15.sort %}" /></td>
+			        </tr>
+			        </tbody>
+			        </table>
+			        <input type="submit" value="更新" />
+			        <span class="pl">* CID 不可重复</span>
+		       	</form>
+	    	</div>
+	    	<div class="aside">
+	    	</div>
+	    	<div class="extra">
+	        </div>
+	    </div>
+	</div>
+	<div id="footer"></div>
+
+</div>
+
+
+
+</body>
+</html>

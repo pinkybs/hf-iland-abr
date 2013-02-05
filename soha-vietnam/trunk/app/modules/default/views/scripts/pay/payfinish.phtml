@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Đảo Thiên Đường</title>
+</head>
+<style>
+#bg{
+margin:0 auto;
+align:center;
+background-repeat: no-repeat;
+width:537px;
+height:284px;
+background-image:url({%$staticUrl%}/apps/island/images/pay/paysuccess.jpg);
+}
+
+#bg #continue {
+    padding-left:110px;
+    padding-top:160px;
+}
+
+#bg #close {
+    padding-left:110px;
+    padding-top:10px;
+}
+</style>
+<body al>
+
+    <div id="bg">
+        <div id="continue">
+            <a href="http://i.taobao.com/apps/show.htm?appkey={%$smarty.const.APP_KEY%}">
+                <img src="{%$staticUrl%}/apps/island/images/pay/continue.gif" alt="继续游戏"/>
+            </a>
+        </div>
+        <div id="close">
+            <a href="#" onclick="window.opener=null;window.open('','_self');window.close();">
+                <img src="{%$staticUrl%}/apps/island/images/pay/close.gif" alt="关闭窗口" />
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

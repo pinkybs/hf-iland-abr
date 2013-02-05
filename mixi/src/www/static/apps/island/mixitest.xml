@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+    <ModulePrefs title="Island Test" description="Island Test"> 
+        <Require feature="opensocial-0.8" />
+        <Require feature="dynamic-height" />
+        <Require feature="flash" />
+        <Require feature="views" />
+        <Require feature="mixi-voice" />
+    </ModulePrefs>
+    
+    <Content type="html" view="canvas">
+    <![CDATA[
+       <script type="text/javascript" src="http://mixitest.hapyfish.com/static/js/mixios.canvas.js?v=1.0.2"></script>
+       <script type="text/javascript" src="http://mixitest.hapyfish.com/static/js/common.js?v=1.0.1"></script>
+     
+       <script type="text/javascript">
+           var canvas = mixios.application.newCanvas('http://mixitest.hapyfish.com', 'island');
+           //default debug is disabled
+           canvas.enableDebug(true);
+           //default height is 800
+           canvas.setHeight(760);
+           
+           //let's go
+           canvas.start();
+       </script>
+    ]]>
+    </Content>
+</Module>

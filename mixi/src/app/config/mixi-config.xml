@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<app>
+	<secret>
+		<validationKey>6003AC14AWY8DD55394C9A06D8352A99512E0B28</validationKey>
+		<validation>sha1</validation>
+	</secret>
+
+    <session>
+        <cookie_domain>mxisland.hapyfish.com</cookie_domain>
+     	<save_handler>memcache</save_handler>
+     	<save_path>tcp://10.194.11.15:11211;tcp://10.242.74.48:11211</save_path>
+    </session>
+
+    <cache>
+        <memcache>
+           <servers>
+               <server>
+                   <host>10.194.11.15</host>
+                   <port>11211</port>
+                   <persistent>true</persistent>
+               </server>
+               <server>
+                   <host>10.242.74.48</host>
+                   <port>11211</port>
+                   <persistent>true</persistent>
+               </server>
+               <server>
+                   <host>10.195.221.203</host>
+                   <port>11211</port>
+                   <persistent>true</persistent>
+               </server>
+           </servers>
+        </memcache>
+    </cache>
+
+	<server>
+		<host>http://mxisland.hapyfish.com</host>
+		<static>http://cloudfront.hapyfish.com</static>
+	</server>
+
+</app>

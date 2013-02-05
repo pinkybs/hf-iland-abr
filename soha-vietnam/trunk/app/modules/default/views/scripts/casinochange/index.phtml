@@ -1,0 +1,436 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>积分兑换</title>
+<link href="{%$staticUrl%}/apps/island/images/ganen1/duihuan.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+body,td,th {font-size: 12px;color: #333333; line-height:16px; }
+th{ color:#2584c2;}
+td{ text-align: center;}
+img { border:0px;}
+.layer{	width:452px; height:258px; background-image:url({%$staticUrl%}/apps/island/images/ganen/qrk.gif); position:absolute; top: 300px; left: 50%; margin:-129px 0 0 -226px;}
+.layer2{width:370px;height:213px;	background-image:url({%$staticUrl%}/apps/island/images/ganen/qrk2.gif);	position:absolute; top: 300px; left: 50%; margin:-106px 0 0 -185px;}
+-->
+</style>
+
+<script src="{%$staticUrl%}/apps/island/js/jquery.min.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+<div class="main">
+
+	<div class="layer" id="a01" style="visibility:hidden;" onfocus="MM_showHideLayers('a01','','hide')">
+	  <table width="452" height="240" border="0">
+        <tr>
+          <td colspan="2" align="center" valign="bottom">
+	          <table width="400" height="150" border="0" align="center">
+	            <tr>
+	              <td height="100" colspan="2" id="txtChange"></td>
+	            </tr>
+	            <tr>
+	              <td height="50"><img src="{%$staticUrl%}/apps/island/images/ganen/ch.gif" alt="兑换" onclick="casinochange()" width="86" height="29" style="cursor: pointer;" /></td>
+	              <td><img src="{%$staticUrl%}/apps/island/images/ganen/qx.gif" alt="取消" width="86" height="29" onclick="MM_showHideLayers('a01','','hide')" style="cursor: pointer;" /></td>
+	            </tr>
+	          </table>
+	          <input type="hidden" id="changePoint" value="0"/>
+	          <input type="hidden" id="changeId" value="0"/>
+	          <input type="hidden" id="cahngeType" value="0"/>
+          </td>
+        </tr>
+      </table>
+  </div>
+  <div class="layer2" id="a02" style="visibility:hidden;" onfocus="MM_showHideLayers('a01','','hide')">
+	  <table width="370" height="200" border="0">
+        <tr>
+          <td colspan="2" align="center" valign="bottom">
+	          <table width="350" height="70" border="0" align="center">
+	            <tr>
+	              <td height="100" id="txtChangeResult"></td>
+	            </tr>
+	            <tr>
+	              <td height="50"><img src="{%$staticUrl%}/apps/island/images/ganen/qd.gif" alt="确定" width="86" height="29" onclick="MM_showHideLayers('a02','','hide')" style="cursor: pointer;" /></td>
+	            </tr>
+	          </table>
+          </td>
+        </tr>
+      </table>
+  </div>
+
+  <div class="top"></div>
+    <div class="guize">
+   	  <div class="guize_l">
+        	<div class="guize_l_a">
+            	<div class="how_a">每转动一次大转盘，会获得2点积分
+                  <br />  <br />
+              <!-- 活动,充值,等内容也会获得相应的积分 --></div>
+                <div class="how_b">累积积分可以兑换特殊的建筑和装饰物，
+				<!-- <br />还可以兑换到免费商品，代金卷哦~优惠多多 -->
+					<br />大家快点赢取积分啦，兑换表会定期更新新的物品的哦!!!
+					 <br />
+					  <br />
+					</div>
+            </div>
+            <div class="guize_l_b"></div>
+            <div class="guize_l_c">
+            	<div class="self_img"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/self_img.gif" width="54" height="54" /></div>
+                <div class="self_txt">{%$userInfo.name%}<br />当前积分：{%$userInfo.point%}积分</div>
+                <div class="gamein"><a href="http://i.taobao.com/apps/show.htm?appkey=12029234"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/gamein.gif" border="0" /></a></div>
+            </div>
+            <div class="guize_l_d">快乐岛主积分兑换中心，更多道具！更多好礼！</div>
+      </div>
+        <div class="guize_r">
+        {% foreach from=$pointChangeList item=data %}
+        	<div class="z_time">{%$data.1|date_format:"%y-%m-%d"%}</div><div class="z_name">{%$data.0%}</div><div class="z_int">{%$data.2%}</div>
+        {% /foreach %}
+        </div>
+  </div>
+    <div class="dajiang">
+
+  </div>
+    <div class="content">
+    	<div class="c_inside">
+        	<div class="inside_r">
+            <!-- <div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/a1.gif)"><a href="http://item.taobao.com/item.htm?id=7095936240" title="简约牛皮卡包" target="_blank"><div class="zhekou">4.0折</div><div class="titlename" id="div_item_1">简约牛皮卡包</div></a></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx">原价:28RMB<br/>现价:￥11+100积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',1, 100,0);" /></div>
+                </div>
+            </div>
+            <div class="dajiang_a">
+           	  <div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/a2.gif)"><a href="http://item.taobao.com/item.htm?id=3371387468" title="金色浴缸收纳盒" target="_blank"><div class="zhekou">5.0折</div><div class="titlename" id="div_item_2">金色浴缸收纳盒</div></a></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx">原价:30RMB<br/>现价:￥15+150积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',2, 150,0);" /></div>
+                </div>
+            </div>
+            <div class="dajiang_a">
+           	  <div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/a3.gif)"><a href="http://item.taobao.com/item.htm?id=8816401966" title="盒装铁观音70克" target="_blank"><div class="zhekou">5.0折</div><div class="titlename" id="div_item_3">盒装铁观音70克</div></a></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx">原价:38RMB<br/>现价:￥19+200积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',3, 200,0);" /></div>
+                </div>
+            </div>
+            <div class="dajiang_a">
+           	  <div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/a4.gif)"><a href="http://item.taobao.com/item.htm?id=7929094788" title="迪龙USB双震动游戏手柄" target="_blank"><div class="zhekou">6.0折</div><div class="titlename" id="div_item_4">迪龙USB双震动游戏手柄</div></a></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx">原价:33RMB<br/>现价:￥20+200积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',4, 200,0);" /></div>
+                </div>
+            </div>
+            <div class="dajiang_a">
+           	  <div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/a5.gif)"><a href="http://item.taobao.com/item.htm?id=8465318841" title="美容瘦身血珊瑚草" target="_blank"><div class="zhekou">5.0折</div><div class="titlename" id="div_item_5">美容瘦身血珊瑚草</div></a></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx">原价:50RMB<br/>现价:￥25+250积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',5, 250,0);" /></div>
+                </div>
+            </div>
+            <div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/a6.gif)"><a href="http://item.taobao.com/item.htm?id=9222259723" title="缤纷春夏 果冻单鞋" target="_blank"><div class="zhekou">6.0折</div><div class="titlename" id="div_item_6">缤纷春夏 果冻单鞋</div></a></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx">原价:49RMB<br/>现价:￥29+300积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',6, 300,0);" /></div>
+                </div>
+            </div> -->
+			<div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/a5.gif)"><div class="zhekou">卡片</div><div class="titlename" id="div_item_28">加速卡礼包</div></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx" style="line-height:28px;">现价:30积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',28, 30,0);" /></div>
+                </div>
+            </div>
+			<div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/a4.gif)"><div class="zhekou">卡片</div><div class="titlename" id="div_item_29">请神卡礼包</div></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx" style="line-height:28px;">现价:30积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',29, 30,0);" /></div>
+                </div>
+            </div>
+			<div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/a6.gif)"><div class="zhekou">卡片</div><div class="titlename" id="div_item_30">防御卡礼包</div></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx" style="line-height:28px;">现价:30积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',30, 30,0);" /></div>
+                </div>
+            </div>
+			<div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/a3.gif)"><div class="zhekou">装饰</div><div class="titlename" id="div_item_31">蛋蛋鸭</div></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx" style="line-height:28px;">现价:300积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',31, 300,0);" /></div>
+                </div>
+            </div>
+			<div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/a2.gif)"><div class="zhekou">装饰</div><div class="titlename" id="div_item_32">泳圈鸭</div></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx" style="line-height:28px;">现价:500积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',32, 500,0);" /></div>
+                </div>
+            </div>
+			<div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/a1.gif)"><div class="zhekou">建筑</div><div class="titlename" id="div_item_33">生活机器人</div></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx" style="line-height:28px;">现价:1000积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',33, 1000,0);" /></div>
+                </div>
+            </div>
+
+			<div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/c10.gif)"><div class="zhekou">卡片</div><div class="titlename" id="div_item_25">加时卡礼包</div></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx" style="line-height:28px;">现价:100积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',25, 100,0);" /></div>
+                </div>
+            </div>
+            <div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/c11.gif)"><div class="zhekou">卡片</div><div class="titlename" id="div_item_26">防御类礼包</div></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx" style="line-height:28px;">现价:100积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',26, 100,0);" /></div>
+                </div>
+            </div>
+            <div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/c12.gif)"><div class="zhekou">卡片</div><div class="titlename" id="div_item_27">财神卡礼包</div></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx" style="line-height:28px;">现价:100积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',27, 100,0);" /></div>
+                </div>
+            </div>
+            <!-- <div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/a7.gif)"><a href="http://item.tmall.com/item.htm?id=7431615905&prc=1" title="子羽串起的幸福项链" target="_blank"><div class="zhekou">3.0折</div><div class="titlename" id="div_item_7">子羽串起的幸福项链</div></a></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx">原价:120RMB<br/>现价:￥36+300积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',7, 300,0);" /></div>
+                </div>
+            </div>
+            <div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/a8.gif)"><a href="http://item.tmall.com/item.htm?id=8566768715&prc=1" title="花瓣面膜" target="_blank"><div class="zhekou">6.0折</div><div class="titlename" id="div_item_8">花瓣面膜</div></a></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx">原价:88RMB<br/>现价:￥54+500积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',8, 500,0);" /></div>
+                </div>
+            </div>
+            <div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/a9.gif)"><a href="http://item.taobao.com/auction/item_detail.htm?item_num_id=3178477102" title="户外清凉多功能健步涉溪鞋" target="_blank"><div class="zhekou">5.0折</div><div class="titlename" id="div_item_9">户外清凉多功能健步涉溪鞋</div></a></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx">原价:138RMB<br/>现价:￥69+500积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',9, 500,0);" /></div>
+                </div>
+            </div> -->
+            <!-- <div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/a10.gif)"><a href="http://item.taobao.com/item.htm?id=8176461869" title="天丝棉免烫男士休闲长裤" target="_blank"><div class="zhekou">5.0折</div><div class="titlename" id="div_item_10">天丝棉免烫男士休闲长裤 </div></a></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx">原价:148RMB<br/>现价:￥74+600积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',10, 600,0);" /></div>
+                </div>
+            </div>
+            <div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/a11.gif)"><a href="http://item.tmall.com/item.htm?id=3150344100&prc=2" title="凯胜初学超轻羽拍" target="_blank"><div class="zhekou">5.0折</div><div class="titlename" id="div_item_11">凯胜初学超轻羽拍</div></a></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx">原价:159RMB<br/>现价:￥79+600积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',11, 600,0);" /></div>
+                </div>
+            </div>
+            <div class="dajiang_a">
+           	  <div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/a12.gif)"><a href="http://item.taobao.com/auction/item_detail.htm?item_num_id=8786609996" title="凯胜专业羽毛球鞋" target="_blank"><div class="zhekou">4.5折</div><div class="titlename" id="div_item_12">凯胜专业羽毛球鞋</div></a></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx">原价:350RMB<br/>现价:￥158+800积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',12, 800,0);" /></div>
+                </div>
+            </div> -->
+            </div>
+          <div class="inside_r">
+            <div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/c1.gif)"><div class="zhekou">建筑</div><div class="titlename" id="div_item_16">法国足球馆</div></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx" style="line-height:28px;">现价:1500积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',16, 1500,0);" /></div>
+                </div>
+            </div>
+            <div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/c2.gif)"><div class="zhekou">建筑</div><div class="titlename" id="div_item_17">瑞士足球馆</div></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx" style="line-height:28px;">现价:1500积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',17, 1500,0);" /></div>
+                </div>
+            </div>
+            <div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/c03.gif)"><div class="zhekou">建筑</div><div class="titlename" id="div_item_18">意大利足球馆</div></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx" style="line-height:28px;">现价:1500积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',18, 1500,0);" /></div>
+                </div>
+            </div>
+            <div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/c4.gif)"><div class="zhekou">建筑</div><div class="titlename" id="div_item_19">英格兰足球馆</div></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx" style="line-height:28px;">现价:1500积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',19, 1500,0);" /></div>
+                </div>
+            </div>
+            <div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/c5.gif)"><div class="zhekou">装饰</div><div class="titlename" id="div_item_20">DJ鸭</div></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx" style="line-height:28px;">现价:700积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',20, 700,0);" /></div>
+                </div>
+            </div>
+            <div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/c6.gif)"><div class="zhekou">装饰</div><div class="titlename" id="div_item_21">招财小猫-进财</div></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx" style="line-height:28px;">现价:700积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',21, 700,0);" /></div>
+                </div>
+            </div>
+            <div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/c7.gif)"><div class="zhekou">装饰</div><div class="titlename" id="div_item_22">招财小猫-金币</div></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx" style="line-height:28px;">现价:700积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',22, 700,0);" /></div>
+                </div>
+            </div>
+            <div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/c8.gif)"><div class="zhekou">装饰</div><div class="titlename" id="div_item_23">招财小猫-元宝</div></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx" style="line-height:28px;">现价:700积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',23, 700,0);" /></div>
+                </div>
+            </div>
+            <div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/c9.gif)"><div class="zhekou">卡片</div><div class="titlename" id="div_item_24">加速卡礼包</div></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx" style="line-height:28px;">现价:100积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',24, 100,0);" /></div>
+                </div>
+            </div>
+            <!-- <div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/c10.gif)"><div class="zhekou">卡片</div><div class="titlename" id="div_item_25">加时卡礼包</div></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx" style="line-height:28px;">现价:500积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',25, 500,0);" /></div>
+                </div>
+            </div>
+            <div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/c11.gif)"><div class="zhekou">卡片</div><div class="titlename" id="div_item_26">防御类礼包</div></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx" style="line-height:28px;">现价:500积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',26, 500,0);" /></div>
+                </div>
+            </div>
+            <div class="dajiang_a">
+            	<div class="dajiang_content" style="background:url({%$staticUrl%}/apps/island/images/ganen1/images/c12.gif)"><div class="zhekou">卡片</div><div class="titlename" id="div_item_27">财神卡礼包</div></div>
+                <div class="dajiang_content_text">
+                  <div class="dajiang_text_a shiwu_tx" style="line-height:28px;">现价:500积分</div><div class="dajiang_bottom"></div>
+                  <div class="dajiang_bottom shiwu_bo"><img src="{%$staticUrl%}/apps/island/images/ganen1/images/bo_img_2.gif" width="69" height="27" border="0" style="cursor: pointer;" onclick="showLayer('a01','','show',27, 500,0);" /></div>
+                </div>
+            </div>
+			-->
+          </div>
+
+        </div>
+  </div>
+
+</div>
+<div class="c_bottom"></div>
+<div class="bottom">
+很多新的兑换物品是会慢慢增加的哦。  当然如果大家有什么想要的，也可以加乐乐旺旺告诉乐乐哦。旺旺号：快乐岛主乐乐
+</div>
+
+
+
+<script type="text/javascript">
+<!--
+
+function adjustLayerPostion(layer)
+{
+	var o = $(layer);
+	if (o) {
+		var yScroll = 0;
+		if (self.pageYOffset) {
+			yScroll = self.pageYOffset;
+		} else if (document.documentElement && document.documentElement.scrollTop){
+			yScroll = document.documentElement.scrollTop;
+		} else if (document.body) {
+			yScroll = document.body.scrollTop;
+		}
+
+		var top =  yScroll + 300 + "px";
+
+		o.css("top", top);
+	}
+}
+
+function showLayer(va,vb,vc,giftId,vd,ve)
+{
+  	  MM_showHideLayers(va,vb,vc);
+
+  	  adjustLayerPostion('#' + va);
+
+  	  var itemName = $("#div_item_"+giftId).html();
+      $('#txtChange').text('是否要以'+vd+'积分兑换  '+itemName+' 兑金券');
+  	  $("#changePoint").val(vd);
+  	  $("#changeId").val(giftId);
+  	  $("#cahngeType").val(ve);
+}
+
+//弹出层
+function MM_showHideLayers(va,vb,vc) { //v9.0
+  var i,p,v,obj,args=MM_showHideLayers.arguments;
+  for (i=0; i<(args.length-1); i+=3)
+  with (document)
+  if (getElementById && ((obj=getElementById(args[i]))!=null))
+	{
+		v=args[i+2];
+	    if (obj.style){
+			obj=obj.style; v=(v=='show')?'visible':(v=='hide')?'hidden':v;
+		}
+	    obj.visibility=v;
+	}
+}
+//执行方法
+function casinochange() {
+	var UrlConfig =  {
+        BaseUrl : '{%$baseUrl%}',
+        StaticUrl : '{%$staticUrl%}'
+    };
+    var point = $("#changePoint").val();
+    var itemid = $("#changeId").val();
+    var changetype = $("#cahngeType").val();
+	var url = UrlConfig.BaseUrl + '/casinochange/change';
+    $.ajax({
+      url: url,
+      dataType : "json",
+      type: "POST",
+      data: ({point:point,itemid:itemid,changetype:changetype}),
+      success: function(data) {
+
+        if(data.status == 1){
+        	if (data.content != '') {
+        		$('#txtChangeResult').text("恭喜您，兑换成功，" + data.content);
+        		if(changetype=="0"||changetype==0){
+            		if(itemid == "13" || itemid == "14" || itemid == "15"){
+        				$("#tx_"+data.itemid).html("剩余"+data.itemcount+"个");
+            		}
+        		}
+        	}
+        	else {
+        		$('#txtChangeResult').text("恭喜您，兑换成功，快重新进入游戏去仓库看看啦~");
+        	}
+    		$('#txtPoint').text('当前积分：'+data.userPoint+'积分');
+        } else {
+        	$('#txtChangeResult').text(data.content);
+        }
+        MM_showHideLayers('a02','','show');
+        adjustLayerPostion('#a02');
+        //setTimeout("window.location.href='"+UrlConfig.BaseUrl+ "/casinochange/index"+"';",3000);
+      }
+    });
+	MM_showHideLayers('a01','','hide');
+}
+//-->
+</script>
+</body>
+</html>

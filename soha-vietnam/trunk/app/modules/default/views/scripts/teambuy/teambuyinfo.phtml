@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>团购后台</title>
+</head>
+<body>
+	<br />
+	<div>
+		<form action="{%$hostUrl%}/teambuy/teambuyupdate" method="post">
+			&nbsp;&nbsp;&nbsp;&nbsp;物品   CID：<input type="text" name="teambuyinfo[gid]" value="{% $sex.cid %}" /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;物品数量：<input type="text" name="teambuyinfo[num]" value="{% $sex.num %}" /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;物品名字：<input type="text" name="teambuyinfo[name]" value="{% $info.name %}" /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;物品原价：<input type="text" name="teambuyinfo[max_price]" value="{% $max_price %}" /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;最低价格：<input type="text" name="teambuyinfo[min_price]" value="{% $min_price %}" /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;开始时间：<input type="text" name="teambuyinfo[start_time]" value="{% $start_time %}" /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;参加时间：<input type="text" name="teambuyinfo[ok_time]" value="{% $join_time %}" /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;购买时间：<input type="text" name="teambuyinfo[buy_time]" value="{% $buy_time %}" /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;起始人数：<input type="text" name="teambuyinfo[start_num]" value="{% $info.start_num %}" /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;最低人数：<input type="text" name="teambuyinfo[min_num]" value="{% $info.min_num %}" /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;最多人数：<input type="text" name="teambuyinfo[max_num]" value="{% $info.max_num %}" /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;降价比例(宝石)：<input type="text" name="teambuyinfo[scale_gold]" value="{% $info.scale_gold %}" /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;降价比例(金币)：<input type="text" name="teambuyinfo[scale_coin]" value="{% $info.scale_coin %}" /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;多少人变为金币：<input type="text" name="teambuyinfo[bec_num]" value="{% $info.bec_num %}" /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;变为金币时价格：<input type="text" name="teambuyinfo[bec_price]" value="{% $info.bec_price %}" />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="submit" value="更 新" />
+		</form>
+	</div>
+	<hr size="1" noshade="noshade" style="border:1px #cccccc dotted;"/>
+	<div>
+		<form action="{%$hostUrl%}/teambuy/clearteambuycache" method="post">
+			&nbsp;&nbsp;&nbsp;&nbsp;清理上一次团购的所有信息&nbsp;&nbsp;<input type="submit" value="清理" />
+		</form>
+	</div><hr size="1" noshade="noshade" style="border:1px #cccccc dotted;"/>
+	<div>
+		<form action="{%$hostUrl%}/teambuy/teambuyswitch" method="post">
+			&nbsp;&nbsp;&nbsp;&nbsp;活动开关：&nbsp;&nbsp;&nbsp;&nbsp;
+			开放<input type="radio" name="teambuyswitch" value="1" checked/>&nbsp;&nbsp;&nbsp;&nbsp;
+			关闭<input type="radio" name="teambuyswitch" value="-1" />&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="submit" value="更改" />
+		</form>
+	</div><hr size="1" noshade="noshade" style="border:1px #cccccc dotted;"/>
+	<div>
+		<form action="{%$hostUrl%}/teambuy/teambuyswitchone" method="post">
+			&nbsp;&nbsp;&nbsp;&nbsp;UID：(多个之间用逗号隔开)&nbsp;&nbsp;<input type="text" name="teambuyswitchone[uids]" />&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="teambuyswitchone[tid]" value="1" checked />&nbsp;开放部分&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="teambuyswitchone[tid]" value="2" />&nbsp;全部开放&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="submit" value="更改" />
+		</form>
+	</div><hr size="1" noshade="noshade" style="border:1px #cccccc dotted;"/>
+</body>
+</html>

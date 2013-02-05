@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>淘宝商家后台</title>
+</head>
+<body>
+	<br />
+	<div>
+		<form action="{%$hostUrl%}/catchfish/discountcheck" method="post">
+		<table align=center>
+			<tr>
+				<td>请输入折扣券号码:</td>
+				<td><input type="text" name="number" value="{%$number%}"></td>
+				<td><input type="submit" name="search" value="查询"></td>
+			</tr>
+		</table>
+		<input type="hidden" name="act" value="search">
+		</form>
+		<table align=center>
+			<tr>
+				<td height=50>&nbsp;</td>
+			</tr>
+		</table>	
+		<form action="{%$hostUrl%}/catchfish/discountcheck" method="post">		
+		  <table border=1 width=800 align=center>
+		  <tr>
+		  	<td width=100 align=center>小岛门牌号</td>
+			<td width=200 align=center>玩家获得时间</td>
+			<td width=200 align=center>商品名称</td>
+			<td width=75 align=center>折扣数</td>
+			<td width=200 align=center>有效时间</td>
+			<td width=75 align=center>操作</td>
+		  </tr>
+		  {% if $discountinfo.pid >= 1 %}
+		  <tr>
+		  	<td>{%$discountinfo.uid%}</td>
+			<td>{%$discountinfo.gettime%}</td>
+			<td>{%$discountinfo.pname%}</td>
+			<td>{%$discountinfo.discount%}折</td>
+			<td>24小时内有效</td>
+			<td>
+			{% if $discountinfo.status == 1 %}
+			<input type="submit" name="search" value="使用">
+			{% /if %}
+			{% if $discountinfo.status == 2 %}
+			<font color=red>已使用</font>
+			{% /if %}			
+			</td>
+		  </tr>
+		  {% else %}
+		  <tr>
+			<td align=center colspan=6>请查询。。。</td>
+		  </tr>		  
+		  {% /if %}
+		  </table>
+		  <input type="hidden" name="number" value="{%$discountinfo.number%}">
+		  <input type="hidden" name="uid" value="{%$discountinfo.uid%}">
+		  <input type="hidden" name="act" value="update">
+		  </form>
+	</div>
+</body>
+</html>

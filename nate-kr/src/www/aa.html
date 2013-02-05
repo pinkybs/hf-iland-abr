@@ -1,0 +1,41 @@
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+		<html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+		
+		<script type="text/javascript" src="http://mixi.jp/static/js/platform/json.js?1228977457"></script>
+	    <script type="text/javascript" src="http://mixi.jp/static/js/platform/rpc.js?1228977457"></script>
+	    <script type="text/javascript" src="http://tbstatic.hapyfish.com/apps/island/js/jquery.min.js"></script>
+	    <script>
+	    gadgets.rpc.setRelayUrl('..', "http://www.natecontainer.com/gadgets/files/container/rpc_relay.html", false);
+	    var CurrentHeight = 0;
+	    function adjustHeight(height) {
+        	if (!height) {
+                var height =  document.documentElement.scrollHeight;
+            }
+            
+            CurrentHeight = height;
+            
+            if (jQuery.browser.safari) {
+                window.setTimeout(function() {
+                    gadgets.rpc.call(null, 'remote_adjustHeight', null, CurrentHeight);
+                }, 100);
+            }
+            else {
+                gadgets.rpc.call(null, 'remote_adjustHeight', null, height);
+            }
+        }
+        
+        function invite() {
+        	gadgets.rpc.call(null, 'remote_invite', null, null);
+        }
+	    </script>
+	    </head>
+	    <body><div>
+		aaaa<br/>bbb<br />
+		<a href="javascript:void(0);" onclick="adjustHeight(800);">call </a>
+		<br />
+		<a href="javascript:void(0);" onclick="invite();">invite </a>
+		<br />
+		<a href="bb.html" >link to b </a>
+		</div></body>
+		</html>

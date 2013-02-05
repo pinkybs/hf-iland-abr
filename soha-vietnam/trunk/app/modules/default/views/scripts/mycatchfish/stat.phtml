@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>捕鱼统计后台</title>
+</head>
+<body>
+	<br />
+	<div>
+		<form action="{%$hostUrl%}/mycatchfish/stat" method="post">
+		<table align=center>
+			<tr>
+				<td>请输入日期:</td>
+				<td><input type="text" name="date" value="{%$date%}"></td>
+				<td><input type="submit" name="search" value="查询"></td>
+				<td align=right width=400>
+				<a href="{%$hostUrl%}/mycatchfish/probability">去修改概率</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="{%$hostUrl%}/mycatchfish/product">去修改商品</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="{%$hostUrl%}/mycatchfish/rank">查看排行</a>									
+				</td>
+			</tr>
+		</table>
+		<input type="hidden" name="act" value="search">
+		</form>
+		<table align=center>
+			<tr>
+				<td height=50>&nbsp;</td>
+			</tr>
+		</table>
+		{% if $info.id %}
+		<table border=0 width=75% align=center>
+		{% if $info.create_time <= 20111018 %}		
+		  	<tr><td width=10% align=center><b>小小鱼</b></td><td>{%$info.fishId1%}</td></tr>
+			<tr><td width=10% align=center><b>虎皮鱼</b></td><td>{%$info.fishId2%}</td></tr>
+			<tr><td width=10% align=center><b>玫瑰鱼</b></td><td>{%$info.fishId3%}</td></tr>
+			<tr><td width=10% align=center><b>蓝蝶鱼</b></td><td>{%$info.fishId4%}</td></tr>
+			<tr><td width=10% align=center><b>亲吻鱼</b></td><td>{%$info.fishId5%}</td></tr>
+			<tr><td width=10% align=center><b>小乌贼</b></td><td>{%$info.fishId6%}</td></tr>
+			<tr><td width=10% align=center><b>灯笼鱼</b></td><td>{%$info.fishId7%}</td></tr>
+			<tr><td width=10% align=center><b>维塔斯</b></td><td>{%$info.fishId8%}</td></tr>
+			<tr><td width=10% align=center><b>易拉罐</b></td><td>{%$info.fishId9%}</td></tr>
+			<tr><td width=10% align=center><b>斑马鱼</b></td><td>{%$info.fishId10%}</td></tr>
+			<tr><td width=10% align=center><b>刺猬鱼</b></td><td>{%$info.fishId11%}</td></tr>
+			<tr><td width=10% align=center><b>飞剑鱼</b></td><td>{%$info.fishId12%}</td></tr>
+			<tr><td width=10% align=center><b>奥尼尔</b></td><td>{%$info.fishId13%}</td></tr>
+			<tr><td width=10% align=center><b>喷泉鲸</b></td><td>{%$info.fishId14%}</td></tr>
+		{% else %}
+		  	<tr><td width=10% align=center><b>小小鱼</b></td><td>{%$info.fishId1%}</td></tr>
+			<tr><td width=10% align=center><b>虎皮鱼</b></td><td>{%$info.fishId2%}</td></tr>
+			<tr><td width=10% align=center><b>玫瑰鱼</b></td><td>{%$info.fishId3%}</td></tr>
+			<tr><td width=10% align=center><b>蓝蝶鱼</b></td><td>{%$info.fishId4%}</td></tr>
+			<tr><td width=10% align=center><b>亲吻鱼</b></td><td>{%$info.fishId5%}</td></tr>
+			<tr><td width=10% align=center><b>灯笼鱼</b></td><td>{%$info.fishId6%}</td></tr>
+			<tr><td width=10% align=center><b>易拉罐</b></td><td>{%$info.fishId7%}</td></tr>
+			<tr><td width=10% align=center><b>斑马鱼</b></td><td>{%$info.fishId8%}</td></tr>
+			<tr><td width=10% align=center><b>墨鱼仔</b></td><td>{%$info.fishId9%}</td></tr>
+			<tr><td width=10% align=center><b>刺猬鱼</b></td><td>{%$info.fishId10%}</td></tr>
+			<tr><td width=10% align=center><b>小乌贼</b></td><td>{%$info.fishId11%}</td></tr>
+			<tr><td width=10% align=center><b>小螃蟹</b></td><td>{%$info.fishId12%}</td></tr>
+			<tr><td width=10% align=center><b>翘嘴鱼</b></td><td>{%$info.fishId13%}</td></tr>
+			<tr><td width=10% align=center><b>珍珠鱼</b></td><td>{%$info.fishId14%}</td></tr>
+			<tr><td width=10% align=center><b>飞剑鱼</b></td><td>{%$info.fishId15%}</td></tr>
+			<tr><td width=10% align=center><b>维塔斯</b></td><td>{%$info.fishId16%}</td></tr>
+			<tr><td width=10% align=center><b>小海马</b></td><td>{%$info.fishId17%}</td></tr>
+			<tr><td width=10% align=center><b>石斑鱼</b></td><td>{%$info.fishId18%}</td></tr>
+			<tr><td width=10% align=center><b>小海龟</b></td><td>{%$info.fishId19%}</td></tr>
+			<tr><td width=10% align=center><b>奥尼尔</b></td><td>{%$info.fishId20%}</td></tr>
+			<tr><td width=10% align=center><b>蝴蝶鱼</b></td><td>{%$info.fishId21%}</td></tr>
+			<tr><td width=10% align=center><b>蓝月亮</b></td><td>{%$info.fishId22%}</td></tr>
+			<tr><td width=10% align=center><b>大头鱼</b></td><td>{%$info.fishId23%}</td></tr>
+			<tr><td width=10% align=center><b>小海狮</b></td><td>{%$info.fishId24%}</td></tr>
+			<tr><td width=10% align=center><b>小水母</b></td><td>{%$info.fishId25%}</td></tr>
+			<tr><td width=10% align=center><b>喷泉鲸</b></td><td>{%$info.fishId26%}</td></tr>		
+		{% /if %}	
+			<tr><td width=10% align=center><b>点击获取鱼次数</b></td><td>{%$info.allCount%}</td></tr>
+			<tr><td width=10% align=center><b>点击获取折扣券次数</b></td><td>{%$info.count%}</td></tr>
+			<tr><td width=10% align=center><b>总点击次数</b></td><td>{%$info.count+$info.allCount%}</td></tr>
+			<tr><td width=10% align=center><b>当天玩家数</b></td><td>{%$info.usernums%}</td></tr>
+			<tr><td width=10% align=center><b>当天玩家消耗金币总数</b></td><td>{%$info.coin%}</td></tr>
+			<tr><td width=10% align=center><b>当天玩家消耗捕鱼卡总数</b></td><td>{%$info.card%}</td></tr>
+		  </table>
+		  {% /if %}
+	</div>
+</body>
+</html>

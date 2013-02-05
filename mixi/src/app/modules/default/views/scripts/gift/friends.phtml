@@ -1,0 +1,117 @@
+{%include file="header.phtml"%}
+<div class="main">
+{%include file="menu.phtml"%}
+
+<div class="content">
+    <script type="text/javascript">
+        var count = {%$count%};
+ 
+        var friendlist = null;
+        
+        function get_friendlist()
+        {
+            if (friendlist == null) {
+                var friendlistObj = document.getElementById('friendlist');
+                if (friendlistObj) {
+                    friendlist = friendlistObj.getElementsByTagName('input');
+                }
+            }
+            return friendlist;
+        }
+        
+        function gift_check(id)
+        {
+            var obj = document.getElementById(id);
+            if(obj){
+                obj.checked?count--:count++;
+                var scount = document.getElementById('scount');
+                if (scount) scount.innerHTML = count;
+                var fs = get_friendlist();
+                if(fs) {
+                    if (count<=0) {
+                        for (var i=0; i< fs.length; i++) {
+                            if(!fs[i].checked) {
+                                fs[i].disabled = true;
+                            }
+                        }
+                    } else {
+                        for (var i=0; i< fs.length; i++) {
+                            if(!fs[i].checked) {
+                                fs[i].disabled = false;
+                            }
+                        }                        
+                    }
+                }
+            }
+        }
+        
+	    var PAGE_NUM = {%$pageCount%};
+	    function hideAllPage()
+	    {
+	        var page = null;
+	        for(var i = 1; i <= PAGE_NUM; i++) {
+	            page = document.getElementById('page' + i);
+	            if (page) {
+	                page.style.display = 'none';
+	            }
+	        }
+	    }
+	    
+	    function goPage(i)
+	    {
+	        var page = document.getElementById('page' + i);
+	        if (page) {
+	            hideAllPage();
+	            page.style.display = 'block';
+	        }
+	    }
+    </script>
+    
+    
+<form method="post" action="{%$baseUrl%}/gift/send">
+<input type="hidden" name="gid" value="{%$gid%}" />
+<div class="yaoqing02-1"></div>
+<div class="yaoqing02-2" style="height: 510px;">
+<div class="songli2-left">
+<div class="liwulibiao"><img src="{%$staticUrl%}/apps/island/images/gift/items/{%$gift.img%}" width="80" height="80" />
+<div class="txt">{%$gift.name%}</div>
+</div>
+<div align="center" style="margin-top: 5px; margin-left: -15px;">ギフトを送れる回数<br/>本日残り<label id="scount" style="width: 20px; color: red;">{%$count%}</label>回</div>
+</div>
+
+{% foreach from=$pageArray item=page key=key %}
+	<div class="songli2-right" id="page{%$key+1%}" style="height:450px;{% if $key>0 %}display:none;{%/if%}">
+	<ul class="friendlist" id="friendlist">
+	    {% foreach from=$friendsArray[$key] item=friend%}
+	    <li>
+	    <div class="mingzikuang">
+	    <div class="duoxuan">
+	    <p><input name="ids[]" type="radio" value="{%$friend.uid%}" id="fid_{%$friend.uid%}" {%if $count<=0%}disabled="true"{%/if%} /></p>
+	    </div>
+	    <div class="touxiang"><img width="50px" height="50px" src="{%$friend.smallFace%}" /></div>
+	    <div class="mingzi">{%$friend.name|escape%}</div>
+	    </div>
+	    </li>
+	    {% /foreach %}
+	</ul>
+	</div>
+{% /foreach %}
+
+{% if $pageCount > 1 %}
+	<div align="right" style="width:650px">
+	    {% foreach from=$pageArray item=page key=key %}
+	       <a href="javascript:void(0);" onclick="goPage({%$key+1%});"> {%$key+1%} </a>&nbsp;
+	    {% /foreach %}  
+	</div>
+{% /if %}
+
+<div align="center">{%if $count>0 %}<input style="padding-top:10px" type="image" src="{%$staticUrl%}/apps/island/images/gift/mashangyaoqing2.gif" />{%else%}<input style="padding-top:10px" type="image" src="{%$staticUrl%}/apps/island/images/gift/mashangyaoqing2-1.gif" disabled="true" onclick="return false;" />{%/if%}</div>
+</div>
+<div class="yaoqing02-3"></div>
+<div class="mashangyaoqing"></div>
+</form>
+</div>
+
+</div>
+</body>
+</html>

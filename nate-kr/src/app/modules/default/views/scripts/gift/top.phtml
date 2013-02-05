@@ -1,0 +1,90 @@
+<link href="{%$staticUrl%}/apps/island/css_2011012801.css?v=1.01" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+a img,:link img,:visited img {
+	border: 0 none;
+}
+-->
+</style>
+<div class="main">
+{%include file="menu.phtml"%}
+<div id="main_content" class="content" style="padding-top:2px;">
+<form id="selectgifts" method="post" action="">
+<input type="hidden" id="gid" name="gid" value="" />
+<div class="gift_area_1">
+	<div class="send_select_1"><a href="javascript:void(0);" onclick="selectFriend();"><img src="{%$staticUrl%}/apps/island/images/gift/send_select.gif" alt="" /></a></div>
+</div>
+
+<div id="gift_content" class="gift_area_2" style="padding-left:45px; width:705px; height:550px;"></div>
+
+<div class="gift_area_3">
+	<div class="send_select_2"><a href="javascript:void(0);" onclick="selectFriend();"><img src="{%$staticUrl%}/apps/island/images/gift/send_select_2.gif" alt="" /></a></div>
+</div>
+<div></div>
+</form>
+</div>
+<script type="text/javascript">
+	var GIFT_USER_LEVEL = {%$userLevel%};
+	var GIFT_LIST = {%$giftList%};
+	var GIFT_NUM = {%$giftNum%};
+	var GIFT_PER_PAGE = {%$pageSize%};
+	var GIFT_PAGE_NUM = {%$pageNum%};
+	var STATIC_URL = '{%$staticUrl%}';
+
+	function selectFriend()
+	{
+		HFApp.giftfriend(document.getElementById('gid').value);
+	}
+
+	function check(obj)
+	{
+		document.getElementById('gid').value = obj.value;
+	}
+
+	function showPage(i)
+	{
+		if (i <= 0 || i > GIFT_PAGE_NUM) {
+			return;
+		}
+		var k = 0;
+		var html = '<ul class="giftlist" style="height:525px;">';
+		var start = (i-1) * GIFT_PER_PAGE;
+		var end = start + GIFT_PER_PAGE;
+		if (end > GIFT_NUM) {
+			end = GIFT_NUM;
+		}
+
+		for(var j = start; j < end; j++) {
+			html += '<li><img src="' + STATIC_URL + '/apps/island/images/gift/items/' + GIFT_LIST[j].img + '" width="80" height="80" />'
+				  + '<div style="width: 90px;" class="txt">' + GIFT_LIST[j].name + '</div>';
+			if (GIFT_LIST[j].level <= GIFT_USER_LEVEL) {
+				html += '<div class="dian"><input name="giftid" id="giftid" type="radio" onclick="check(this);"';
+				if (k == 0) {
+					html += ' checked="checked"';
+					document.getElementById('gid').value = GIFT_LIST[j].gid;
+				}
+				html += ' value="' + GIFT_LIST[j].gid + '" /></div>';
+				k++;
+			} else {
+				html += '<span style="color:red;margin-left:-15px">' + GIFT_LIST[j].level + '레벨 후에 증정 가능</span>';
+			}
+			html += '</li>';
+		}
+
+		html += '</ul><div align="center" style="width:650px">';
+		if (i > 1) {
+			html += '<a href="javascript:void(0);" onclick="showPage(' + (i-1) + ');"> ' + '이전 페이지 </a>&nbsp;';
+		}
+		for(j = 1; j <= GIFT_PAGE_NUM; j++) {
+			html += '<a href="javascript:void(0);" onclick="showPage(' + j + ');"> ' + j + ' </a>&nbsp;';
+		}
+		if ( i < GIFT_PAGE_NUM) {
+			html += '<a href="javascript:void(0);" onclick="showPage(' + (i+1) + ');"> ' + '이후 페이지 </a>&nbsp;';
+		}
+		html += '</div>';
+
+		document.getElementById('gift_content').innerHTML = html;
+	}
+
+	showPage(1);
+</script>

@@ -1,0 +1,123 @@
+{%include file="header.phtml"%}
+<script type="text/javascript" language="javascript">        
+        function requestExternalNavigateTo(url) {
+            gadgets.rpc.call(null, 'remote_requestExternalNavigateTo', null, url);
+        }
+        
+        function GetRadioValue()
+        {
+            RadioName = 'payRadio';
+            var obj;   
+            obj = document.getElementsByName(RadioName);
+            if (obj != null){
+                var i;
+                for (i = 0;i < obj.length; i++){
+                    if (obj[i].checked){
+                        return obj[i].value;           
+                    }
+                }
+            }
+            return 'GDSTH0003';
+        }
+
+        function pay(url)
+        {
+            requestExternalNavigateTo(url + GetRadioValue());
+        }
+        adjustHeight(450);
+</script>
+<div class="main">
+{%include file="menu.phtml"%}
+
+    <div class="chongzhicontent">
+		<img src="{%$user.smallFace%}" width="59" height="60" />
+		<div class="xinxi">
+			<div class="cname" style="width:200px">{%$user.name|escape%}</div>
+			<div class="shuzi" style="padding-left:20px">ダイヤ： <span style="color:#3c7e9a;font-weight:bold;">{%$user.gold%}</span></div>
+		    <div class="fhyx"><a href="{%$baseUrl%}/index/flash"><img src="{%$staticUrl%}/apps/island/images/back.jpg" width="80" height="35" /></a></div>
+		</div>
+	</div>
+
+	<div class="table">
+		<ul>
+    		<li style="width:50px"></li>
+    		<li><a href="{%$baseUrl%}/pay/top"><div class="nav_02"><img src="{%$staticUrl%}/apps/island/images/paypal.gif" alt="チャージ" /></div></a></li>
+    		<li><a href="{%$baseUrl%}/pay/webmoney"><div class="nav_01"><img src="{%$staticUrl%}/apps/island/images/webmoney.gif" alt="webmoney" /></div></a></li>
+    		<li><a href="{%$baseUrl%}/pay/rewardplus"><div class="nav_02">パートナーサイト</div></a></li>
+    		<li><a href="{%$baseUrl%}/pay/orderlogs"><div class="nav_02">取得記録</div></a></li>
+    		<li><a href="{%$baseUrl%}/pay/consumerlogs"><div class="nav_02">消費記録</div></a></li>
+		</ul>
+	</div>    
+    
+    <table width="650" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="40"><span style="color:#0C67B6">ダイヤチャージおまけキャンペーン （すべてのチャージ金額でおまけがつくよ！）</span>   
+        </td>
+      </tr>
+       <tr>
+        <td height="40"><span style="color:#0C67B6">500円　子ネコ
+<br/>1000円　招きネコ
+<br/>2000円　金のネコ
+<br/>3000円　金のネコ＋子グマ
+<br/>5000円　金のネコ＋子グマ＋飛行機
+<br/>10000円　金のネコ＋子グマ＋飛行機＋汽車
+<br/>この機会をお見逃しなく～
+</span></td>
+      </tr>
+      <table stu width="670" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="140" height="140" valign="bottom"><div align="center"><img src="{%$staticUrl%}/apps/island/images/chongzhi/1.gif" alt="値段:500円" /></div></td>
+          <td width="140" valign="bottom"><div align="center"><img src="{%$staticUrl%}/apps/island/images/chongzhi/2.gif" alt="値段:1000円" /></div></td>
+          <td width="140" valign="bottom"><div align="center"><img src="{%$staticUrl%}/apps/island/images/chongzhi/3.gif" alt="値段:2000円" /></div></td>
+          <td width="160" valign="bottom"><div align="center"><img src="{%$staticUrl%}/apps/island/images/chongzhi/4.gif" alt="値段:3000円" /></div></td>
+          <td width="160" valign="bottom"><div align="right"><img src="{%$staticUrl%}/apps/island/images/chongzhi/5.gif" alt="値段:5000円" /></div></td>
+          <td width="160" valign="bottom"><div align="right"><img src="{%$staticUrl%}/apps/island/images/chongzhi/6.gif" alt="値段:10000円" /></div></td>
+        </tr>
+        <tr>
+          <td height="30"><div align="center">値段:500円</div></td>
+          <td><div align="center">値段:1000円</div></td>
+          <td><div align="center">値段:2000円</div></td>
+          <td><div align="center">値段:3000円</div></td>
+          <td><div align="center">値段:5000円</div></td>
+          <td><div align="center">値段:10000円</div></td>
+        </tr>
+        <tr>
+          <td height="30"><label>
+            <div align="center">
+              <input type="radio" name="payRadio" value="GDSTH0001" />
+            </div>
+          </label></td>
+          <td><div align="center">
+            <input type="radio" name="payRadio" value="GDSTH0002" />
+          </div></td>
+          <td><div align="center">
+            <input type="radio" name="payRadio" value="GDSTH0003" checked />
+          </div></td>
+          <td><div align="center">
+            <input type="radio" name="payRadio" value="GDSTH0004" />
+          </div></td>
+          <td><div align="center">
+            <input type="radio" name="payRadio" value="GDSTH0005" />
+          </div></td>
+          <td><div align="center">
+            <input type="radio" name="payRadio" value="GDSTH0006" />
+          </div></td>
+        </tr>
+      </table>
+      
+      <br>
+      <div align="center">
+      <a href="#" onclick="pay('{%$hostUrl%}/webmoney/payment/sig/{%$sig%}/ts/{%$ts%}/uid/{%$user.uid%}/payRadio/')"><img src="{%$staticUrl%}/apps/island/images/buy.jpg" /></a>
+      </div>
+      <br>
+      
+      <table style="margin:10px auto; " width="680" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td width="430">ご購入いただいたダイヤはドリーム☆アイランドのみでご利用いただけます。<br />決済システムはwebmoneyを利用しています。</td>
+            <td align="center"><img src="{%$staticUrl%}/apps/island/images/webmoney_card.gif" /></td>
+        </tr>
+     </table>
+     <br>
+     <div align="right"><a href="#" onclick="requestExternalNavigateTo('http://play-w.com/di_kiyaku.html')">利用規約</a></div>
+
+{%include file="footer.phtml"%}

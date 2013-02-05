@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Event name</title>
+<style type="text/css">
+.basic-input {
+	border: 1px solid #C9C9C9;
+	border-bottom-left-radius: 3px 3px;
+	border-bottom-right-radius: 3px 3px;
+	border-top-left-radius: 3px 3px;
+	border-top-right-radius: 3px 3px;
+	font-size: 14px;
+	height: 15px;
+	padding: 5px;
+	width: 200px;
+}
+.detail {
+	width:50%;
+}
+</style>
+</head>
+
+<div class="top-nav">
+<div class="bd">
+	<div class="top-nav-info"></div>
+    <div class="top-nav-items">
+        <ul>
+        </ul>
+    </div>
+</div>
+</div>
+
+<div id="wrapper">
+
+	<div id="content">
+		<div class="grid-8-2 clearfix">
+	    	<div class="article">
+				
+				<form name="frm" method="post" action="{% $hostUrl %}/starfish/updateconsume" >
+			        <table class="detail" style="width:30%">
+			        <tbody>
+			        <tr>
+			        <th width="25%" align="center">Start</th>
+			        <th width="25%" align="center">end</th>
+			        </tr>
+			        <tr>
+			        	<td><input type="text" name="start" value="{% $start %}" /></td>
+			        	<td><input type="text" name="end" value="{% $end %}" /></td>
+			        </tr>
+			        </body>
+			        </table>
+			        <table class="detail" >
+			        <tbody>
+			          <tr>
+			        <th width="25%" align="center">窗口</th>
+			        <th width="25%" align="center">Cid</th>
+			        <th width="25%" align="center">提示</th>
+			        <th width="25%" align="center">素材</th>
+			        <th width="25%" align="center">宝石阶段</th>
+			        </tr>
+			         <tr>
+			            <td>窗口1</td>
+			        	<td><input type="text" name="cids[]" value="{% $consumeEvent.0.cid %}" /></td>
+			        	<td><input type="text" name="tips[]" value="{% $consumeEvent.0.things %}" /></td>
+			        	<td><input type="text" name="names[]" value="{% $consumeEvent.0.name %}" /></td>
+			        	<td><input type="text" name="golds[]" value="{% $consumeEvent.0.gold %}" /></td>
+			        </tr>
+			         <tr>
+			        <tr>
+			            <td>窗口2</td>
+			            <td><input type="text" name="cids[]" value="{% $consumeEvent.1.cid %}" /></td>
+			        	<td><input type="text" name="tips[]" value="{% $consumeEvent.1.things %}" /></td>
+			        	<td><input type="text" name="names[]" value="{% $consumeEvent.1.name %}" /></td>
+			        	<td><input type="text" name="golds[]" value="{% $consumeEvent.1.gold %}" /></td>
+			        </tr>
+			         <tr>
+			            <td>窗口3</td>
+			        	<td><input type="text" name="cids[]" value="{% $consumeEvent.2.cid %}" /></td>
+			        	<td><input type="text" name="tips[]" value="{% $consumeEvent.2.things %}" /></td>
+			        	<td><input type="text" name="names[]" value="{% $consumeEvent.2.name %}" /></td>
+			        	<td><input type="text" name="golds[]" value="{% $consumeEvent.2.gold %}" /></td>
+			        </tr>
+			        </tbody>
+			        </table>
+			        <input type="submit" value="更新" />
+			        <span class="pl">* CID 不可重复</span>
+		       	</form>
+	    	</div>
+	    	<div class="aside">
+	    	</div>
+	    	<div class="extra">
+	        </div>
+	    </div>
+	</div>
+	<div id="footer"></div>
+
+</div>
+
+
+
+</body>
+</html>

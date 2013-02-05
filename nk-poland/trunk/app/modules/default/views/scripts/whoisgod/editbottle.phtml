@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+{%include file="whoisgod/head.phtml"%}
+</head>
+<body>
+<div class="top-nav">
+{%include file="whoisgod/topnav.phtml"%}
+</div>
+
+
+<div id="wrapper">
+	
+	<div id="header"></div>
+	<div id="content">
+		
+		<h1>编辑寻宝物品</h1>
+		
+    	<div class="grid-16-8 clearfix">
+<!--        	<div class="article">-->
+
+        	<form method="post" action="{% $hostUrl %}/whoisgod/editbottle" name="lzform" id="eform" >
+        		
+        		{% if $erron==1 %}
+        		<div class="message">请确保ID 已经传入</div>
+        		{% /if %}
+        		
+        		{% if $erron==0 %}
+        		<div class="message">修改成功</div>
+        		{% /if %}
+        		
+		    	<table class="detail" style="width:100%">
+		        <tbody>
+		        
+		        <tr>
+		        	<td class="pl_l">上线?:</td>
+		        	<td>
+		        	{% if $info.online == true %}
+		        	<input type="checkbox" value="1" name="online" id="online" checked="true" />
+		        	{% else  %}
+		        	<input type="checkbox" value="1" name="online" id="online"  />
+		        	{% /if %}
+		        	<label for="online" >是否上线</label></td>
+		        </tr>
+		        <tr> 
+		        	<td class="pl_l">寻宝名称:<br><span class="pl">(必填)</span></td>
+		        	<td><input type="text" max_length="200" size="37" value="{% $info.name %}" name="name" /></td>
+		        </tr>
+		       	<tr>
+		        	<td class="pl_l">寻宝tips:<br /><br /></td>
+		        	<td><input type="text" max_length="200" size="47" name="tips" id="tips" value="{% $info.tips %}" /></td>
+		        </tr>
+		        <tr>
+		        	<td class="pl_l">第几季?</td>
+		        	<td><input type="text" max_length="200" size="8" name="qid" id="qid" value="{% $info.qid %}" /></td>
+		        </tr>
+		        
+		        <tr>
+		        	<td class="pl_l">物品:<br><span class="pl"></span></td>
+		        	<td class="pl_r">
+		        		<table style="width:100%">
+						<tbody>
+
+{% foreach from=$list key=k item=v name=foo %}
+<tr>
+	<td width="120">
+	[{% $smarty.foreach.foo.iteration %}]
+	<select name="btl_type[]">
+	<option value="0">请选择</option>
+	{% if $v.type == 'COIN' %}
+	<option value="COIN" selected="selected">COIN</option>
+	{% else %}
+	<option value="COIN">COIN</option>
+	{% /if %}
+	
+	{% if $v.type == 'STARFISH' %}
+	<option value="STARFISH" selected="selected">STARFISH</option>
+	{% else %}
+	<option value="STARFISH">STARFISH</option>
+	{% /if %}
+	
+	{% if $v.type == 'GOLD' %}
+	<option value="GOLD" selected="selected">GOLD</option>
+	{% else %}
+	<option value="GOLD">GOLD</option>
+	{% /if %}
+	
+	{% if $v.type == 'PLANT' %}
+	<option value="PLANT" selected="selected">PLANT</option>
+	{% else %}
+	<option value="PLANT">PLANT</option>
+	{% /if %}
+	
+	{% if $v.type == 'BUILDING' %}
+	<option value="BUILDING" selected="selected">BUILDING</option>
+	{% else %}
+	<option value="BUILDING">BUILDING</option>
+	{% /if %}
+	
+	{% if $v.type == 'CARD' %}
+	<option value="CARD" selected="selected">CARD</option>
+	{% else %}
+	<option value="CARD">CARD</option>
+	{% /if %}
+	
+	</select>
+	</td>
+</tr>
+<tr>
+	<td>
+	<input type="hidden" name="btl_ids[]" value="{% $v.id %}" />
+	<input type="text" max_length="200" size="4" name="btl_name[]" value="{% $v.btl_name %}"> name, 
+	<input type="text" max_length="200" size="8" name="btl_tips[]" value="{% $v.btl_tips %}"> tips,
+	<input type="text" max_length="200" size="4" name="btl_coin[]" value="{% $v.coin %}"> coin,
+	<input type="text" max_length="200" size="4" name="btl_starfish[]" value="{% $v.starfish %}"> sf,  
+	<input type="text" max_length="200" size="4" name="btl_gold[]" value="{% $v.gold %}" />gold 
+	<input type="text" max_length="200" size="4" name="btl_itemids[]" value="{% $v.item_id %}"> item_id, 
+	<input type="text" max_length="200" size="4" name="btl_num[]" value="{% $v.num %}"> 数量, 
+	<input type="text" max_length="200" size="3" name="btl_odds[]" value="{% $v.odds %}"> 概率
+	</td>
+</tr>
+
+{% foreachelse %}
+<tr>
+	<td colspan="2">
+		对不起, 数据库中没有数据
+	</td>
+</tr>
+{% /foreach %}
+
+						</tbody>
+		        		</table>
+		        		
+			        	
+		        	</td>
+		        </tr>
+		        
+		        
+		        </tbody>
+		    	</table>
+		        
+		        <p style="margin-left: 80px;">
+    				<input type="hidden" name="id" value="{% $id %}" />
+				    <input type="submit" value="保存" name="event_submit">
+				    &nbsp;&nbsp;<input type="button" onclick="javascript:location.href='{% $hostUrl %}/whoisgod'" value="撤消" name="event_cancel">
+    			</p>
+		        
+		        </form>
+        	
+<!--        	</div>-->
+<!--        	<div class="aside">-->
+        		{%include file="whoisgod/right.phtml"%}
+<!--        	</div>-->
+        	<div class="extra"></div>
+        </div>
+	</div>
+	
+	<div id="footer">
+	{%include file="whoisgod/footer.phtml"%}
+	</div>
+
+</div>
+
+
+</body>
+</html>

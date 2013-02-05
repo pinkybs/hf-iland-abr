@@ -1,0 +1,3 @@
+#! /bin/sh
+cd /home/admin/website/island.hapyfish.com/bin
+/home/admin/apps/php-cgi/bin/php -f /home/admin/website/island.hapyfish.com/bin/stat_daily_pay.php

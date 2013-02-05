@@ -1,0 +1,74 @@
+{%include file="header.phtml"%}
+<script type="text/javascript" language="javascript">
+		var UrlConfig =  {
+            BaseUrl : '{%$baseUrl%}',
+            StaticUrl : '{%$staticUrl%}'
+        };
+        function invite(uids) {
+            uids = uids || null;
+            gadgets.rpc.call(null, 'remote_invite', null, uids);
+        }
+        
+        adjustHeight(990);
+</script>
+<div class="main">
+{%include file="menu.phtml"%}
+<div class="content" style="height:820px">
+<!-- <div class="yaoqing01">
+<table width="748" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td height="39" colspan="5" background="{%$staticUrl%}/apps/island/images/gift/songli-taobao01_01.gif">
+		<table width="100" border="0" align="right" cellpadding="0" cellspacing="0">
+			<tr>
+				<td><a href="{%$baseUrl%}/index/flash">アプリに戻る&gt;&gt;</a></td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td height="355" width="43" background="{%$staticUrl%}/apps/island/images/gift/songli-taobao01_02.gif"></td>
+		<td height="355" width="191" background="{%$staticUrl%}/apps/island/images/gift/songli-taobao01_03.gif"></td>
+		<td height="355" width="315" background="{%$staticUrl%}/apps/island/images/gift/songli-taobao01_04.gif"></td>
+		<td height="355" width="157" background="{%$staticUrl%}/apps/island/images/gift/songli-taobao01_05.gif"></td>
+		<td height="355" width="42" background="{%$staticUrl%}/apps/island/images/gift/songli-taobao01_06.gif"></td>
+	</tr>
+	<tr align="center">
+		<td height="34" background="{%$staticUrl%}/apps/island/images/gift/songli-taobao01_07.gif"></td>
+		<td bgcolor="#E5F6FD">&nbsp;</td>
+		<td bgcolor="#E5F6FD">
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td><a href="javascript:void(0);" onclick="invite();"><img src="{%$staticUrl%}/apps/island/images/gift/songli-taobao01_08.gif" alt="友達招待" border="0" /></a></td>
+			</tr>
+		</table>
+		</td>
+		<td bgcolor="#E5F6FD">&nbsp;</td>
+		<td height="34" background="{%$staticUrl%}/apps/island/images/gift/songli-taobao01_12.gif"></td>
+	</tr>
+	<tr>
+		<td height="37" colspan="5" background="{%$staticUrl%}/apps/island/images/gift/songli-taobao01_13.gif"></td>
+	</tr>
+</table>
+
+<br />
+<font color="Blue">
+※招待されたマイミクの方が招待一覧の「このアプリを使ってみる」のボタンをクリックしてアプリを使わないと<br />&nbsp;&nbsp;招待特典を付与されません。<br />
+※マイミク招待特典は、マイミクがアプリを利用されてから一定期間後に付与されます。<br />
+</font>
+</div> -->
+<div style="width:748px; height:816px;">
+<div style="width:748px; height:139px; background-image:url({%$staticUrl%}/apps/island/images/yqsjb_01.gif)"></div>
+<div style="width:521px; height:148px; background-image:url({%$staticUrl%}/apps/island/images/yqsjb_02-2.gif); float:left"></div>
+<div style="width:217px; height:118px; background-image:url({%$staticUrl%}/apps/island/images/yqsjb_03.gif); float:right; padding:30px 0 0 10px"> <a href="javascript:void(0);" onclick="invite();"><div style="width:150px; height:80px;display: block; cursor:hand"></div></a></div>
+<div style="width:748px; height:62px; background-image:url({%$staticUrl%}/apps/island/images/yqsjb_04.gif); clear:both"></div>
+<div style="width:337px; height:258px; background-image:url({%$staticUrl%}/apps/island/images/yqsjb_05.gif); float:left"></div>
+<div style="width:411px; height:258px; background-image:url({%$staticUrl%}/apps/island/images/yqsjb_06.gif); float:right;"></div>
+<div style="width:478px; height:42px; background-image:url({%$staticUrl%}/apps/island/images/yqsjb_07.gif); padding:5px 0 0 270px; clear:both"><a href="javascript:void(0);" onclick="invite();"><div style="width:180px; height:30px; display: block; cursor:hand"></div></a></div>
+<div style="width:748px; height:71px; background-image:url({%$staticUrl%}/apps/island/images/yqsjb_08.gif);"></div>
+<div style="width:748px; height:91px; background-image:url({%$staticUrl%}/apps/island/images/yqsjb_09-1.gif);"></div>
+</div>
+</div>
+
+</div>
+</body>
+</html>

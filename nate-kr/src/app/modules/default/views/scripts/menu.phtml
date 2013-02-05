@@ -1,0 +1,204 @@
+<div style="margin-left:0px">
+</div>
+
+<div class="title" style="margin-top:0px">
+	<div class="menu">
+        <ul style="padding-left:170px;width:700px;">
+        	<li style="width:76px;"><a href="javascript:void(0);" onclick="HFApp.home();" target="_top"><img src="{%$staticUrl%}/apps/island/images/menu/v2/home.gif" title="" alt="" /></a></li>
+        	<li style="width:88px;"><a href="javascript:void(0);" onclick="HFApp.invite();"><img src="{%$staticUrl%}/apps/island/images/menu/v2/invite.gif" title="" alt="" /></a></li>
+        	<li style="width:76px;"><a href="javascript:void(0);" onclick="HFApp.gift();"><img src="{%$staticUrl%}/apps/island/images/menu/v2/gift.gif" title="" alt="" /></a></li>
+        	<li style="width:81px;"><a href="javascript:void(0);" ><img src="{%$staticUrl%}/apps/island/images/menu/v2/pay.gif" title="" alt="" /></a></li>
+        	<li style="width:68px;"><a href="http://club.cyworld.com/dgroundgames" target="_blank"><img src="{%$staticUrl%}/apps/island/images/menu/v2/forum.gif" title="" alt="" /></a></li>
+        	<li style="width:68px;"><a href="http://club.cyworld.com/54663234125/55141373" target="_blank"><img src="{%$staticUrl%}/apps/island/images/menu/v2/help.gif" title="" alt="" /></a></li>
+        </ul>
+	</div>
+	<div style="padding-left:40px;padding-top:4px;clear:both;">
+	<div style="width:500px;">
+{% if $showNotice == true %}
+		<ul>
+{% foreach from=$mainNotice item=data %}
+		<li>{%if $data.link%}<a href="{%$data.link%}" target="_blank">[{%$data.create_time|date_format:"%Y-%m-%d"%}]  {%$data.title%}</a>{%else%}[{%$data.create_time|date_format:"%Y-%m-%d"%}]  {%$data.title%}{%/if%}</li>
+{% /foreach %}
+		</ul>
+{% /if %}
+	</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+var _Config = {
+        userId:"{%$uid%}",
+		platformUid:"{%$platformUid%}",
+		appId:"{%$appId%}",
+		hostUrl:"{%$hostUrl%}",
+		staticUrl:"{%$staticUrl%}",
+		homeUrl:"{%$hostUrl%}/index",
+        inviteUrl:"{%$hostUrl%}/invite/top",
+        invitefriendUrl:"{%$hostUrl%}/invite/friends",
+        invitesendUrl:"{%$hostUrl%}/invite/send",
+        giftUrl:"{%$hostUrl%}/gift/top",
+        giftfriendUrl:"{%$hostUrl%}/gift/friends",
+        giftsendUrl:"{%$hostUrl%}/gift/send",
+        payUrl:"{%$hostUrl%}/pay/top",
+        hf_skey:"{%$hf_skey%}"
+        //shareStreamUrl:"",
+        //systemNewsUrl:"",
+        //invitationUrl:"{%$hostUrl%}/api/sendinvitation"
+    };
+
+var HFApp = {
+
+	loadHtml: function(url, pardata, id) {
+		if (typeof(pardata)==undefined || pardata==null) {
+	        pardata = {};
+		}
+
+	    if (_Config.hf_skey != "") {
+	    	pardata['hf_skey'] = _Config.hf_skey;
+	    }
+
+	    var param = {};
+	    param[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;
+	    param[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.TEXT;
+	    param[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(pardata);
+	    param[gadgets.io.RequestParameters.AUTHORIZATION] = gadgets.io.AuthorizationType.NONE;
+	    gadgets.io.makeRequest(url, function(response) {
+		    if (id) {
+		    	var data = response.data;
+		        $("#" + id).html(data);
+			}
+
+	    }, param);
+    },
+
+    home: function() {
+    	var canvas = natecy.application.newCanvas(_Config.hostUrl, _Config.appId, 'island', _Config.staticUrl);
+       	canvas.enableDebug(true);
+       	//default height
+       	//canvas.setHeight(1150);
+       	//let's go
+       	canvas.start();
+    },
+
+    invite: function() {
+    	HFApp.loadHtml(_Config.inviteUrl, null, 'hf_wrapper');
+    },
+
+    invitefriend: function(fids) {
+        var parData = {"fids":fids};
+    	HFApp.loadHtml(_Config.invitefriendUrl, parData, 'hf_wrapper');
+    },
+
+    gift: function() {
+    	HFApp.loadHtml(_Config.giftUrl, null, 'hf_wrapper');
+    },
+
+    giftfriend: function(gid) {
+        var parData = {"gid":gid};
+    	HFApp.loadHtml(_Config.giftfriendUrl, parData, 'hf_wrapper');
+    },
+
+    pay: function() {
+        return;
+    	//HFApp.loadHtml(_Config.payUrl, null, 'hf_wrapper');
+    },
+
+    inviteApi: function() {
+    	var body = "친구와 함께해야 즐거운 해피 아일랜드로  빨리 여행을 떠나자구요~";//跟好友一起更开心的岛主，快点去旅游吧~
+        // create an opensocial.Message object
+        var reason = opensocial.newMessage(body);
+        // provide a UI for the user to generate
+        // this array of recipient IDs (only my friends)
+        var recipients = null;//[ '00000000', '00000000' ];
+
+        // initiate requestShareApp
+        opensocial.requestShareApp(recipients, reason, function(response) {
+            //alert(response);
+        	if( response.hadError() ) {
+        		console.debug(message);
+                alert("Failed to share");
+            } else {
+                alert("Shared");
+            }
+		});
+    },
+
+    inviteApi2: function(fids) {
+    	var body = "친구와 함께해야 즐거운 해피 아일랜드로  빨리 여행을 떠나자구요~";//跟好友一起更开心的岛主，快点去旅游吧~
+        // create an opensocial.Message object
+        var reason = opensocial.newMessage(body);
+        // provide a UI for the user to generate
+        // this array of recipient IDs (only my friends)
+        var recipients = fids.split(',');//[ '00000000', '00000000' ];
+        // initiate requestShareApp
+/*if (65269682 == _Config.platformUid) {
+	alert(fids);
+}*/
+
+        var body2 = "아직 안해보셨어요? 해피아일랜드 정말 좋은데,, 아 이걸 말로할 수 없고,, 참 좋은데 ^^";
+        var params = [];
+        params[opensocial.Message.Field.TYPE] = opensocial.Message.Type.CY_MESSAGE;
+        var message = opensocial.newMessage(body2, params);
+        opensocial.requestSendMessage(recipients, message, function(response2) {
+            if (response2.hadError()) {
+            	//alert("There was a problem:" + response2.getErrorCode());
+            } else {
+            	//alert("Ok");
+            }
+        });
+
+        opensocial.requestShareApp(recipients, reason, function(response) {
+        	if( response.hadError() ) {
+        		//console.debug(message);
+                //alert("Failed to share");
+            } else {
+                var parData = {"sendIds":response.getData()["recipientIds"]};
+                HFApp.loadHtml(_Config.invitesendUrl, parData);
+                alert("선택하신 친구 " + response.getData()["recipientIds"].length + "명에게\n초청이 발송되었습니다.");
+                HFApp.home();
+                /*$.each(response.data, function(i, n){
+        	    	alert( "Item #" + i + ": " + n );
+        	    });*/
+            }
+		});
+		try {
+		} catch (e) {}
+    },
+
+    activityApi2: function(content, picUrl) {
+
+       	var params = {};
+       	//var picUrl = _Config.staticUrl + '/apps/island/images/feed/boat_level_up.gif';
+       	//var url = 'http://appstore.nate.com/Main/View?apps_no=' + _Config.appId;
+       	var url = 'http://appstore.nate.com/Apps/Canvas?apps_no=' + _Config.appId + '&use_network=CY';
+  	  	//params[opensocial.Activity.Field.TITLE] = '{"type":"img","src":"' + picUrl + '","url":"' + url + '"} {"type":"user","tid":"' + _Config.platformUid + '","username":"XXX"}{actor}aaaaaa.{apps}bbbbbbbbb. {"type":"subtext","url":"http://appstore.nate.com/Main/View?apps_no=XXXX","title":"Let\'s go"}';
+  	  	params[opensocial.Activity.Field.TITLE] = '{"type":"img","src":"' + picUrl + '","url":"' + url + '"} ' + content + ' {"type":"subtext","url":"' + url + '","title":"아일랜드구경가기"}';
+        var activity = opensocial.newActivity(params);
+        opensocial.requestCreateActivity(activity, opensocial.CreateActivityPriority.HIGH, function(status){
+            if (status.hadError()) {
+                //alert("Error creating activity.");
+            } else {
+            	//alert(status);
+                //alert("Activity2 successfully created.");
+            }
+        });
+    },
+
+    sendNateOnToast: function(body, puid) {
+        var params = [];
+        params[opensocial.Message.Field.TITLE] = "";
+        params[opensocial.Message.Field.TYPE] = opensocial.Message.Type.NATEON_TOAST;
+        var message = opensocial.newMessage(body, params);
+        var recipient = new Array();
+        recipient[0] = puid;
+        opensocial.requestSendMessage(recipient, message, function(response){
+        	if (response.hadError()) {
+                //alert("There was a problem:" + response.getErrorCode());
+            } else {
+                //alert("Ok");
+            }
+        });
+    }
+
+}
+</script>

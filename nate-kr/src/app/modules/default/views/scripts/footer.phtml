@@ -1,0 +1,99 @@
+<iframe width="760" height="160" frameborder="0" scrolling="no" src="{%$staticUrl%}/html/banner/index.html?v=2011021801"></iframe>
+
+<div style="width:750px;align:center;text-align:center;font-weight:bold;">
+<div>해피 아일랜드는 (주)디그라운드에서 서비스 합니다. 공식클럽 http://club.cyworld.com/dgroundgames로 놀러오세요~~
+</div>
+<div style="color:#3b5998;padding-top:2px;padding-bottom:12px;">아일랜드 주소:{%$uid%}<span id="userinfo" style="color:red;"></span></div>
+<div>
+<script type="text/javascript">
+    var fconfig = {
+        appUrl:"http://apps.facebook.com/{%$smarty.const.APP_NAME%}/",
+        appId:"{%$appId%}",
+        appKey:"{%$appKey%}",
+        userId:"{%$uid%}",
+		platformUid:"{%$platformUid%}",
+		staticUrl:"{%$staticUrl%}",
+        //streamUrl:"{%$hostUrl%}/api/sendnewsfeed",
+        //shareStreamUrl:"",
+        //systemNewsUrl:"",
+        //invitationUrl:"{%$hostUrl%}/api/sendinvitation",
+        //freegiftLink:"",
+        gameMode:"opaque"
+    };
+
+	function sendFeed(feed)
+	{
+		var opt = $.parseJSON(feed);
+		gofeed(opt.linktext,opt.imgUrl,opt.text);
+	}
+
+	function sendUserLevelUpFeed(flag)
+	{
+		if (flag == 1) {
+			var opt = {
+					"linktext": "Let's Go",
+					"imgUrl": '{%$staticUrl%}/apps/island/images/feed/island_level_up.gif',
+					"text": '{%$uname%} pulau menjadi lebih besar melalui usahanya! Kagumnya~ Bermain bersama-samalah!'
+				};
+		} else {
+			var opt = {
+					"linktext": "Let's Go",
+					"imgUrl": '{%$staticUrl%}/apps/island/images/feed/user_level_up.gif',
+					"text": '{%$uname%} pulau naik peringkat! Melawati boleh dapat hadiah percuma! Cepat lihatlah!'
+				};
+		}
+		gofeed(opt.linktext,opt.imgUrl,opt.text);
+	}
+
+	function sendDailyTaskFeed()
+	{
+		var opt = {
+			"linktext": "Let's Go",
+			"imgUrl": '{%$staticUrl%}/apps/island/images/feed/daily_mission_complete.gif',
+			"text": '{%$uname%} Melalui usaha sepanjang hari, semua tugas harian pun diselesai! Bertepuk tangan~'
+		};
+
+		gofeed(opt.linktext,opt.imgUrl,opt.text);
+	}
+
+	function sendNormalFeed()
+	{
+		var opt = {
+			"linktext": "Let's Go",
+			"imgUrl": '{%$staticUrl%}/apps/island/images/feed/join.gif',
+			"text": 'Cahaya? Pantai? Gadis cantik? Lelaki kacak! Semua di pulau gembira! Cepat datanglah!'
+		};
+		gofeed(opt.linktext,opt.imgUrl,opt.text);
+	}
+
+	function gofeed(linktext,picUrl,text,type) {
+		  if (type === undefined || type == "") {
+			  type = 'feed';
+	      }
+		  if (text === undefined || text == "") {
+			  text = ' ';
+	      }
+
+		  FB.ui(
+				   {
+				     method: type,
+				     name: linktext,
+				     link: 'http://apps.facebook.com/{%$smarty.const.APP_NAME%}/',
+				     picture: picUrl,
+				     caption: text,
+				     description: ' ',
+				     message: ''
+				   },
+				   function(response) {
+				     if (response && response.post_id) {
+				       //alert('Post was published.');
+				     } else {
+				       //alert('Post was not published.');
+				     }
+				   }
+				 );
+
+	  }
+</script>
+</div>
+</div>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+    <ModulePrefs title="Island" description="Island"> 
+        <Require feature="opensocial-0.8" />
+        <Require feature="dynamic-height" />
+        <Require feature="flash" />
+        <Require feature="views" />
+        <Require feature="mixi-voice" />
+        <Link rel="event.addapp" href="http://mxisland.hapyfish.com/lifecycle/addapp" method="GET" />
+    </ModulePrefs>
+    
+    <Content type="html" view="canvas">
+    <![CDATA[
+       <script type="text/javascript" src="http://cloudfront.hapyfish.com/js/mixios.canvas-1.4.js"></script>
+       <script type="text/javascript" src="http://cloudfront.hapyfish.com/js/common.js"></script>
+     
+       <script type="text/javascript">
+           var canvas = mixios.application.newCanvas('http://mxisland.hapyfish.com', 'island');
+           //default debug is disabled
+           canvas.enableDebug(true);
+           //default height is 800
+           canvas.setHeight(760);
+           
+           //let's go
+           canvas.start();
+       </script>
+    ]]>
+    </Content>
+    
+    <Content type="html" view="home,profile">
+    <![CDATA[
+        <script type="text/javascript">
+	        gadgets.window.adjustHeight(175);
+	        
+	        function nav()
+	        {
+	            var canvas = gadgets.views.getSupportedViews();
+	            gadgets.views.requestNavigateTo(canvas["canvas"]);
+	        }
+        </script>
+        <a href="javascript:void(0);" onclick="nav();"><img width="210" src="http://s3.amazonaws.com/static.island/apps/island/images/dreamisland05.jpg" /></a>
+        ]]>
+    </Content> 
+</Module>

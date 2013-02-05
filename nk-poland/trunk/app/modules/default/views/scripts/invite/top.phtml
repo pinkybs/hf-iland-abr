@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>邀請朋友 - 快樂島主</title>
+<link href="{%$staticUrl%}/apps/island/css_2011041102.css?v=1.01" rel="stylesheet" type="text/css" />
+<script src="{%$staticUrl%}/js/cross_domain.js" type="text/javascript"></script>
+<style type="text/css">
+<!--
+a img,:link img,:visited img {
+	border: 0 none;
+}
+-->
+</style>
+</head>
+<body>
+<div class="main">
+{%include file="menu.phtml"%}
+
+<div id="main_content" class="content" style="height:820px;padding-top:2px;">
+    <div id="invite_award">
+    <table width="748" border="0" cellspacing="0" cellpadding="0">
+    	<tr>
+    		<td height="39" colspan="5" background="{%$staticUrl%}/apps/island/images/invite/bg_01.gif">
+    		<table width="100" border="0" align="right" cellpadding="0" cellspacing="0">
+    			<tr>
+    				<td><a href="{% if $connectSnsplus %}{%$hostUrl%}?{%$connectSnsplus%}{% else %}http://apps.facebook.com/{%$smarty.const.APP_NAME%}/{% /if %}">返回遊戲&gt;&gt;</a></td>
+    			</tr>
+    		</table>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td height="355" width="43" background="{%$staticUrl%}/apps/island/images/invite/bg_02.gif"></td>
+    		<td height="355" width="191" background="{%$staticUrl%}/apps/island/images/invite/bg_23.gif"></td>
+    		<td height="355" width="315" background="{%$staticUrl%}/apps/island/images/invite/bg_24.gif"></td>
+    		<td height="355" width="157" background="{%$staticUrl%}/apps/island/images/invite/bg_25.gif"></td>
+    		<td height="355" width="42" background="{%$staticUrl%}/apps/island/images/invite/bg_06.gif"></td>
+    	</tr>
+    	<tr>
+    		<td height="34" width="43" background="{%$staticUrl%}/apps/island/images/invite/bg_07.gif"></td>
+    		<td colspan="3" bgcolor="#E5F6FD" align="center">
+    			<a href="#" onclick="fbinvite();"><img src="{%$staticUrl%}/apps/island/images/invite/btnInvites.gif" alt="邀請好友" width="152" height="49" border="0" /></a>
+    		</td>
+    		<td height="34" width="42" background="{%$staticUrl%}/apps/island/images/invite/bg_12.gif"></td>
+    	</tr>
+    	<tr>
+    		<td height="37" colspan="5" background="{%$staticUrl%}/apps/island/images/invite/bg_13.gif"></td>
+    	</tr>
+    </table>
+    </div>
+</div>
+</div>
+
+<div id="fb-root"></div>
+<script src="http://connect.facebook.net/zh_TW/all.js"></script>
+<!-- <script src="http://connect.facebook.net/en_US/all.js"></script> -->
+<!-- <script src="http://static.ak.fbcdn.net/connect/en_US/core.debug.js"></script> -->
+<script type="text/javascript">
+  FB.init({
+    appId  : '{%$smarty.const.APP_ID%}',
+    status : true, // check login status
+    cookie : true, // enable cookies to allow the server to access the session
+    xfbml  : true  // parse XFBML
+  });
+
+  FB.Canvas.setSize();
+
+  function fbinvite() {
+	FB.ui(
+			  {
+				  method: 'apprequests',
+				  message: '邀請他們一起來玩吧！',
+				  data: 'tracking information for the user',
+				  filters: ['app_non_users'],
+				  title: '邀請好友'
+				}
+			);
+	return;
+  }
+</script>
+</body>
+</html>
+

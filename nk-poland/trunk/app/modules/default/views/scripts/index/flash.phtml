@@ -1,0 +1,38 @@
+<div class="main" style="height:auto;">
+{%include file="menu.phtml"%}
+	<div id="main_content">
+		<div id="loadingdiv" style="position: absolute; left: 350px; top: 250px;"><img src="{%$staticUrl%}/apps/island/images/common/loading0.gif" /><br/>Ładowanie...</div>
+		<div id="flashdiv"></div>
+		<script type="text/javascript">
+			var VIEWER_ID = '{%$uid%}';
+			var OWNER_ID = VIEWER_ID;
+			var FIRST_LOGIN = '{%$newuser%}';
+
+			function getCookie(name) {
+				var arr = document.cookie.match(new RegExp('(^| )'+name+'=([^;]*)(;|$)'));
+				if(arr != null) return unescape(arr[2]); return null;
+			}
+			var hf_skey = getCookie('hf_skey');
+			if (hf_skey) {
+	        	var flashVars={"ver":"14","pNum":"10","uid":"{%$uid%}","loadingUi":"{%$staticUrl%}/swf/v2012011802/loadingUi2.swf?v=2012011802", "interfaceUrl":"{%$hostUrl%}/api/initswf?v=2011081201","snsType":"nk_pl","charge":"1","pic1":"{%$staticUrl%}/html/b/images/load01.jpg","pic2":"{%$staticUrl%}/html/b/images/load02.jpg"};
+	        	var params = { base: "{%$staticUrl%}/", allowScriptAccess: "always", menu:"false", wmode: "opaque", allowFullScreen: "true", bgcolor: "#ffffff", align: "middle", quality: "high"};
+	        	var attrs = { id: "islandLoader", name: "islandLoader" };
+	        	swfobject.embedSWF("{%$staticUrl%}/swf/v01/islandLoader.swf?v=2011071401", "flashdiv",  "748", "600", "10.0", "{%$staticUrl%}/v01/expressInstall.swf", flashVars, params, attrs);
+	        } else {
+	        	var html = '<div style="padding-top:50px;color:red;font-size:14px;text-align:center;">Twoja przeglądarka nie chce otworzyć strony albo zatwierdzić ciasteczka. Spróbuj ponownie!</div>';
+	        	$('#flashdiv').html(html);
+	        }
+
+	        function hideLoading()
+	        {
+	        	$('#loadingdiv').hide();
+	        	autoHeight();
+	        }
+		</script>
+	</div>
+</div>
+
+<div style="">
+    <iframe width="750px" height="160px" frameborder="0" scrolling="no" src="{%$staticUrl%}/html/b/index.html?v=2011062201"></iframe>
+    <div id="footer" style="text-align:center;font-size:12px;">Brak wyspy: {%$platformUid%} ({%$uid%}){% if $hfDev == 1 %}<span id="userinfo" style="color:red;"></span>{% /if %}</div>
+</div>

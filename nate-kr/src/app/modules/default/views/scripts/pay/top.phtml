@@ -1,0 +1,156 @@
+<link href="{%$staticUrl%}/apps/island/css.css?v={%$version.css%}" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+a img,:link img,:visited img {
+	border: 0 none;
+}
+body,td,th {font-family: Arial, Helvetica, sans-serif;font-size: 12px;color: #000000; }
+img { border:0px;}
+.dwk{ width:738px; height:600px; padding-left:10px;}
+.wk {width:728px; height:426px; }
+.bg01{ width:728px; height:109px; background-image:url({%$staticUrl%}/apps/island/images/pay/style1/h-cz01.gif); background-repeat:no-repeat;}
+.bg02{ width:728px; height:229px; float:left;}
+.bg02-1{ width:163px; height:229px; float:left;}
+.bg02-2{ width:135px; height:229px; float:left;}
+.bg02-3{ width:135px; height:229px; float:left;}
+.bg02-4{ width:135px; height:229px; float:left;}
+.bg02-5{ width:160px; height:229px; float:left;}
+.bg03{ width:728px; height:88px; clear:both; background-image:url({%$staticUrl%}/apps/island/images/pay/style1/h-cz07.gif); background-repeat:no-repeat;}
+-->
+</style>
+<div class="main">
+	{%include file="menu.phtml"%}
+	<div class="chongzhicontent">
+		<img src="{%$user.face%}" width="59" height="60" />
+		<div class="xinxi">
+			<div class="cname">{%$user.name|escape%}</div>
+			<div class="shuzi">다이아몬드  <span style="color:#3c7e9a;font-weight:bold;">{%$user.gold%}</span></div>
+			<div class="fhyx"><a href="javascript:void(0);" onclick="HFApp.home();" target="_top"><img src="{%$staticUrl%}/apps/island/images/pay/back.gif" width="80" height="35" /></a></div>
+		</div>
+	</div>
+
+	<div class="table">
+		<ul>
+		<li style="width:50px"></li>
+		<li><a href="#"><div class="nav_01">충전</div></a></li>
+		</ul>
+	</div>
+
+    <div class="dwk">
+    <div class="wk">
+    <div class="bg01">
+      <table width="730" border="0">
+        <tr>
+          <td height="100" align="right"><table width="120" border="0">
+            <tr>
+              <td><!-- <div align="left"><a href="#" onclick="HFApp.home();" target="_top"><img src="{%$staticUrl%}/apps/island/images/pay/style1/fhyx.gif" width="80" height="29" /></a></div></td> -->
+            </tr>
+          </table></td>
+        </tr>
+      </table>
+    </div>
+    <div class="bg02">
+    	<div class="bg02-1"><a href="#" onclick="payOrder(1);"><img src="{%$staticUrl%}/apps/island/images/pay/style1/h-cz02.gif" /></a></div>
+        <div class="bg02-2"><a href="#" onclick="payOrder(2);"><img src="{%$staticUrl%}/apps/island/images/pay/style1/h-cz33.gif" /></a></div>
+        <div class="bg02-3"><a href="#" onclick="payOrder(3);"><img src="{%$staticUrl%}/apps/island/images/pay/style1/h-cz34.gif" /></a></div>
+        <div class="bg02-4"><a href="#" onclick="payOrder(4);"><img src="{%$staticUrl%}/apps/island/images/pay/style1/h-cz35.gif" /></a></div>
+        <div class="bg02-5"><a href="#" onclick="payOrder(5);"><img src="{%$staticUrl%}/apps/island/images/pay/style1/h-cz36.gif" /></a></div>
+    </div>
+    <div class="bg03"></div>
+    </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+	function payOrder(type) {
+		var id;
+		var name;
+		var dotori;
+		var thumbnail;
+		var passthrough;
+		var cbUrl = _Config.hostUrl + '/callback/payment';
+		if (1 == type) {
+			id = 1;
+			name = '20다이아몬드';
+			dotori = 10;
+		} else if (2 == type) {
+			id = 2;
+			name = '45다이아몬드';
+			dotori = 20;
+		} else if (3 == type) {
+			id = 3;
+			name = '70다이아몬드';
+			dotori = 30;
+		} else if (4 == type) {
+			id = 4;
+			name = '125다이아몬드';
+			dotori = 50;
+		} else {
+			id = 5;
+			name = '260다이아몬드';
+			dotori = 100;
+		}
+		thumbnail = _Config.staticUrl + '/apps/island/images/pay/style1/' + id + '_1.gif';
+
+		var pardata = {'hf_skey':_Config.hf_skey, 'type':id};
+		var param = {};
+		var url = _Config.hostUrl + '/pay/loadpay';
+	    param[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;
+	    param[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.JSON;
+	    param[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(pardata);
+	    param[gadgets.io.RequestParameters.AUTHORIZATION] = gadgets.io.AuthorizationType.NONE;
+	    gadgets.io.makeRequest(url, function(response) {
+	    	var data = response.data;
+	    	if (null == data && typeof(response.text) == 'string') {
+	    		$(".main").html(response.text);
+	    		return;
+		    }
+			if (data.status == 1) {
+				payment(id, name, thumbnail, dotori, data.pkey, cbUrl);
+			} else {
+				alert('Server busy,please retry later.');
+			}
+	    }, param);
+		/*$.ajax({
+		   type: "POST",
+		   url: _Config.hostUrl + '/pay/loadpay?callback=?',
+		   data: 'type=' + id + '&hf_skey=' + _Config.hf_skey,
+		   dataType: 'jsonp',
+		   crossDomain: true,
+		   success: function(response) {
+		     alert(response);
+		     alert(response.status);
+		     alert(response.pkey);
+		   },
+			error:function(jqXHR, textStatus, errorThrown) {
+				alert('aa');
+				alert(textStatus);
+				alert(jqXHR);
+				alert(errorThrown);
+			}
+		});*/
+
+	}
+
+	function payment(id, name, thumbnail, dotori, passthrough, cbUrl) {
+	    var params = {};
+	    params[openNate.PaymentParameters.ITEMTYPE] = 'ITEM';
+	    params[openNate.PaymentParameters.ITEMID] = id;
+	    params[openNate.PaymentParameters.ITEMNAME] = name;
+	    params[openNate.PaymentParameters.THUMBNAIL] = thumbnail;
+	    params[openNate.PaymentParameters.DOTORI] = dotori;
+	    params[openNate.PaymentParameters.CALLBACKFN] = "callbackFunction";
+	    params[openNate.PaymentParameters.PASSTHROUGH] = passthrough;
+	    params[openNate.PaymentParameters.CALLBACKURL] = cbUrl;
+	    openNate.dotoriPayment(params);
+	}
+
+	function callbackFunction(passthrough) {
+	    //alert("I'm callback function/ Use this function to execute rest of the process");
+	    $.each(passthrough, function(i, n){
+	    	  //alert( "Item #" + i + ": " + n );
+	    });
+	}
+
+</script>

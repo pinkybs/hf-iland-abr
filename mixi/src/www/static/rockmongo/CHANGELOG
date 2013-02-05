@@ -1,0 +1,14 @@
+v1.0.2 - 2010-07-17
+* server statistics, databases 
+* execute command and code
+* database statistics and drop
+* a better GUI
+* remove some unused php files
+
+v1.0.1 - 2010-07-15
+* switch PHP Array and JSON data format
+* choose record size per page
+* switch data to text in textarea, so we can copy it easily
+
+v1.0 - 2010-07-13
+* basic version

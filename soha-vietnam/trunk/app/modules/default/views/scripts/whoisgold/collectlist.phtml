@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>收集任务后台</title>
+
+<script type="text/javascript" src="{% $staticUrl %}/js/jquery-1.4.3.min.js"></script>
+
+<style type="text/css">
+.basic-input {
+	border: 1px solid #C9C9C9;
+	border-bottom-left-radius: 3px 3px;
+	border-bottom-right-radius: 3px 3px;
+	border-top-left-radius: 3px 3px;
+	border-top-right-radius: 3px 3px;
+	font-size: 14px;
+	height: 15px;
+	padding: 5px;
+	width: 200px;
+}
+.detail {
+	width:80%;
+}
+</style>
+</head>
+
+<div class="top-nav">
+<div class="bd">
+	<div class="top-nav-info"></div>
+    <div class="top-nav-items">
+        <ul>
+        <!--
+        	<li class="on"><a href="{% $hostUrl %}/whoisgod">首页</a></li>
+        -->
+        </ul>
+    </div>
+</div>
+</div>
+
+<div id="wrapper">
+
+	<div id="content">
+	    <!--
+	    <h1>连续登录查询</h1>
+	    -->
+		<div class="grid-8-2 clearfix">
+	    	<div class="article">
+				<form name="frm" method="post" action="{% $hostUrl %}/whoisgold/controlswitch" >
+				 <table style="margin-bottom:20px;">
+			         <tr>
+			        <th>uid</th>
+			        </tr>
+			        <tr>
+			        <td><input type="text" name="uids" value="{% $switchuid %}" /></td>
+			        </tr>
+			     </table>
+			    <input type="hidden" id="switch" name="type" value="">
+				<input type="submit" onclick="document.getElementById('switch').value='close';" value="关闭" />
+				<input type="submit" onclick="document.getElementById('switch').value='open';" value="全部开启" />
+			    <span class="pl">* CID 不可重复，如果添加多个用户，用户id之间用逗号（,）隔开</span>
+		       	</form>
+		       	<div style="border-bottom: 1px dashed #D4D4D4;margin:20px 0;"></div>
+		       	<form name="frm" method="post" action="{% $hostUrl %}/whoisgold/clearcollect" >
+				<input type="submit"  value="清除兑换记录" />
+			    <span class="pl">清除上次活动玩家的领取记录</span>
+		       	</form>
+		       	<div style="border-bottom: 1px dashed #D4D4D4;margin:20px 0;"></div>
+				<form name="frm" method="post" action="{% $hostUrl %}/whoisgold/collectlistdo" >
+			        <table>
+			         <tr>
+			        <th>开始时间</th>
+			        <th>结束时间</th>
+			        </tr>
+			        <tr>
+			        <td><input type="text" name="start" value="{% $time.start %}" /></td>
+			        <td><input type="text" name="end" value="{% $time.end %}" /></td>
+			        </tr>
+			        </table>
+			        <table class="detail" >
+			        <tbody>
+			        <tr>
+			        <th width="25%">物品名字</th>
+			        <th width="25%">CID</th>
+			        <th width="50%">Tips提示</th>
+			        </tr>
+			        <tr>
+			        	<td><input type="text" name="names[]" value="{% $list.0.name %}" /></td>
+			        	<td><input type="text" name="cids[]" value="{% $list.0.cid %}" /></td>
+			        	<td><input type="text" name="tips[]" style="width:400px" value="{% $list.0.tip %}" /></td>
+			        </tr>
+			        <tr>
+			        	<td><input type="text" name="names[]" value="{% $list.1.name %}" /></td>
+			        	<td><input type="text" name="cids[]" value="{% $list.1.cid %}" /></td>
+			        	<td><input type="text" name="tips[]" style="width:400px" value="{% $list.1.tip %}" /></td>
+			        </tr>
+			        <tr>
+			        	<td><input type="text" name="names[]" value="{% $list.2.name %}" /></td>
+			        	<td><input type="text" name="cids[]" value="{% $list.2.cid %}" /></td>
+			        	<td><input type="text" name="tips[]" style="width:400px" value="{% $list.2.tip %}" /></td>
+			        </tr>
+			        <tr>
+			        	<td><input type="text" name="names[]" value="{% $list.3.name %}" /></td>
+			        	<td><input type="text" name="cids[]" value="{% $list.3.cid %}" /></td>
+			        	<td><input type="text" name="tips[]" style="width:400px" value="{% $list.3.tip %}" /></td>
+			        </tr>
+			        <tr>
+			        	<td><input type="text" name="names[]" value="{% $list.4.name %}" /></td>
+			        	<td><input type="text" name="cids[]" value="{% $list.4.cid %}" /></td>
+			        	<td><input type="text" name="tips[]" style="width:400px" value="{% $list.4.tip %}" /></td>
+			        </tr>
+			        </tbody>
+			        </table>
+			        <br />
+			        <table class="detail" >
+			        <tbody>
+			        <tr>
+			        <th>奖励物品</th>
+			        </tr>
+			        <tr>
+			        	<td><input type="text" name="jiangli_id" value="{% $jiangli_id %}" /></td>
+			        </tr>
+			        </tbody>
+			        </table>
+			         <table>
+			         <tr>
+			        <th>提示：</th>
+			        <td><input type="text" name="tishi" value="{% $message.tishi %}" size="100"/></td>
+			        </tr>
+			        <tr>
+			         <th>注：</th>
+			        <td><input type="text" name="zhu" value="{% $message.zhu %}" size="150"/></td>
+			        </tr>
+			        </table>
+			        <input type="submit" value="更新" />
+			        <span class="pl">* CID 不可重复</span>
+
+		       	</form>
+
+	    	</div>
+	    	<div class="aside">
+	    	<!--
+	    		<div class="block_menu">
+			    <em class="ft"></em><b class="ft"></b>
+			    <ul>
+
+				    <li class="clearfix" id="event_home"><span style="color:#cccccc"></span></li>
+				    <div class="line"></div>
+				    <li class="clearfix"><a href="{% $baseUrl %}/whoisgodofwealth/index" id="ta_today"><span>连续登录查询</span></a></li>
+
+				    <li class="clearfix"><a href="{% $baseUrl %}/whoisgodofwealth/index/type/4" id="ta_today"><span>四级财神</span></a></li>
+				    <li class="clearfix"><a href="{% $baseUrl %}/whoisgodofwealth/index/type/5" id="ta_today"><span>五级财神</span></a></li>
+
+			    </ul>
+			    <em class="fb"></em><b class="fb"></b>
+			    </div>
+			-->
+	    	</div>
+	    	<div class="extra">
+	        </div>
+	    </div>
+
+	    <!--
+	    <div class="grid-16-8 clearfix">
+	    	<div class="article"></div>
+	    	<div class="aside"></div>
+	    	<div class="extra">
+	        </div>
+	    </div>
+	    -->
+
+	</div>
+	<div id="footer"></div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<style type="text/css">
+<!--
+.zleft{ float:left;}
+.zclear{ clear:both;}
+.bo_1,.bo_2,.bo_3,.bo_4,.bo_5,.bo_6,.bo_7{ padding-right:5px;}
+.renwu{ width:750px; height:28px; padding-bottom:2px; background:url({%$staticUrl%}/apps/island/images/guide/bg.gif) no-repeat; width:747px; height:28px; background-color:#d5f9f5;}
+.renwu div{ position:relative}
+.banner{ padding-bottom:2px;}
+div#fanbox {
+    background:none repeat scroll 0 0 #FFFFFF;
+    border-color:#6D84B4;
+    border-style:none solid solid;
+    border-width:0 10px 10px;
+    left:140px;
+    overflow:hidden;
+    position:absolute;
+    display:none;
+    top:110px;
+    width:293px;
+    height:380px;
+}
+
+div#fanbox #fan_title {
+    background:none repeat scroll 0 0 #6D84B4;
+    border-bottom:1px solid #AAAAAA;
+    color:white;
+    height:28px;
+    line-height:28px;
+    overflow:hidden;
+    padding:0 10px;
+    text-align:right;
+}
+div#fanbox #fan_title a {
+	color:white;
+	font-weight:bold;
+}
+-->
+</style>
+
+<!-- <div class="title">
+	<div class="menu">
+        <ul style="padding-left:150px;width:700px;">
+        	<li style="width:76px;"><a href="#" onclick="reloadGame();"><img src="{%$staticUrl%}/apps/island/images/menu/v2/home.gif" title="我的小島" alt="我的小島" /></a></li>
+        	<li style="width:88px;"><a href="#" onclick="goInvite();"><img src="{%$staticUrl%}/apps/island/images/menu/v2/invite.gif" title="邀請朋友" alt="邀請朋友" /></a></li>
+        	<li style="width:76px;"><a href="#" onclick="goGift();"><img src="{%$staticUrl%}/apps/island/images/menu/v2/gift.gif" title="贈送禮物" alt="贈送禮物" /></a></li>
+        	<li style="width:89px;padding-top:6px;"><a href="#" onclick="goPay();"><img src="{%$staticUrl%}/apps/island/images/menu/v6/pay0812.gif" title="兌換寶石" alt="兌換寶石" /></a></li>
+        	<li style="width:68px;"><a href="#" target="_blank"><img src="{%$staticUrl%}/apps/island/images/menu/v2/forum.gif" title="玩家論壇" alt="玩家論壇" /></a></li>
+        	<li style="width:68px;"><a href="#" target="_blank"><img src="{%$staticUrl%}/apps/island/images/menu/v2/help.gif" title="幫助" alt="幫助" /></a></li>
+        </ul>
+	</div>
+</div> -->
+{%*{% if $showNotice == true %}
+	  <div class="guang" style="margin-top:5px;">
+    	  <div class="guang_b" style="clear:both;"></div>
+    	  <div style="clear:both;"></div>
+	  {% foreach from=$mainNotice item=data %}
+    	  <div class="zleft guang_z">{%if $data.link%}<a href="{%$data.link%}" target="_blank">[{%$data.create_time|date_format:"%Y-%m-%d"%}]  {%$data.title%}</a>{%else%}[{%$data.create_time|date_format:"%Y-%m-%d"%}]  {%$data.title%}{%/if%}</div>
+    	 {% /foreach %}
+</div>
+{% /if %}*%}

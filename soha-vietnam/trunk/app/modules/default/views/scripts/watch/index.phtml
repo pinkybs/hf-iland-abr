@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>监测[{%$uid%}] | 快乐岛主</title>
+<link href="{%$staticUrl%}/apps/island/main_2011041101.css?v=1.01" rel="stylesheet" type="text/css" />
+<script src="{%$staticUrl%}/js/jquery-1.4.3.min.js" type="text/javascript"></script>
+<style type="text/css">
+<!--
+a img,:link img,:visited img {
+	border: 0 none;
+}
+
+object#swfcontent {
+	display: inline;
+}
+
+.box {
+	border: 1px solid #CCCCCC;
+}
+-->
+</style>
+</head>
+<body>
+<div class="main" style="height:800px;">
+{%include file="menu.phtml"%}
+<div style="clear:both;"></div>
+	<div id="main_content">
+		<div id="loadingdiv" style="position: absolute; left: 350px; top: 250px;"><img src="{%$staticUrl%}/apps/island/images/common/loading0.gif" /><br/>Loading......</div>
+		<div id="flashdiv"></div>
+		<script src="{%$staticUrl%}/js/swfobject.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			var VIEWER_ID = {%$uid%};
+			var OWNER_ID = VIEWER_ID;
+			var FIRST_LOGIN = {%$newuser%};
+
+			function getCookie(name) {
+				var arr = document.cookie.match(new RegExp('(^| )'+name+'=([^;]*)(;|$)'));
+				if(arr != null) return unescape(arr[2]); return null;
+			}
+			var hf_skey = getCookie('hf_skey');
+			if (hf_skey) {
+	        	var flashVars={"ver":"7","pNum":"11","uid":"{%$uid%}","loadingUi":"{%$staticUrl%}/swf/loadingUi2.swf?v=2011062201", "interfaceUrl":"{%$hostUrl%}/api/initswf?v=2011090501","snsType":"sohavn","pic1":"{%$staticUrl%}/html/b/images/load01.jpg","pic2":"{%$staticUrl%}/html/b/images/load02.jpg"};
+	        	var params = { base: "{%$staticUrl%}/", allowScriptAccess: "always", menu:"false", wmode: "opaque", allowFullScreen: "true", bgcolor: "#ffffff", align: "middle", quality: "high"};
+	        	var attrs = { id: "islandLoader", name: "islandLoader" };
+	        	swfobject.embedSWF("{%$staticUrl%}/swf/islandLoader.swf?v=2011113001", "flashdiv",  "748", "600", "10.0", "{%$staticUrl%}/expressInstall.swf", flashVars, params, attrs);
+	        } else {
+	        	var html = '<div style="padding-top:50px;color:red;font-size:14px;text-align:center;">Trình duyệt của bạn chưa mở hoặc chưa chấp nhận Cookie! Hãy cho phép cookies và đăng nhập lại.</div>'
+	        	$('#flashdiv').html(html);
+	        }
+
+	        function hideLoading()
+	        {
+	        	$('#loadingdiv').hide();
+	        	if (FIRST_LOGIN) {
+	        		sendNormalFeed();
+	        	}
+	        }
+		</script>
+	</div>
+
+<script type="text/javascript">
+	function goInvite()
+	{
+		showInvite();
+	}
+
+	    function goPay()
+	    {
+		topPay('{% if $connectSnsplus %}{%$connectSnsplus%}{% /if %}');
+		showPay();
+		return;
+		//location.href = '{%$smarty.const.HTTP_PROTOCOL%}apps.facebook.com/{%$smarty.const.APP_NAME%}/pay/top';
+	    }
+
+	function showuser(uid, name, face)
+	{
+	}
+
+	function reloadGame()
+	{
+		top.location.href = 'http://www.kaixin001.com/!app_happyisland/';
+	}
+
+	function showuser(uid, name, face)
+	{
+		OWNER_ID = uid;
+		var userinfo = document.getElementById('userinfo');
+		if (userinfo) {
+			if (OWNER_ID != VIEWER_ID) {
+				userinfo.innerHTML = ' [Số hiệu hiện tại của bạn bè：' + OWNER_ID + ']';
+			} else {
+				userinfo.innerHTML = '';
+			}
+		}
+	}
+
+	function returnGift()
+	{
+		location.href = '{%$hostUrl%}/gift/top';
+	}
+	function addfans()
+	{
+		window.open('http://shuo.taobao.com/microshop/front.htm?userId=401149404&follow=true');
+	}
+
+	function sendTeamBuyFeed()
+    {
+		var ajaxurl = "{%$hostUrl%}/event/sendteambuyfeed";
+		$.ajax({
+			   type: "post",
+			   url: ajaxurl,
+			   dataType: "text",
+			   success: function(msg){
+				   var feed = $.parseJSON(msg);
+				   sendFeed(feed);
+			   }
+			});
+    }
+
+	function sendStromFeed()
+    {
+		var ajaxurl = "{%$hostUrl%}/event/sendstromfeed";
+		$.ajax({
+			   type: "post",
+			   url: ajaxurl,
+			   dataType: "text",
+			   success: function(msg){
+				   var feed = $.parseJSON(msg);
+				   sendFeed(feed);
+			   }
+			});
+    }
+</script>
+
+{%include file="footer.phtml"%}

@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>ドリームワールド</title>
+<link href="{%$staticUrl%}/apps/island/css.css?{%$version.css%}" rel="stylesheet" type="text/css" />
+<link href="{%$staticUrl%}/apps/island/css2.css?{%$version.css%}" rel="stylesheet" type="text/css" />
+<script src="{%$staticUrl%}/js/cross_domain.js" type="text/javascript"></script>
+<style type="text/css">
+<!--
+a img,:link img,:visited img {
+	border: 0 none;
+}
+object#swfcontent {
+	display: inline;
+}
+-->
+</style>
+    <script type="text/javascript" language="javascript" src="{%$staticUrl%}/js/jquery.min.js?{%$version.js%}"></script>
+    <script type="text/javascript" language="javascript" src="http://mixi.jp/static/js/platform/json.js?1228977457"></script>
+    <script type="text/javascript" language="javascript" src="http://mixi.jp/static/js/platform/rpc.js?1228977457"></script>
+    <script type="text/javascript" language="javascript">
+        var CurrentHeight = 0;
+        
+        gadgets.rpc.setRelayUrl('..', "{%$mixi_platform_api_url%}", false);
+
+        function adjustHeight(height) {
+        	if (!height) {
+                var height =  document.documentElement.scrollHeight;
+            }
+            
+            CurrentHeight = height;
+            
+            if (jQuery.browser.safari) {
+                window.setTimeout(function() {
+                    gadgets.rpc.call(null, 'remote_adjustHeight', null, CurrentHeight);
+                }, 100);
+            }
+            else {
+                gadgets.rpc.call(null, 'remote_adjustHeight', null, height);
+            }
+        }
+        
+        function postActivity(title, reciptents) {
+            gadgets.rpc.call(null, 'remote_postActivity', null, title, reciptents);
+        }
+
+        function postActivityWithPic(title, picurl, mimeType, reciptents) {
+            gadgets.rpc.call(null, 'remote_postActivityWithPic', null, title, picurl, mimeType, reciptents);
+        }
+        
+        function voice(url) {
+            gadgets.rpc.call(null, 'remote_voice', null, url, '');
+        }
+        
+        jQuery(function($) {
+            adjustHeight();
+        });                
+    </script>
+</head>
+<body>
+<div>
+<a href="{%$baseUrl%}/pay/rewardplus"><img src="{%$staticUrl%}/apps/island/images/topbanner-1.jpg" /></a>&nbsp;<a href="{%$baseUrl%}/invite/top"><img src="{%$staticUrl%}/apps/island/images/topbanner-2.jpg" /></a>
+<a href="http://mixi.jp/view_bbs.pl?id=53331667&comm_id=5023218" target="_blank"><img src="{%$staticUrl%}/apps/island/images/banner/7.jpg" /></a>
+</div>

@@ -1,0 +1,83 @@
+{%include file="header.phtml"%}
+    <script type="text/javascript" language="javascript">        
+        adjustHeight(990);
+    </script>
+<div class="main" style="height:960px">
+	{%include file="menunotice.phtml"%}
+	<div id="swfcontent">
+		<div id="flashdiv"></div>
+		<script src="{%$staticUrl%}/js/swfobject.js" type="text/javascript"></script>
+		<script type="text/javascript">
+	        var flashVars={"ver":"6","pNum":"42","loadingUi":"{%$staticUrl%}/swf/v11/loadingUi2.swf", "interfaceUrl":"{%$hostUrl%}/api/initswf","snsType":"mixi"};
+	        var params = { base: "{%$staticUrl%}/", allowScriptAccess: "always", menu:"false", wmode: "opaque", allowFullScreen: "false", bgcolor: "#ffffff", align: "middle", quality: "high"};
+	        var attrs = { id: "islandLoader", name: "islandLoader" };
+	        swfobject.embedSWF("{%$staticUrl%}/swf/v19/islandLoader.swf", "flashdiv",  "748", "600", "9.0.0", "{%$staticUrl%}/expressInstall.swf", flashVars, params, attrs);
+		</script>
+	</div>
+	<img style="margin-top:15px" src="{%$staticUrl%}/apps/island/images/newguide1.jpg" />
+</div>
+<script type="text/javascript">
+	function goInvite()
+	{	
+		window.location = '{%$baseUrl%}/invite/top';
+	}
+	
+	function goPay()
+	{
+		window.location = '{%$baseUrl%}/pay/top';
+	}
+	
+	function sendFeed(feedSettings, type)
+	{		
+	 	if (feedSettings) {
+	 		feedSettings = gadgets.json.parse(feedSettings);
+	 		if (feedSettings) {
+	 		    if (feedSettings.picurl != '') {
+	 		    	if (type == 11) {
+					    voice(feedSettings.title + 'http://mixi.jp/run_appli.pl?id={%$smarty.const.APP_ID%}');
+					}
+					else {
+						postActivityWithPic(feedSettings.title, feedSettings.picurl);
+					}
+	 		    }
+	 		    else {
+	 		    	if (type == 11) {
+					    voice(feedSettings.title + 'http://mixi.jp/run_appli.pl?id={%$smarty.const.APP_ID%}');
+					}
+					else {
+	 		        	postActivity(feedSettings.title);
+	 		        }
+	 		    }
+	 		}
+	 	}
+	}
+	
+	function sendFeedWithImage(feedSettings)
+	{
+	 	if (feedSettings) {
+	 		feedSettings = gadgets.json.parse(feedSettings);
+	 		if (feedSettings) {
+	 		    postActivityWithPic(feedSettings.title, feedSettings.picurl);
+	 		}
+	 	}
+	}
+	
+	function sendUserLevelUpFeed(level)
+	{
+		var title = 'LV' + level + 'になりました。さっそく見に行こう！';
+		//postActivityWithPic(title, 'http://static.hapyfish.com/renren/apps/island/images/feed/user_level_up.gif', 'image/gif');
+		postActivity(title);
+	}
+	
+	function upAlbumPhoto(url) 
+	{
+    	gadgets.rpc.call(null, 'remote_upAlbumPhoto', null, url, '');
+    }
+	
+    function trackPage(page)
+    {
+
+    }
+</script>
+
+{%include file="footer.phtml"%}
